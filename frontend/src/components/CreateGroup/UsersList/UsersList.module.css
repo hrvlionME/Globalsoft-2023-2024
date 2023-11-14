@@ -1,0 +1,8 @@
+.user {
+    background-color: bisque;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-family: 'Arial';
+    display:inline-block;
+    color: brown;
+}
