@@ -5,10 +5,14 @@ import { useState } from 'react';
 export default function CreateGroupButton(){
     const [isClicked, setIsClicked] = useState(false);
 
+    function closeWindow(){
+        setIsClicked(false);
+    }
+
     return (
     <div>
         <button className={styles.CreateButton} onClick={() => {setIsClicked(true)}}>+ New Group</button>
-        {isClicked  ?  <div><CreateGroupScreen /></div> : <div></div>}
+        {isClicked  ?  <div><CreateGroupScreen closeWindow={closeWindow}/></div> : <div></div>}
     </div>
     )
 }
