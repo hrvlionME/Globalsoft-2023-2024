@@ -1,16 +1,19 @@
-const mysql = require('mysql2');
-require('dotenv').config({ path: './config/.env' });
+import mysql from 'mysql2';
+import { config } from 'dotenv';
 
-const dbConn = mysql.createConnection({
+config();
+
+const dbConn = mysql.createPool({
   host: process.env.HOST,
   user: process.env.USER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
-});
+}).promise();
 
-dbConn.connect(function (err) {
-  if (err) throw err;
-  console.log('Spojeno sa bazom');
-});
-
-module.exports = dbConn;
+export async function getInfo(){
+  const [rows] = await dbConn.query(`
+  SELECT *
+  FROM users;
+  `);
+  return rows;
+}
