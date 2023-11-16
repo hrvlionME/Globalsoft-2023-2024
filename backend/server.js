@@ -1,23 +1,15 @@
-require('dotenv').config({ path: './config/.env' });
+import { config } from 'dotenv';
+import express from 'express';
+import { mainRouter } from './routes/main.js';
 
-const express = require('express');
+//init & parsers
 const app = express();
-const PORT = process.env.BACKEND_PORT || 4000;
+config();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-const db = require('./config/db');
+app.use('/', mainRouter);
 
-app.get('/', (req, res) => {
-  res.send('Pozdrav svijete');
-});
-
-app.get('/test', (req, res) => {
-  const sql = 'SELECT * FROM test';
-  db.query(sql, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
-  });
-});
-
-app.listen(PORT, () => {
-  console.log('Server pokrenut');
+app.listen(process.env.BACKEND_PORT || 4000, () => {
+  console.log('Server running on port 4000');
 });
