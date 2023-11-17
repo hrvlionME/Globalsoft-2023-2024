@@ -31,6 +31,10 @@ export default function UsersList(){
     return (
         <div>
             <ul> 
+                    {/*Hardcoding "Me" as a value because we can't remove ourselves*/}
+                    <li className={styles.user}>
+                        <span>Me</span>
+                    </li>
                 {users.map((user, index) => (
                     // Setting "index" as key because name and age can be repeated, It will be better if you assign uniqe id as key
                     <li className={styles.user} key={index}>
