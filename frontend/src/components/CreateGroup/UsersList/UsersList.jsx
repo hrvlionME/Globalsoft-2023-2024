@@ -1,4 +1,5 @@
 import styles from './UsersList.module.css';
+import Search from '../Search/Search';
 import { useState, useEffect } from 'react';
 
 
@@ -43,6 +44,7 @@ export default function UsersList(){
                     </li>
                 ))}
             </ul>
+            <Search />
             <ul>  
                 {users2.map((user, index) => (       
                 //Ovdje bi trebao ic niz usera koji nije u gornjem nizu, odnosno ako smo dodali usera gore treba ga izbacit dole
