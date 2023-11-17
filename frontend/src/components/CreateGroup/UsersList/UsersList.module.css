@@ -1,15 +1,22 @@
 .user {
     position: relative;
     box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: green;
+    background-color: darkslategray;
     border-radius: 20px;
     padding: 5px 10px;
     margin: 5px;
+    height: 2.5rem;
     font-family: 'Arial';
     display:inline-block;
     color: white;
+    justify-content: center;
+    align-items: center;
 }
 
+.user span {
+    position: relative;
+    top: 5px;
+}
 
 .userInfo {
     font-family: 'Arial';
@@ -22,7 +29,7 @@
     font-size: medium;
     width:90%;
     height: 10%;
-    background-color: green;
+    background-color: darkslategray;
     padding: 1rem;
     justify-content: center;
     align-items: center;
@@ -34,18 +41,16 @@
     height: 23px;
     border: none;
     border-radius: 50%;
-    background-color: red;
+    background-color: white;
     margin-left: 5px;
-    align-items: center;
-    justify-content: center;
 }
 
 .Remove{
-
+    float: right;
     width: 30px;
     height: 30px;
     border: none;
     border-radius: 50%;
-    background-color: red;
+    background-color: white;
     margin-left: 5px;
 }

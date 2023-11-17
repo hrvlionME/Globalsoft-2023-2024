@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 export default function UsersList(){
     //Niz naziv usera koji su već dodani za stvaranje nove grupe
-    const userArray = ["Me", "AAA"];
+    const userArray = ["AAA"];
     const [users, setUsers] = useState(userArray); 
 
     //Niz usera koji nisu dodani
