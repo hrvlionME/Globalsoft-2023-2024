@@ -1,9 +1,9 @@
-import Login from './components/Login/Login';
+import Dashboard from './components/Dashboard/Dashboard.jsx';
 
 function App() {
   return (
     <>
-      <Login />
+      <Dashboard />
     </>
   );
 }

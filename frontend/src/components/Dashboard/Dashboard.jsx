@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import '/src/Dashboard.css'; // Import your CSS file for styling
+import PropTypes from 'prop-types'; // Import PropTypes
+import { useState } from 'react';
+import './Dashboard.css';
 
 const ChatList = ({ onSelect }) => {
   const chatData = [
     { id: 1, name: 'Chat 1' },
     { id: 2, name: 'Chat 2' },
     { id: 3, name: 'Chat 3' },
-    // Add more chat data as needed
   ];
 
   return (
@@ -18,6 +18,10 @@ const ChatList = ({ onSelect }) => {
       ))}
     </ul>
   );
+};
+
+ChatList.propTypes = {
+  onSelect: PropTypes.func.isRequired,
 };
 
 const ChatView = ({ chatId }) => {
@@ -40,6 +44,10 @@ const ChatView = ({ chatId }) => {
       </ul>
     </div>
   );
+};
+
+ChatView.propTypes = {
+  chatId: PropTypes.number,
 };
 
 const UserInfo = () => {
@@ -67,7 +75,6 @@ const UserInfo = () => {
     </div>
   );
 };
-
 
 const Dashboard = () => {
   const [selectedChat, setSelectedChat] = useState(null);
