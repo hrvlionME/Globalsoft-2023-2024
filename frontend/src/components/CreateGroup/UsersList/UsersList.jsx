@@ -12,6 +12,8 @@ export default function UsersList(){
     const user2Array = ["Test1", "Test2", "Test3", "Test4"];
     const [users2, setUsers2] = useState(user2Array);
     
+    const [inputText, setInputText] = useState('')
+
     /* useEffect(() => {
         fetch("http://localhost:8000/")
           .then((res) => res.json())
@@ -29,6 +31,11 @@ export default function UsersList(){
         setUsers((current) => [...current, userToAdd]);
     }
 
+    function handleChange(e){
+        setInputText(e.target.value);
+        console.log(inputText);
+    }
+
     return (
         <div>
             <ul> 
@@ -44,12 +51,21 @@ export default function UsersList(){
                     </li>
                 ))}
             </ul>
-            <Search />
+            <Search handleChange={handleChange}/>
             <ul>  
-                {users2.map((user, index) => (       
-                //Ovdje bi trebao ic niz usera koji nije u gornjem nizu, odnosno ako smo dodali usera gore treba ga izbacit dole
+                {users2.map((user, index) => (  
+                inputText.length > 0 ?
+                <div>
+                    {user.toLowerCase().startsWith(inputText.toLowerCase()) ?
                 <li className={styles.userInfo} key={index}>
                     <img src="" alt="" />  {/*profilna za usera*/}
+                    <span>{user}</span>
+                    <button className={styles.Add} onClick={() => addUser(user)}>+</button>
+                </li>
+                : <div></div>}
+                </div>
+                : <li className={styles.userInfo} key={index}>
+                    <img src="" alt="" /> 
                     <span>{user}</span>
                     <button className={styles.Add} onClick={() => addUser(user)}>+</button>
                 </li>
