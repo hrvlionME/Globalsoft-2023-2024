@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'; // Import PropTypes
 import { useState } from 'react';
-import CreateGroupScreen from '../CreateGroup/CreateGroupScreen/CreateGroupScreen';
 import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton';
 import './Dashboard.css';
 
@@ -71,12 +70,14 @@ const UserInfo = () => {
           <p>Email: {userData.email}</p>
         </div>
       </div>
-      <div className="create-group">
-          <CreateGroupButton />
-      </div>
-      <button onClick={handleLogout} className="logout-button">
+      <div className="buttons">
+          <div className="create-button">
+            <CreateGroupButton />
+          </div>
+          <button onClick={handleLogout} className="logout-button">
         Logout
       </button>
+      </div>
     </div>
   );
 };

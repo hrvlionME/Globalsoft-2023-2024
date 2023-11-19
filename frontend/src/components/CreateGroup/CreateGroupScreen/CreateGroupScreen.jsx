@@ -1,7 +1,6 @@
 import UsersList from "../UsersList/UsersList";
 import styles from './CreateGroupScreen.module.css';
 
-// Ovaj ekran bi se pojavio pri pritisku CreateGroupButton buttona
 export default function CreateGroupScreen(props){
 
     return (

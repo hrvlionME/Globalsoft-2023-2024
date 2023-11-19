@@ -1,16 +1,15 @@
 .CreateButton {
-	background-color:lightskyblue;
+	background-color: darkslategray;
 	border-radius:5px;
-	border:1px solid lightslategray;
+	border: none;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	padding:10px 15px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px blue;
 }
 .CreateButton:hover {
-	background-color:lightblue;
+	background-color: darkslategray;
 }
 .CreateButton:active {
 	position:relative;

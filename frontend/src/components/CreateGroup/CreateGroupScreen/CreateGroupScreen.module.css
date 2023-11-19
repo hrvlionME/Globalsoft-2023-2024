@@ -2,19 +2,18 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color:lightskyblue;
+    background-color: darkslategray;
 	border-radius:28px;
-	border:1px solid lightslategray;
+	border:none;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff; 
 	padding:16px 15px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px blue;
 }
 
 .close:hover {
-	background-color:lightblue;
+	background-color: darkslategray;
 }
 .close:active {
 	position:absolute;

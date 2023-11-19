@@ -18,6 +18,17 @@
     top: 5px;
 }
 
+.userBox {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 54vh;
+}
+
+.selected {
+    width: 95%;
+}
 .userInfo {
     font-family: 'Arial';
     color: white;
@@ -25,16 +36,19 @@
     border-radius: 25px;
     position: relative;
     list-style-type: none;
-    margin: 30px;
+    margin: 10px;
     font-size: medium;
-    width: 31vw;
-    height: 10%;
+    width: 95%;
+    height: 7vh;
     background-color: darkslategray;
     padding: 1rem;
     justify-content: center;
     align-items: center;
 }
-
+.userInfo span {
+    position: relative;
+    top: -3px;
+}
 .Add{
     float: right;
     width: 23px;
@@ -53,4 +67,25 @@
     border-radius: 50%;
     background-color: white;
     margin-left: 5px;
+}
+
+.close{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: darkslategray;;
+	border-radius:28px;
+    border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff; 
+	padding:16px 15px;
+	text-decoration:none;
+}
+
+img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 }
