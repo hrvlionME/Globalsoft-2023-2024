@@ -5,4 +5,4 @@ export const mainRouter = express.Router();
 
 //routes
 mainRouter.get('/', mainController.rootEndpoint);
-
+mainRouter.post('/createNewGroupChat', mainController.createNewGroupChat);
