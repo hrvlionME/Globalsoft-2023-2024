@@ -8,6 +8,7 @@ import searchPhoto from '../../assets/search.png';
 import SearchComponent from '../Search/Search.jsx';
 import profilePhoto from '../../assets/guitar.png';
 import searchPhoto from '../../assets/search.png';
+import SearchComponent from '../Search/Search.jsx';
 
 const ChatList = ({ onSelect }) => {
   const [numberOfChats, setNumberOfChats] = useState(3);
@@ -105,6 +106,9 @@ const UserInfo = () => {
           Button
         </button>
       </div>
+      <button onClick={handleLogout} className="button" />
+      Logout
+      <SearchComponent />
       <button onClick={handleLogout} className="button">
         Logout
       </button>
