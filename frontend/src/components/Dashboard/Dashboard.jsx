@@ -4,6 +4,7 @@ import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButto
 import './Dashboard.css';
 import profilePhoto from '../../assets/guitar.png';
 import searchPhoto from '../../assets/search.png';
+import SearchComponent from '../Search/Search.jsx';
 
 const ChatList = ({ onSelect }) => {
   const [numberOfChats, setNumberOfChats] = useState(3);
@@ -96,6 +97,10 @@ const UserInfo = () => {
           Button
         </button>
       </div>
+      <SearchComponent />
+      <button onClick={handleLogout} className="button">
+        Logout
+      </button>
     </div>
   );
 };

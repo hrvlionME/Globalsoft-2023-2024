@@ -1,0 +1,63 @@
+.searchElements { 
+	display: inline-block;
+    position: absolute;
+    width: 39%;
+    height: 39px;
+    border: none;
+    padding-left: 32%;
+    vertical-align: top;
+}
+.search {
+	position: relative;
+	width: 34px;
+	height: 34px;
+	background-color: #fff;
+	border-radius: 60px;
+	transition: 0.5s;
+	box-shadow: 0 0 0 2px rgb(25, 127, 201, 1);
+	overflow: hidden;
+}
+.search:hover {
+	width: 200px;
+	margin-left: -200%;
+}
+
+.search .icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 34px;
+	height: 34px;
+	background: #fff;
+	border: 5px solid #fff;
+	border-radius: 34px;
+	background-size: cover;
+    background-position: center;
+	background-image: url("./assets/blueSearch.jpg");
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	cursor: pointer;
+}
+.input {
+	position: relative;
+	width: 266px;
+	height: 34px;
+	left: 34px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+.search .input input {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	padding: 10px 0;
+}

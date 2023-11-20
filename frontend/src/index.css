@@ -15,9 +15,9 @@ body {
 }
 
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #91d2da;
-  --tertiary-color: #ffff;
+  --text-color: #ffffff;
+  --background-color: #232736;
+  --accent-color: rgb(92,138,255);
 }
 
 .button {
