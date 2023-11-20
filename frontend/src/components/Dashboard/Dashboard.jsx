@@ -44,8 +44,11 @@ const ChatView = ({ chatId }) => {
       <div className="chat-view-messages">
         <h2>Messages for {selectedChat}</h2>
       </div>
-      <div className="chat-view-send">
-        <p>Send message...</p>
+      <div className='footer'>
+        <div className="chat-view-send">
+          <p>Send message...</p>
+        </div>
+        <div><p>+</p></div>
       </div>
     </div>
   );
@@ -68,8 +71,8 @@ const App = () => {
 
 const UserInfo = () => {
   const userData = {
-    username: 'Backend24seven',
-    email: 'puspauza@mysequel.com',
+    username: 'Marko Duspara',
+    email: 'mduspara@gmail.com',
   };
 
   const handleLogout = () => {
@@ -81,7 +84,7 @@ const UserInfo = () => {
       <div className="profile-container">
         <img src={profilePhoto} alt="Profile" className="profile-photo" />
         <div className="user-details">
-          <h1>{userData.username}</h1>
+          <h4>{userData.username}</h4>
           <p>{userData.email}</p>
         </div>
       </div>
@@ -97,8 +100,7 @@ const UserInfo = () => {
           Button
         </button>
       </div>
-      <SearchComponent />
-      <button onClick={handleLogout} className="button">
+      {/* <button onClick={handleLogout} className="button">
         Logout
       </button>
     </div>
@@ -114,18 +116,13 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <header>
-        <UserInfo />
-      </header>
       <div className="main-content">
         <div className="chat-list">
           <ChatList onSelect={handleChatSelect} />
+          <UserInfo/>
         </div>
         <ChatView chatId={selectedChat} />
       </div>
-      <footer>
-        <h4>Limited Edition</h4>
-      </footer>
     </div>
   );
 };

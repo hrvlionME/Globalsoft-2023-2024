@@ -1,12 +1,11 @@
 // App.jsx
 import React from 'react';
 import Dashboard from './components/Dashboard/Dashboard';
-import backgroundImage from './assets/bg.jpg';
 import './App.module.css'; // Import your CSS file if using external styles
 
 const App = () => {
   const styles = {
-    backgroundImage: `url(${backgroundImage})`,
+    backgroundColor: 'rgb(23, 26, 36)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     // Other background properties
