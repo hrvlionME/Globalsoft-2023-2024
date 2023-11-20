@@ -1,4 +1,4 @@
-CREATE DATABASE BAZA
+CREATE DATABASE BAZA;
 
 USE BAZA
 
@@ -14,7 +14,7 @@ CREATE TABLE users (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME ,
     deleted_at DATETIME ,
-    KEY UNIQUE (email)
+    UNIQUE (email)
 );
 
 CREATE TABLE chat (
@@ -43,11 +43,11 @@ CREATE TABLE chat_details (
     updated_at DATETIME ,
     deleted_at DATETIME ,
 	FOREIGN KEY (sender_id) REFERENCES users(ID),
-    FOREIGN KEY (chat_id) REFERENCES chat(ID)
+  FOREIGN KEY (chat_id) REFERENCES chat(ID)
 	);
 
 create table message_details (
-    id PRIMARY not null AUTO_INCREMENT,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     chat_details_id BIGINT NOT null,
     timestamp DATETIME ,
     user_id BIGINT not null,
