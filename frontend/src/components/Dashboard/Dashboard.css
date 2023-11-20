@@ -110,3 +110,143 @@
     padding: 10px;
     text-align: center;
   }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  color: white;
+  background-color: rgba(21, 21, 22, 0.678);
+}
+
+.main-content {
+  width: 50%;
+  text-align: center;
+  margin: 0px auto !important;
+  border: 1px white solid;
+  border-bottom: none;
+  border-top: none;
+  background-color: rgba(21, 21, 22, 0.349);
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 50px;
+  border-bottom: 1px solid white;
+  background-color: rgba(21, 21, 22, 0.562);
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+  padding: 2px;
+  margin-left: auto;
+  background-color: rgb(222, 222, 228);
+}
+
+.add-chat-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 4px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: large;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid white;
+  padding: 10px;
+  width: 300px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.search-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 2px;
+  margin-left: 5px;
+  cursor: pointer;
+  text-align: right;
+
+}
+
+.user-details {
+  text-align: left;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.chat-list {
+  width: 25%; 
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  border-right: 1px solid white;
+}
+
+.conversation {
+  padding: 15px 0px;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.chat-view-title {
+  border-bottom: 1px solid white;
+  margin-bottom: 10px;
+  text-align: right;
+  height: 7.5%;
+  padding: 10px;
+}
+
+.chat-view-send {
+  border-top: 1px solid white;
+  height: 7.5%;
+  padding: 10px;
+
+}
+
+.chat-view-messages {
+  height: 85%;
+  padding: 5px;
+}
+
+.chat-list-container li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chat-view {
+  flex: 1;
+  box-sizing: border-box;
+  width: 75%; 
+}
+
+footer {
+  border-top: 1px white solid;
+  color: white;
+  padding: 10px;
+  text-align: right;
+  margin: 0;
+  background-color: rgba(21, 21, 22, 0.562);
+}
