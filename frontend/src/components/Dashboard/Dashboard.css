@@ -276,29 +276,29 @@
 
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100%;
   color: white;
-  background-color: rgba(21, 21, 22, 0.678);
+  margin: 100px auto;
+  height: 80vh; /* Set the height to 100% of the viewport height */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+
 }
 
 .main-content {
-  width: 50%;
+  width: 60%;
   text-align: center;
   margin: 0px auto !important;
   border: 1px white solid;
-  border-bottom: none;
-  border-top: none;
-  background-color: rgba(21, 21, 22, 0.349);
+  padding: 40px;
+  border-radius: 30px;
+
 }
 
 .user-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 50px;
-  border-bottom: 1px solid white;
-  background-color: rgba(21, 21, 22, 0.562);
+  height: 7.5%;
 }
 
 .profile-container {
@@ -307,8 +307,8 @@
 }
 
 .profile-photo {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin-right: 10px;
   padding: 2px;
@@ -360,11 +360,14 @@
 }
 
 .chat-list {
-  width: 25%; 
-  padding: 30px;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 20px;
+  width: 30%; 
   box-sizing: border-box;
   overflow-y: auto;
   border-right: 1px solid white;
+  height: 100%;
 }
 
 .conversation {
@@ -375,23 +378,45 @@
 }
 
 .chat-view-title {
-  border-bottom: 1px solid white;
+  border: 1px solid white;
+  border-radius: 20px;
   margin-bottom: 10px;
   text-align: right;
-  height: 7.5%;
+  height: 10%;
   padding: 10px;
+  margin: 20px;
 }
 
-.chat-view-send {
-  border-top: 1px solid white;
-  height: 7.5%;
+.footer {
+  display: flex;
+}
+
+.chat-view-send,
+.footer > div {
+  flex: 1;
+  border: 1px solid white;
+  border-radius: 20px;
   padding: 10px;
+  margin: 10px;
+}
+
+.chat-view-send p,
+.footer > div p {
+  margin: 0;
 
 }
+
 
 .chat-view-messages {
-  height: 85%;
-  padding: 5px;
+  height: 70%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin: 20px;
+
+}
+
+.chat-list-container {
+  height: 92.5%;
 }
 
 .chat-list-container li {
@@ -401,16 +426,14 @@
 }
 
 .chat-view {
+  height: 100%;
+  margin: 0 20px;
   flex: 1;
   box-sizing: border-box;
-  width: 75%; 
+  width: 70%; 
+  border: 1px solid white;
+  border-radius: 20px;
+
 }
 
-footer {
-  border-top: 1px white solid;
-  color: white;
-  padding: 10px;
-  text-align: right;
-  margin: 0;
-  background-color: rgba(21, 21, 22, 0.562);
-}
+

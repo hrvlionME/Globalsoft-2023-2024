@@ -111,7 +111,8 @@ const UserInfo = () => {
       <SearchComponent />
       <button onClick={handleLogout} className="button">
         Logout
-      </button>
+      </button>{' '}
+      */}
     </div>
   );
 };
