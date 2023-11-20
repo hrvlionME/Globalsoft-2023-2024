@@ -12,7 +12,7 @@ export default function UsersList(){
     const [users, setUsers] = useState(userArray); 
 
     const user2Array = [];
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 100; i++){
         user2Array.push("Test" + i);
     }
     const [users2, setUsers2] = useState(user2Array);

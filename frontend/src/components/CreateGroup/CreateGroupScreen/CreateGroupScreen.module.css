@@ -2,7 +2,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: darkslategray;
+    background-color: #5c8aff;
 	border-radius:28px;
 	border:none;
 	display:inline-block;
@@ -13,7 +13,7 @@
 }
 
 .close:hover {
-	background-color: darkslategray;
+	background-color: #5c8aff;
 }
 .close:active {
 	position:absolute;
@@ -25,9 +25,9 @@
     justify-content: center;
     align-items: center;
 	position: fixed;
-	top: 10%;
+	top: 10%; /*7%*/
 	left: 35%;
-    height: 80vh;
+    height: 80vh; /*90*/ 
     width: 35vw;
-    background-color: lightgray;
+    background-color: #171b24;
 }

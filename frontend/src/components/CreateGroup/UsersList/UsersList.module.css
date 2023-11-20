@@ -1,7 +1,7 @@
 .user {
     position: relative;
     box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: darkslategray;
+    background-color: #5c8aff;
     border-radius: 20px;
     padding: 5px 10px;
     margin: 5px;
@@ -23,6 +23,7 @@
     flex: 1 1 auto;
     flex-direction: column;
     overflow-y: auto;
+    overflow-x: hidden;
     height: 54vh;
 }
 
@@ -40,7 +41,7 @@
     font-size: medium;
     width: 95%;
     height: 7vh;
-    background-color: darkslategray;
+    background-color: #5c8aff;
     padding: 1rem;
     justify-content: center;
     align-items: center;
@@ -73,7 +74,7 @@
     position: absolute;
     bottom: 5px;
     right: 5px;
-    background-color: darkslategray;;
+    background-color: #5c8aff;
 	border-radius:28px;
     border: none;
 	display:inline-block;
