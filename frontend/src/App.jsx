@@ -11,12 +11,10 @@ const App = () => {
     // Other background properties
   };
 
-  
-
   return (
     <div style={styles}>
       <Dashboard />
-      
+
       {/* Other components and content go here */}
     </div>
   );

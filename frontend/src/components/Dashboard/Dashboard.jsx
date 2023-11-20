@@ -2,9 +2,12 @@ import PropTypes from 'prop-types'; // Import PropTypes
 import { useState } from 'react';
 import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton';
 import './Dashboard.css';
+
 import profilePhoto from '../../assets/guitar.png';
 import searchPhoto from '../../assets/search.png';
 import SearchComponent from '../Search/Search.jsx';
+import profilePhoto from '../../assets/guitar.png';
+import searchPhoto from '../../assets/search.png';
 
 const ChatList = ({ onSelect }) => {
   const [numberOfChats, setNumberOfChats] = useState(3);
@@ -44,11 +47,13 @@ const ChatView = ({ chatId }) => {
       <div className="chat-view-messages">
         <h2>Messages for {selectedChat}</h2>
       </div>
-      <div className='footer'>
+      <div className="footer">
         <div className="chat-view-send">
           <p>Send message...</p>
         </div>
-        <div><p>+</p></div>
+        <div>
+          <p>+</p>
+        </div>
       </div>
     </div>
   );
@@ -100,7 +105,7 @@ const UserInfo = () => {
           Button
         </button>
       </div>
-      {/* <button onClick={handleLogout} className="button">
+      <button onClick={handleLogout} className="button">
         Logout
       </button>
     </div>
@@ -119,8 +124,9 @@ const Dashboard = () => {
       <div className="main-content">
         <div className="chat-list">
           <ChatList onSelect={handleChatSelect} />
-          <UserInfo/>
+          <UserInfo />
         </div>
+        <ChatView chatId={selectedChat} />
         <ChatView chatId={selectedChat} />
       </div>
     </div>
