@@ -1,16 +1,35 @@
-const mysql = require('mysql2');
-require('dotenv').config({ path: './config/.env' });
+import mysql from 'mysql2';
+import { config } from 'dotenv';
 
-const dbConn = mysql.createConnection({
+config();
+
+const dbConn = mysql.createPool({
   host: process.env.HOST,
   user: process.env.USER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
-});
+}).promise();
 
-dbConn.connect(function (err) {
-  if (err) throw err;
-  console.log('Spojeno sa bazom');
-});
+export async function getInfo(){
+  const [rows] = await dbConn.query(`
+  SELECT *
+  FROM users;
+  `);
+  return rows;
+}
 
-module.exports = dbConn;
+export async function insertNewGroupChatData(participantsInfo, chatName){
+  const query1 = `INSERT INTO chat (name) VALUES (?);`;
+  const query2 = `INSERT INTO participants (user_id, chat_id) VALUES (?, ?);`;
+  const results = [];
+  try{
+    const [result1] = await dbConn.query(query1, chatName);
+    for(let i = 0; i < participantsInfo.length; i++){
+      const [result2] = await dbConn.query(query2, [participantsInfo[i], result1.insertId]);
+      results.push(result2.insertId);
+    }
+    return results;
+  } catch(err) {
+    console.log(err);
+  }
+}
