@@ -5,27 +5,31 @@ import MyImage from './avatar.jpg';
 
 
 export default function UsersList(){
-    const userArray = [];
-    /*for(let i = 0; i < 4; i++){
+    const userArray = []; 
+    /* for(let i = 0; i < 4; i++){
         userArray.push("Test" + i);
     }*/
+    const userData = {
+        1: { id: 1, name: 'Hrvoje'},
+        2: { id: 2, name: 'Mario'},
+        3: { id: 3, name: 'Penda'},
+      };
     const [users, setUsers] = useState(userArray); 
 
-    const user2Array = [];
+    /*const user2Array = [];
     for(let i = 0; i < 100; i++){
         user2Array.push("Test" + i);
-    }
+    }*/
+    const user2Array = Object.values(userData).map(user => user.name);
     const [users2, setUsers2] = useState(user2Array);
-    
     const [inputText, setInputText] = useState('')
-
-    /* useEffect(() => {
-        fetch("http://localhost:8000/")
+    /*
+     useEffect(() => {
+        fetch("http://localhost:4000/")
           .then((res) => res.json())
-          .then((data) => console.log(data.message)) //dodati data u niz users2
+          .then((data) => console.log(data.message))
       }, []);
-    */
-
+*/
     function removeUser(userToDelete){
         setUsers((current) => (current.filter((user) => {return user !== userToDelete})));
         setUsers2((current) => [...current, userToDelete]);
