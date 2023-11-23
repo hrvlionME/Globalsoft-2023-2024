@@ -1,13 +1,14 @@
 import mysql from 'mysql2';
 import { config } from 'dotenv';
-import bcryptjs from 'bcryptjs'
+import bcryptjs from 'bcryptjs'import bcrypt from 'bcrypt';
+
 config();
 
 const dbConn = mysql.createPool({
   host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+  user: process.env.USER || 'root',
+  password: process.env.PASSWORD || 'abc12',
+  database: process.env.DATABASE|| 'BAZA1',
 }).promise();
 
 export async function getInfo(){
