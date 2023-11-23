@@ -285,25 +285,43 @@
 }
 
 .main-content {
-  width: 60%;
+  width: 65%;
   text-align: center;
   margin: 0px auto !important;
-  border: 1px white solid;
   padding: 40px;
   border-radius: 30px;
 
+}
+
+.toggle {
+  height: 30px;
+  width: 60px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle:hover {
+  background-color: var(--accent-color); /* Change the background color on hover */
+  color: white;
 }
 
 .user-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 7.5%;
+  height: 4%;
 }
 
 .profile-container {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .profile-photo {
@@ -326,6 +344,18 @@
   background-color: var(--primary-color);
   color: white;
   font-size: large;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Add a smooth transition effect */
+}
+
+.add-chat-button:hover {
+  width: 50px; /* Increase the width on hover */
+  height: 50px; /* Increase the height on hover */
+  margin-right: 10px;
+  margin-top: 10px;
+  border-radius: 50%;
+  padding: 8px; /* Increase the padding on hover */
+  background-color: var(--accent-color); /* Change the background color on hover */
 }
 
 .search {
@@ -350,8 +380,15 @@
 
 }
 
+.user-logout {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .user-details {
   text-align: left;
+
 }
 
 .main-content {
@@ -359,13 +396,14 @@
   flex: 1;
 }
 
-.chat-list {
+.sidebar {
   border: 1px solid white;
   border-radius: 20px;
   padding: 20px;
-  width: 30%; 
+  margin-right: 10px;
+  width: 37.5%; 
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow:hidden;
   border-right: 1px solid white;
   height: 100%;
 }
@@ -379,7 +417,7 @@
 
 .chat-view-title {
   border: 1px solid white;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 10px;
   text-align: right;
   height: 10%;
@@ -387,36 +425,68 @@
   margin: 20px;
 }
 
+
 .footer {
   display: flex;
+  border: none;
+  margin: 20px;
+}
+
+
+.send-btn {
+  margin-left: 10px;
+  width: 15%;
+  height: 50px;
+  cursor: pointer;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: var(--accent-color); /* Change the background color on hover */
+  color: white;
+}
+
+.chat-view-send {
+  width: 85%;
+  height: 50px;
 }
 
 .chat-view-send,
 .footer > div {
-  flex: 1;
   border: 1px solid white;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 10px;
-  margin: 10px;
+}
+
+.chat-view-send input {
+  width: 100%;
+  padding: 8px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 5px;
 }
 
 .chat-view-send p,
 .footer > div p {
   margin: 0;
-
 }
+
 
 
 .chat-view-messages {
   height: 70%;
-  border: 1px solid white;
-  border-radius: 20px;
   margin: 20px;
 
 }
 
 .chat-list-container {
-  height: 92.5%;
+  height: 85%;
+
 }
 
 .chat-list-container li {
@@ -427,13 +497,15 @@
 
 .chat-view {
   height: 100%;
-  margin: 0 20px;
   flex: 1;
   box-sizing: border-box;
-  width: 70%; 
   border: 1px solid white;
   border-radius: 20px;
 
 }
+
+
+
+
 
 

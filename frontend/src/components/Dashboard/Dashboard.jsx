@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'; // Import PropTypes
 import { useState } from 'react';
 import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton';
 import './Dashboard.css';
@@ -10,7 +9,7 @@ import profilePhoto from '../../assets/guitar.png';
 import searchPhoto from '../../assets/search.png';
 import SearchComponent from '../Search/Search.jsx';
 
-const ChatList = ({ onSelect }) => {
+const Sidebar = ({ onSelect }) => {
   const [numberOfChats, setNumberOfChats] = useState(3);
 
   const addNewChat = () => {
@@ -39,6 +38,11 @@ const ChatList = ({ onSelect }) => {
 
 const ChatView = ({ chatId }) => {
   const selectedChat = chatId ? `Chat ${chatId}` : '';
+
+  const handleSendMessage = () => {
+    // Implement your logic for sending messages here
+    console.log('Message sent!');
+  };
 
   return (
     <div className="chat-view">
@@ -89,36 +93,44 @@ const UserInfo = () => {
     <div className="user-info">
       <div className="profile-container">
         <img src={profilePhoto} alt="Profile" className="profile-photo" />
-        <div className="user-details">
-          <h4>{userData.username}</h4>
-          <p>{userData.email}</p>
+        <div className="user-logout">
+          <div className="user-details">
+            <h4>{userData.username}</h4>
+            <p>{userData.email}</p>
+          </div>
         </div>
-      </div>
-      <div className="buttons">
-        <div className="create-button">
-          <CreateGroupButton />
+        <div className="buttons">
+          <div className="create-button">
+            <CreateGroupButton />
+          </div>
+          <div className="search">
+            <p>Search...</p>
+            <img src={searchPhoto} alt="Search" className="search-photo" />
+          </div>
+          <button onClick={handleLogout} className="button">
+            Button
+          </button>
         </div>
-        <div className="search">
-          <p>Search...</p>
-          <img src={searchPhoto} alt="Search" className="search-photo" />
-        </div>
-        <button onClick={handleLogout} className="button">
-          Button
-        </button>
-      </div>
-      <button onClick={handleLogout} className="button" />
-      Logout
-      <SearchComponent />
-      <button onClick={handleLogout} className="button">
+        <button onClick={handleLogout} className="button" />
         Logout
-      </button>{' '}
-      */}
+        <SearchComponent />
+        <button onClick={handleLogout} className="button">
+          Logout
+        </button>{' '}
+      </div>
     </div>
   );
 };
 
 const Dashboard = () => {
   const [selectedChat, setSelectedChat] = useState(null);
+  const [isSidebarVisible, setSidebarVisibility] = useState(true);
+
+  const toggleSidebar = () => {
+    setSidebarVisibility(!isSidebarVisible);
+  };
+
+  const sidebarButtonText = isSidebarVisible ? 'Hide' : 'Show';
 
   const handleChatSelect = (chatId) => {
     setSelectedChat(chatId);
