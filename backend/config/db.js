@@ -1,6 +1,7 @@
 import mysql from 'mysql2';
 import { config } from 'dotenv';
-import bcryptjs from 'bcryptjs';
+import bcryptjs from 'bcryptjs'import bcrypt from 'bcrypt';
+
 config();
 
 const dbConn = mysql
