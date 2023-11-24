@@ -113,7 +113,7 @@ export default function UsersList(props){
     }
 
     function CreateGroup(){
-        const usersID = Object.values(users).map(user => user.id)
+        const usersID = Object.values(users).map(user => user.ID)
 
         const data = {
             name: groupName,
