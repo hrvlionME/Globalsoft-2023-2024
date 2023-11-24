@@ -1,7 +1,6 @@
 import mysql from 'mysql2';
 import { config } from 'dotenv';
-import bcrypt from 'bcrypt';
-
+import bcryptjs from 'bcryptjs'
 config();
 
 const dbConn = mysql.createPool({
@@ -37,7 +36,7 @@ export async function insertNewGroupChatData(participantsInfo, chatName){
 
 export async function registerUser(userData){
   const{email, password, name, lastname, avatar, user_role } = userData;
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcryptjs.hash(password, 10);
 
   const insertUserQuery = `INSERT INTO users (email, password, name, lastname, avatar, user_role) VALUES (?, ?, ?, ?, ?, ?);`;
   try{
