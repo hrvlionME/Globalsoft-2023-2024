@@ -52,20 +52,49 @@ export async function insertNewGroupChatData(participantsInfo, chatName) {
   return UserId;
 }*/
 
-
 export async function checkData(email, password) {
   const query = `SELECT * FROM users WHERE email = ? AND password = ?`;
-  
+
   var result = await dbConn.query(query, [email, password]);
-  
+
   if (result.length > 0 && result[0].length > 0) {
     const firstUser = result[0][0];
     const userID = firstUser.ID;
-    console.log("userID:", userID);
+    console.log('userID:', userID);
 
     return userID;
   } else {
-    console.log("Korisnik nije pronađen");
+    console.log('Korisnik nije pronađen');
+    return null;
+  }
+}
+
+/*export async function checkData(email, password) {
+  console.log("Usao u checkData");
+  const query = `SELECT * FROM users WHERE email = ? AND password = ?`;
+  console.log("nakon querya");
+  
+  var result = await dbConn.query(query, [email, password]);
+  console.log("result u check data");
+  console.log(result[0][0].ID);
+  var UserId = result[0][0].ID;
+
+  return UserId;
+}*/
+
+export async function checkData(email, password) {
+  const query = `SELECT * FROM users WHERE email = ? AND password = ?`;
+
+  var result = await dbConn.query(query, [email, password]);
+
+  if (result.length > 0 && result[0].length > 0) {
+    const firstUser = result[0][0];
+    const userID = firstUser.ID;
+    console.log('userID:', userID);
+
+    return userID;
+  } else {
+    console.log('Korisnik nije pronađen');
     return null;
   }
 }
