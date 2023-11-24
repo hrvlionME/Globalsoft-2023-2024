@@ -38,3 +38,14 @@ export async function insertNewGroupChatData(participantsInfo, chatName) {
     console.log(err);
   }
 }
+
+export async function checkData(email, password)
+{
+  const query = `SELECT * FROM users WHERE email = ? AND password = ?`;
+  try{
+    const result = dbConn.query(email, password);
+    return result;
+  }catch(err){
+    console.log(err);
+  }
+}

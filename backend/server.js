@@ -8,7 +8,8 @@ config();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use('/', mainRouter);
+
+
 
 app.listen(process.env.BACKEND_PORT || 4000, () => {
   console.log('Server running on port 4000');
