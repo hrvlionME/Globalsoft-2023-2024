@@ -1,4 +1,5 @@
 import * as db from '../db.js';
+import bcrypt from 'bcrypt';
 
 export const rootEndpoint = async (req, res) => {
   const data = await db.getInfo();
@@ -66,5 +67,31 @@ export const getAllMessages = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+export const registerUser = async (req, res) => {
+  const userData = {
+    email: req.body.email,
+    password: req.body.password,
+    name: req.body.name,
+    lastname: req.body.lastname,
+    avatar: req.body.avatar,
+    user_role: req.body.user_role,
+  };
+
+  try {
+    const userId = await db.registerUser(userData);
+
+    if (userId) {
+      return res
+        .status(201)
+        .json({ message: 'User registered successfull', userId });
+    } else {
+      return res.status(500).json({ message: 'Error occurred' });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
