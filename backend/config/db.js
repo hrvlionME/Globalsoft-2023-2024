@@ -1,5 +1,6 @@
 import mysql from 'mysql2';
 import { config } from 'dotenv';
+import bcrypt from 'bcrypt';
 
 config();
 
@@ -33,3 +34,19 @@ export async function insertNewGroupChatData(participantsInfo, chatName){
     console.log(err);
   }
 }
+
+export async function registerUser(userData){
+  const{email, password, name, lastname, avatar, user_role } = userData;
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const insertUserQuery = `INSERT INTO users (email, password, name, lastname, avatar, user_role) VALUES (?, ?, ?, ?, ?, ?);`;
+  try{
+    const [result] = await dbConn.query(insertUserQuery, [email, hashedPassword, name, lastname, avatar, user_role])
+    return result.insertId;
+  } catch (error){
+    console.error(error);
+    throw err;
+  }
+}
+
+
