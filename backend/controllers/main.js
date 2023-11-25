@@ -3,6 +3,7 @@ import * as db from '../config/db.js';
 export const rootEndpoint = async (req,res) => {
     const data = await db.getInfo();
     res.json(data);
+    // res.json("test");
 }
 
 export const createNewGroupChat = async (req,res) => {
@@ -16,22 +17,26 @@ export const createNewGroupChat = async (req,res) => {
 export const login = async (req, res) =>{
   const {email, password} = req.body
 
-  if (email && password) {
-    const isSuccess = await db.checkData(email, password);
+  console.log(email);
+  console.log(password);
 
-    if(isSuccess)
-    {
-      if(data.length > 0)
-      {
-        const userId = data[0].ID;
-        return res.status(200).json({Status: "Success", ID : userId});
+  if (email && password) {
+    try{
+    const UserId = await db.checkData(email, password);
+
+        if(UserId != null)
+        {
+          return res.status(200).json({Status: "Success", ID : UserId});
+        }
+        else{
+          return res.status(401).json({Status: "Incorrect credentials"});
+        }
+      }catch(error){
+        console.error('Error during login:', error);
+        return res.status(500).json({ Status: 'Internal Server Error' });
       }
-      else{
-        return res.status(401).json({Status: "Incorrect credentials"});
-      }
-    }
-  }else {
-		response.send('Please enter Email and Password!');
-		response.end();
+  }
+  else {
+    return res.status(400).json({ Status: 'Please enter Email and Password' });
 	}
 }
