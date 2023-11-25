@@ -1,4 +1,4 @@
-import * as db from '../config/db.js';
+import * as db from '../db.js';
 
 export const rootEndpoint = async (req, res) => {
   const data = await db.getInfo();
