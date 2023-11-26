@@ -6,6 +6,34 @@ export default function Chat() {
     chatID: PropTypes.number,
   };
 
+  // const [chatID, setChatID] = useState({chatID});
+  // const [messages, setMessages] = useState([]);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const response = await fetch("/api/messages", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ chatID }),
+  //       });
+
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+
+  //       const data = await response.json();
+  //       setMessages(data.messages);
+  //     } catch (error) {
+  //       console.error("Error fetching messages:", error);
+  //     }
+  //   }
+
+  //   fetchData();
+  // }, [chatID]);
+
   const messages = [
     {
       id: 1,
