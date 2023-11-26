@@ -281,7 +281,6 @@
   height: 80vh; /* Set the height to 100% of the viewport height */
   justify-content: center; /* Center vertically */
   align-items: center; /* Center horizontally */
-
 }
 
 .main-content {
@@ -290,7 +289,6 @@
   margin: 0px auto !important;
   padding: 40px;
   border-radius: 30px;
-
 }
 
 .toggle {
@@ -307,7 +305,9 @@
 }
 
 .toggle:hover {
-  background-color: var(--accent-color); /* Change the background color on hover */
+  background-color: var(
+    --accent-color
+  ); /* Change the background color on hover */
   color: white;
 }
 
@@ -355,7 +355,9 @@
   margin-top: 10px;
   border-radius: 50%;
   padding: 8px; /* Increase the padding on hover */
-  background-color: var(--accent-color); /* Change the background color on hover */
+  background-color: var(
+    --accent-color
+  ); /* Change the background color on hover */
 }
 
 .search {
@@ -377,7 +379,6 @@
   margin-left: 5px;
   cursor: pointer;
   text-align: right;
-
 }
 
 .user-logout {
@@ -388,7 +389,6 @@
 
 .user-details {
   text-align: left;
-
 }
 
 .main-content {
@@ -401,9 +401,9 @@
   border-radius: 20px;
   padding: 20px;
   margin-right: 10px;
-  width: 37.5%; 
+  width: 37.5%;
   box-sizing: border-box;
-  overflow:hidden;
+  overflow: hidden;
   border-right: 1px solid white;
   height: 100%;
 }
@@ -425,13 +425,11 @@
   margin: 20px;
 }
 
-
 .footer {
   display: flex;
   border: none;
   margin: 20px;
 }
-
 
 .send-btn {
   margin-left: 10px;
@@ -446,7 +444,9 @@
 }
 
 .send-btn:hover {
-  background-color: var(--accent-color); /* Change the background color on hover */
+  background-color: var(
+    --accent-color
+  ); /* Change the background color on hover */
   color: white;
 }
 
@@ -476,17 +476,13 @@
   margin: 0;
 }
 
-
-
 .chat-view-messages {
   height: 70%;
   margin: 20px;
-
 }
 
 .chat-list-container {
   height: 85%;
-
 }
 
 .chat-list-container li {
@@ -494,18 +490,3 @@
   align-items: center;
   margin-bottom: 10px;
 }
-
-.chat-view {
-  height: 100%;
-  flex: 1;
-  box-sizing: border-box;
-  border: 1px solid white;
-  border-radius: 20px;
-
-}
-
-
-
-
-
-
