@@ -1,5 +1,5 @@
-import mysql from 'mysql2';
-import { config } from 'dotenv';
+import mysql from "mysql2";
+import { config } from "dotenv";
 
 config();
 
@@ -31,5 +31,35 @@ export async function insertNewGroupChatData(participantsInfo, chatName){
     return results;
   } catch(err) {
     console.log(err);
+  }
+}
+
+export async function insertNewMessageData(
+  senderId,
+  chatId,
+  messageText,
+  userId
+) {
+  const connection = await pool.getConnection();
+  await connection.beginTransaction();
+
+  try {
+    const [result1] = await connection.query(
+      "INSERT INTO chat_details (sender_id, chat_id, message) VALUES (?, ?, ?)",
+      [senderId, chatId, messageText]
+    );
+    const chatDetailsId = result1.insertId;
+
+    await connection.query(
+      "INSERT INTO message_details (chat_details_id, timestamp, user_id) VALUES (?, ?, ?)",
+      [chatDetailsId, new Date(), userId]
+    );
+
+    await connection.commit();
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
   }
 }
