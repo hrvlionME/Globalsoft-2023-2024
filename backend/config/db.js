@@ -1,6 +1,5 @@
 import mysql from 'mysql2';
 import { config } from 'dotenv';
-import jwt from 'jsonwebtoken';
 
 config();
 
@@ -13,31 +12,11 @@ const dbConn = mysql
   })
   .promise();
 
-// Middleware for JWT authentication
-export const authenticateToken = (req, res, next) => {
-  const token = req.header('Authorization');
-  if (!token) return res.status(401).json({ message: 'Unauthorized' });
-
-  jwt.verify(token, 'your_secret_key', (err, user) => {
-    if (err) return res.status(403).json({ message: 'Forbidden' });
-    req.user = user;
-    next();
-  });
-};
-
-export async function getInfo(req) {
-  // Use the authenticateToken middleware to verify the JWT token
-  authenticateToken(req, {}, () => {});
-
-  // Retrieve user-specific information
-  const userId = req.user.id;
-
+export async function getInfo() {
   const [rows] = await dbConn.query(`
-    SELECT *
-    FROM users
-    WHERE id = ?;
-  `, [userId]);
-
+  SELECT *
+  FROM users;
+  `);
   return rows;
 }
 
@@ -45,7 +24,6 @@ export async function insertNewGroupChatData(participantsInfo, chatName) {
   const query1 = `INSERT INTO chat (name) VALUES (?);`;
   const query2 = `INSERT INTO participants (user_id, chat_id) VALUES (?, ?);`;
   const results = [];
-
   try {
     const [result1] = await dbConn.query(query1, chatName);
     for (let i = 0; i < participantsInfo.length; i++) {
