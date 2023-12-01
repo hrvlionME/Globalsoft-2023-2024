@@ -70,8 +70,33 @@ export const getAllMessages = async (req, res) => {
   }
 };
 
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  console.log(email);
+  console.log(password);
+
+  if (email && password) {
+    try {
+      const UserId = await db.checkData(email, password);
+
+      if (UserId != null) {
+        return res.status(200).json({ Status: 'Success', ID: UserId });
+      } else {
+        return res.status(401).json({ Status: 'Incorrect credentials' });
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      return res.status(500).json({ Status: 'Internal Server Error' });
+    }
+  } else {
+    return res.status(400).json({ Status: 'Please enter Email and Password' });
+  }
+};
+
 export const registerUser = async (req, res) => {
   const userData = {
+    ID: req.body.ID,
     email: req.body.email,
     password: req.body.password,
     name: req.body.name,
@@ -79,47 +104,4 @@ export const registerUser = async (req, res) => {
     avatar: req.body.avatar,
     user_role: req.body.user_role,
   };
-
-  try {
-    const userExists = await db.checkUserExists(userData.email);
-    if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
-
-    const userId = await db.registerUser(userData);
-
-    if (userId) {
-      return res
-        .status(201)
-        .json({ message: 'User registered successfully', userId });
-    }
-    return res
-      .status(500)
-      .json({ message: 'Error occurred during registration' });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'User registration failed' });
-  }
-};
-
-export const deleteUser = async (req, res) => {
-  const email = req.body.email;
-
-  try {
-    const userExists = await db.checkUserExists(email);
-    if (!userExists) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    const deleted = await db.deleteUser(email);
-
-    if (deleted) {
-      return res.json({ message: 'User deleted successfully' });
-    }
-
-    return res.status(500).json({ message: 'Error occurred during deletion' });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'User deletion failed' });
-  }
 };
