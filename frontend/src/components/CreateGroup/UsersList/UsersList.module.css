@@ -1,0 +1,106 @@
+.user {
+    position: relative;
+    box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #5c8aff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 5px;
+    height: 2.5rem;
+    font-family: 'Arial';
+    display:inline-block;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.user span {
+    position: relative;
+    top: 5px;
+}
+
+.userBox {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 54vh;
+}
+
+.selected {
+    width: 95%;
+}
+.userInfo {
+    font-family: 'Arial';
+    color: white;
+    box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 25px;
+    position: relative;
+    list-style-type: none;
+    margin: 10px;
+    font-size: medium;
+    width: 95%;
+    height: 7vh;
+    background-color: #5c8aff;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.userInfo span {
+    position: relative;
+    top: -3px;
+}
+.Add{
+    float: right;
+    width: 23px;
+    height: 23px;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    margin-left: 5px;
+}
+
+.Remove{
+    float: right;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    margin-left: 5px;
+}
+
+.close{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #5c8aff;
+	border-radius:28px;
+    border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff; 
+	padding:16px 15px;
+	text-decoration:none;
+}
+
+img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.submit {
+    width: 35vw;
+    background-color: #171b24;
+    height: 8vh;
+    position: relative;
+}
+
+.submit input{
+    position: absolute;
+    bottom: -20px;
+    width: 28vw;
+    
+}

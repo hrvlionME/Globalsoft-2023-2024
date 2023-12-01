@@ -1,0 +1,33 @@
+.close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #5c8aff;
+	border-radius:28px;
+	border:none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff; 
+	padding:16px 15px;
+	text-decoration:none;
+}
+
+.close:hover {
+	background-color: #5c8aff;
+}
+.close:active {
+	position:absolute;
+	top:1px;
+}
+
+.container {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    justify-content: center;
+    align-items: center;
+	position: fixed;
+	top: 10%; /*7%*/
+	left: 35%;
+    height: 80vh; /*90*/ 
+    width: 35vw;
+    background-color: #171b24;
+}

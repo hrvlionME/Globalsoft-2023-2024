@@ -1,0 +1,17 @@
+.CreateButton {
+	background-color: #5c8aff;
+	border-radius:5px;
+	border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	padding:10px 15px;
+	text-decoration:none;
+}
+.CreateButton:hover {
+	background-color: #5c8aff;
+}
+.CreateButton:active {
+	position:relative;
+	top:1px;
+}
