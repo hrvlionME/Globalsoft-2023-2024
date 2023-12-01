@@ -1,6 +1,6 @@
 import mysql from 'mysql2';
 import { config } from 'dotenv';
-import bcryptjs from 'bcryptjs'import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 config();
 
@@ -43,22 +43,29 @@ export async function insertNewGroupChatData(participantsInfo, chatName) {
 export async function registerUser(userData) {
   const { email, password, name, lastname, avatar, user_role } = userData;
   const hashedPassword = await bcryptjs.hash(password, 10);
-
   const insertUserQuery = `INSERT INTO users (email, password, name, lastname, avatar, user_role) VALUES (?, ?, ?, ?, ?, ?);`;
-  try {
-    const [result] = await dbConn.query(insertUserQuery, [
-      email,
-      hashedPassword,
-      name,
-      lastname,
-      avatar,
-      user_role,
-    ]);
-    return result.insertId;
-  } catch (error) {
-    console.error(error);
-    throw err;
-  }
+  const [result] = await dbConn.query(insertUserQuery, [
+    email,
+    hashedPassword,
+    name,
+    lastname,
+    avatar,
+    user_role,
+  ]);
+  return result.insertId;
+}
+
+export async function checkUserExists(email) {
+  const query = 'SELECT * FROM users WHERE email = ?';
+  const [result] = await dbConn.query(query, [email]);
+  return result.length > 0;
+}
+
+export async function deleteUser(email) {
+  const deleteQuery =
+    'UPDATE users set deleted_at = NOW() WHERE ID=? and deleted_at IS NULL;';
+  const [result] = await dbConn.query(deleteQuery, [email]);
+  return result.affectedRows > 0;
 }
 
 export async function insertNewMessageData(senderId, chatId, messageText) {

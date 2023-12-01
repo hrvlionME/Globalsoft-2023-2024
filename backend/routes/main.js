@@ -13,6 +13,8 @@ mainRouter.get('/user-chats/:userId', mainController.getUserChats);
 mainRouter.get('/user-info/:userId', mainController.getUserInfo);
 mainRouter.post('/api/messages/getAllMessages', mainController.getAllMessages);
 =======
-mainRouter.post('/register', mainController.registerUser);
-mainRouter.post('/login', mainController.login);
+mainRouter
+  .route('/register')
+  .post(mainController.registerUser) // Register a new user
+  .delete(mainController.deleteUser); // Delete a user
 >>>>>>> 3d268a7 (test)
