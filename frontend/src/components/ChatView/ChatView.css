@@ -1,0 +1,7 @@
+.chat-view {
+  height: 100%;
+  flex: 1;
+  box-sizing: border-box;
+  border: 1px solid white;
+  border-radius: 20px;
+}
