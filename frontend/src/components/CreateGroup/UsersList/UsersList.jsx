@@ -161,14 +161,14 @@ export default function UsersList(props){
                 <div>
                     {user.name.toLowerCase().startsWith(inputText.toLowerCase()) ?
                 <li className={styles.userInfo} key={index}>
-                    <img src="/avatar.jpg" alt="" />  {/*profilna za usera*/}
+                    <img src={user.avatar} alt="" />  {/*profilna za usera*/}
                     <span>{user.name}</span>
                     <button className={styles.Add} onClick={() => addUser(user)}>+</button>
                 </li>
                 : <div></div>}
                 </div>
                 : <li className={styles.userInfo} key={index}>
-                    <img src={MyImage} alt="" /> 
+                    <img src={user.avatar} alt="" /> 
                     <span>{user.name}</span>
                     <button className={styles.Add} onClick={() => addUser(user)}>+</button>
                 </li>
