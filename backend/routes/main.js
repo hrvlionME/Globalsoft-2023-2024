@@ -6,5 +6,7 @@ export const mainRouter = express.Router();
 //routes
 mainRouter.get('/', mainController.rootEndpoint);
 mainRouter.post('/createNewGroupChat', mainController.createNewGroupChat);
-mainRouter.post('/register', mainController.registerUser);
-mainRouter.post('/login', mainController.login);
+mainRouter
+  .route('/register')
+  .post(mainController.registerUser) // Register a new user
+  .delete(mainController.deleteUser); // Delete a user
