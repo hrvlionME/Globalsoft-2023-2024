@@ -34,32 +34,26 @@ export async function insertNewGroupChatData(participantsInfo, chatName){
   }
 }
 
-export async function insertNewMessageData(
-  senderId,
-  chatId,
-  messageText,
-  userId
-) {
-  const connection = await pool.getConnection();
-  await connection.beginTransaction();
+export async function insertNewMessageData(senderId, chatId, messageText) {
+  console.log("hi");
+  // const connection = await pool.getConnection();
+  // await connection.beginTransaction();
 
   try {
-    const [result1] = await connection.query(
+    const result = await dbConn.query(
       "INSERT INTO chat_details (sender_id, chat_id, message) VALUES (?, ?, ?)",
       [senderId, chatId, messageText]
     );
-    const chatDetailsId = result1.insertId;
+    console.log(result);
+    return result[0].insertId;
 
-    await connection.query(
-      "INSERT INTO message_details (chat_details_id, timestamp, user_id) VALUES (?, ?, ?)",
-      [chatDetailsId, new Date(), userId]
-    );
-
-    await connection.commit();
+    // await connection.commit();
   } catch (error) {
-    await connection.rollback();
-    throw error;
-  } finally {
-    connection.release();
+    console.log(error);
+    // await connection.rollback();
+    // throw error;
+    // } finally {
+    //  // connection.release();
+    // }
   }
 }

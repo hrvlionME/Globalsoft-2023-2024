@@ -14,26 +14,17 @@ export const createNewGroupChat = async (req, res) => {
   return res.status(500).json({ message: 'Error occured' });
 };
 
-export const login = async (req, res) => {
-  const { email, password } = req.body;
+export const addNewMessage = async (req, res) => {
+  const senderId = req.body.sender_id;
+  const chatId = req.body.chat_id;
+  const messageText = req.body.message;
+  console.log(senderId, chatId, messageText, 'fadawdawdwadawdaw');
 
-  console.log(email);
-  console.log(password);
-
-  if (email && password) {
-    try {
-      const UserId = await db.checkData(email, password);
-
-      if (UserId != null) {
-        return res.status(200).json({ Status: 'Success', ID: UserId });
-      } else {
-        return res.status(401).json({ Status: 'Incorrect credentials' });
-      }
-    } catch (error) {
-      console.error('Error during login:', error);
-      return res.status(500).json({ Status: 'Internal Server Error' });
-    }
-  } else {
-    return res.status(400).json({ Status: 'Please enter Email and Password' });
+  try {
+    const data = await db.insertNewMessageData(senderId, chatId, messageText);
+    return res.status(201).json(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
