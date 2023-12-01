@@ -44,15 +44,17 @@ export async function registerUser(userData){
  
 }
 
-export async function checkUserExists(email) {
-  const query = 'SELECT * FROM users WHERE email = ?';
-  const [result] = await dbConn.query(query, [email]);
+export async function checkUserExistsById(userData) {
+  const ID = userData
+  const query = 'SELECT * FROM users WHERE ID = ?';
+  const [result] = await dbConn.query(query, [ID]);
   return result.length > 0;
 }
 
 export async function deleteUser(email) {
+  const ID = userData
   const deleteQuery = 'UPDATE users set deleted_at = NOW() WHERE ID=? and deleted_at IS NULL;';
-  const [result] = await dbConn.query(deleteQuery, [email]);
+  const [result] = await dbConn.query(deleteQuery, [ID]);
   return result.affectedRows > 0;
 }
 
