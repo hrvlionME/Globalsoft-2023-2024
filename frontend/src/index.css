@@ -15,9 +15,9 @@ body {
 }
 
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #91d2da;
-  --tertiary-color: #ffff;
+  --text-color: #ffffff;
+  --background-color: #232736;
+  --accent-color: rgb(92,138,255);
 }
 
 .button {
@@ -29,6 +29,7 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+
 }
 
 .button:hover {
