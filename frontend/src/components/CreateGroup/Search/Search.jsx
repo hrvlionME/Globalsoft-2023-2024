@@ -6,7 +6,7 @@ export default function Search(props){
 
     return(
         <div>
-            <input type="text" placeholder="Search" onChange={props.handleChange}/>
+            <input className={styles.inputSearch} type="text" placeholder="Search" onChange={props.handleChange}/>
         </div>
     )
 }
