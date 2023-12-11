@@ -1,294 +1,51 @@
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vh;
-    margin: 0 auto;
-  }
-  
-  .user-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #ddd; /* Add a background color for better visualization */
-  }
-  
-  .profile-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .profile-photo {
-    width: 50px; /* Adjust the size as needed */
-    height: 50px; /* Adjust the size as needed */
-    border-radius: 50%; /* Make it a circular shape */
-    margin-right: 10px; /* Add some spacing between the photo and user details */
-    margin-left: auto; /* Push the logout button to the right */
-  }
-  
-  .user-details {
-    text-align: left; /* Align user details to the left */
-  }
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin: 50px auto; /* Reduced top margin for better alignment */
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
 
-  .buttons {
-    display: flex;
-    margin-left: auto;
-    flex-direction: row;
-  }
+}
 
-  .create-button {
-    margin-right: 10px;
-  }
+.main-content {
+  width: 90%; /* Adjusted width for better responsiveness */
+  max-width: 800px; /* Added max-width for better responsiveness */
+  text-align: center;
+  margin: 0 auto !important;
+  padding: 20px; /* Reduced padding for better spacing */
+  border-radius: 15px; /* Slightly reduced border-radius */
 
-  .logout-button {
-    padding: 10px 15px; /* Add padding for better button appearance */
-    background-color: #ff4c4c; /* Red background color */
-    color: white; /* White text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Add a slight border radius for rounded corners */
-    cursor: pointer; /* Add pointer cursor on hover */
-  }
-  
- 
-  .logout-button:hover {
-    background-color: #cc3333; /* Darker red on hover */
-  }
-  
+}
+@media screen and (max-width: 768px) {
   .main-content {
-    display: flex;
-    flex: 1;
+    width: 90%; /* Adjusted width for smaller screens */
+    max-width: none; /* Removed max-width on smaller screens */
   }
-  
-  .chat-list {
-    width: 35%;
-    background-color: #f0f0f0;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto; /* Add this line to enable vertical scrolling if needed */
+
+  .sidebar {
+    width: 100%; /* Make the sidebar full width on smaller screens */
+    margin-right: 0; /* Remove right margin on smaller screens */
+    border-right: none; /* Remove right border on smaller screens */
   }
-  
-  .chat-list {
-    width: 25%;
-    background-color: #f0f0f0;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-  }
-  
-  .chat-list-container {
-    list-style: none;
-    padding: 0;
+
+  .footer1 {
+    margin-left: 5px;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    display:flex;
+    flex-direction: row; /* Stack footer items vertically on smaller screens */
   }
-  
-  /* Center the text vertically within each list item */
-  .chat-list-container li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px; /* Add some spacing between items */
+
+  .send-btn {
+    width: 100%; /* Make send button full width on smaller screens */
+    /* margin-top: 10px; Add top margin for spacing */
   }
-  
-  .chat-view {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: grey;
-    width: 65%;
+
+  .chat-view-send {
+    width: 70%; /* Make chat input full width on smaller screens */
+    margin-top: 10px; /* Add top margin for spacing */
   }
-  
-  .chat-view-container {
-    border-left: 1px solid #ccc; /* Add a border between chat list and chat view */
-  }
-  
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
-  }
-  display: flex;
-  flex-direction: column;
-  color: white;
-  margin: 100px auto;
-  height: 80vh; /* Set the height to 100% of the viewport height */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-
-}
-
-.main-content {
-  width: 60%;
-  text-align: center;
-  margin: 0px auto !important;
-  border: 1px white solid;
-  padding: 40px;
-  border-radius: 30px;
-
-}
-
-.user-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 7.5%;
-}
-
-.profile-container {
-  display: flex;
-  align-items: center;
-}
-
-.profile-photo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-  padding: 2px;
-  margin-left: auto;
-  background-color: rgb(222, 222, 228);
-}
-
-.add-chat-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-  margin-top: 10px;
-  padding: 4px;
-  background-color: var(--primary-color);
-  color: white;
-  font-size: large;
-}
-
-.search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid white;
-  padding: 10px;
-  width: 300px;
-  margin: 5px;
-  border-radius: 10px;
-}
-
-.search-photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  padding: 2px;
-  margin-left: 5px;
-  cursor: pointer;
-  text-align: right;
-
-}
-
-.user-details {
-  text-align: left;
-}
-
-.main-content {
-  display: flex;
-  flex: 1;
-}
-
-.chat-list {
-  border: 1px solid white;
-  border-radius: 20px;
-  padding: 20px;
-  width: 30%; 
-  box-sizing: border-box;
-  overflow-y: auto;
-  border-right: 1px solid white;
-  height: 100%;
-}
-
-.conversation {
-  padding: 15px 0px;
-  border-bottom: 1px solid white;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.chat-view-title {
-  border: 1px solid white;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  text-align: right;
-  height: 10%;
-  padding: 10px;
-  margin: 20px;
-}
-
-.footer {
-  display: flex;
-}
-
-.chat-view-send,
-.footer > div {
-  flex: 1;
-  border: 1px solid white;
-  border-radius: 20px;
-  padding: 10px;
-  margin: 10px;
-}
-
-.chat-view-send p,
-.footer > div p {
-  margin: 0;
-
-}
-
-
-.chat-view-messages {
-  height: 70%;
-  border: 1px solid white;
-  border-radius: 20px;
-  margin: 20px;
-
-}
-
-.chat-list-container {
-  height: 92.5%;
-}
-
-.chat-list-container li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.chat-view {
-  height: 100%;
-  margin: 0 20px;
-  flex: 1;
-  box-sizing: border-box;
-  width: 70%; 
-  border: 1px solid white;
-  border-radius: 20px;
-
-}
-
-
-
-  display: flex;
-  flex-direction: column;
-  color: white;
-  margin: 100px auto;
-  height: 80vh; /* Set the height to 100% of the viewport height */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-}
-
-.main-content {
-  width: 65%;
-  text-align: center;
-  margin: 0px auto !important;
-  padding: 40px;
-  border-radius: 30px;
 }
 
 .toggle {
@@ -305,9 +62,7 @@
 }
 
 .toggle:hover {
-  background-color: var(
-    --accent-color
-  ); /* Change the background color on hover */
+  background-color: var(--accent-color); /* Change the background color on hover */
   color: white;
 }
 
@@ -315,7 +70,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4%;
+  height: 40px; /* Reduced height */
+  padding: 0 10px; /* Reduced padding */
 }
 
 .profile-container {
@@ -325,26 +81,23 @@
 }
 
 .profile-photo {
-  width: 50px;
-  height: 50px;
+  width: 30px; /* Reduced width */
+  height: 30px; /* Reduced height */
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 5px; /* Reduced margin */
   padding: 2px;
-  margin-left: auto;
   background-color: rgb(222, 222, 228);
+  flex-shrink: 0; /* Prevent shrinking in flex container */
 }
 
 .add-chat-button {
-  width: 40px;
-  height: 40px;
+  width: 30px; /* Reduced width */
+  height: 30px; /* Reduced height */
   border-radius: 50%;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin-right: 5px; /* Reduced margin */
+  margin-top: 5px; /* Reduced top margin */
   padding: 4px;
-  background-color: var(--primary-color);
-  color: white;
-  font-size: large;
-  cursor: pointer;
+  font-size: small; /* Reduced font size */
   transition: all 0.3s ease; /* Add a smooth transition effect */
 }
 
@@ -355,9 +108,7 @@
   margin-top: 10px;
   border-radius: 50%;
   padding: 8px; /* Increase the padding on hover */
-  background-color: var(
-    --accent-color
-  ); /* Change the background color on hover */
+  background-color: var(--accent-color); /* Change the background color on hover */
 }
 
 .search {
@@ -379,16 +130,18 @@
   margin-left: 5px;
   cursor: pointer;
   text-align: right;
+
 }
 
 .user-logout {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100%; 
 }
 
 .user-details {
   text-align: left;
+
 }
 
 .main-content {
@@ -401,9 +154,9 @@
   border-radius: 20px;
   padding: 20px;
   margin-right: 10px;
-  width: 37.5%;
+  width: 37.5%; 
   box-sizing: border-box;
-  overflow: hidden;
+  overflow:hidden;
   border-right: 1px solid white;
   height: 100%;
 }
@@ -425,15 +178,18 @@
   margin: 20px;
 }
 
-.footer {
+
+.footer1 {
+  margin-left: 5px;
   display: flex;
   border: none;
-  margin: 20px;
+  margin: 0px;
 }
 
+
 .send-btn {
-  margin-left: 10px;
-  width: 15%;
+  /* margin-left: 10px; */
+  width: 20%;
   height: 50px;
   cursor: pointer;
   color: white;
@@ -444,9 +200,7 @@
 }
 
 .send-btn:hover {
-  background-color: var(
-    --accent-color
-  ); /* Change the background color on hover */
+  background-color: var(--accent-color); /* Change the background color on hover */
   color: white;
 }
 
@@ -456,7 +210,7 @@
 }
 
 .chat-view-send,
-.footer > div {
+.footer1 > div {
   border: 1px solid white;
   border-radius: 10px;
   padding: 10px;
@@ -472,21 +226,50 @@
 }
 
 .chat-view-send p,
-.footer > div p {
+.footer1 > div p {
   margin: 0;
 }
 
+
+
 .chat-view-messages {
   height: 70%;
-  margin: 20px;
+  margin: 20px; 
+  margin:0;
+
 }
 
 .chat-list-container {
-  height: 85%;
+  height: calc(80vh - 140px); /* Adjusted height calculation to leave space for other elements */
+  margin: 20px;
+  overflow-y: auto;
+
 }
 
 .chat-list-container li {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.chat-view {
+  height: 100%;
+  flex: 1;
+  box-sizing: border-box;
+  border: 1px solid white;
+  border-radius: 20px;
+
+}
+
+.logout-button{
+  display: inline-block;
+  padding: 5px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  width: auto;
+  margin: 0;
 }

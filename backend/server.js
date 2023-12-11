@@ -6,8 +6,7 @@ import { mainRouter } from './routes/main.js';
 const app = express();
 config();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 app.use('/', mainRouter);
 

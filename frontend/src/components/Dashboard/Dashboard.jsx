@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton';
 import './Dashboard.css';
-
 import profilePhoto from '../../assets/guitar.png';
-import searchPhoto from '../../assets/search.png';
-import SearchComponent from '../Search/Search.jsx';
-import profilePhoto from '../../assets/guitar.png';
-import searchPhoto from '../../assets/search.png';
-import SearchComponent from '../Search/Search.jsx';
+/* import Search from '../Search/Search.jsx';
+import Sidebar from '../Sidebar/Sidebar.jsx'; */
+import ChatView from '../ChatView/ChatView.jsx';
 
-const Sidebar = ({ onSelect }) => {
+/* const Sidebar = ({ onSelect }) => {
   const [numberOfChats, setNumberOfChats] = useState(3);
 
   const addNewChat = () => {
@@ -34,9 +30,9 @@ const Sidebar = ({ onSelect }) => {
       </button>
     </div>
   );
-};
+}; */
 
-const ChatView = ({ chatId }) => {
+/* const ChatView = ({ chatId }) => {
   const selectedChat = chatId ? `Chat ${chatId}` : '';
 
   const handleSendMessage = () => {
@@ -46,23 +42,23 @@ const ChatView = ({ chatId }) => {
 
   return (
     <div className="chat-view">
-      <div className="chat-view-title">
+      <div className='chat-view-title'>
         <h2>{selectedChat}</h2>
       </div>
-      <div className="chat-view-messages">
+      <div className='chat-view-messages'>
         <h2>Messages for {selectedChat}</h2>
       </div>
-      <div className="footer">
-        <div className="chat-view-send">
-          <p>Send message...</p>
+      <div className='footer1'>
+        <div className='chat-view-send'>
+          <input type="text" placeholder="Type your message..." />
         </div>
-        <div>
-          <p>+</p>
+        <div className='send-btn' onClick={handleSendMessage}>
+          <p>Send</p>
         </div>
       </div>
     </div>
   );
-};
+}; */
 
 const App = () => {
   const [selectedChat, setSelectedChat] = useState(null);
@@ -95,28 +91,21 @@ const UserInfo = () => {
         <img src={profilePhoto} alt="Profile" className="profile-photo" />
         <div className="user-logout">
           <div className="user-details">
-            <h4>{userData.username}</h4>
-            <p>{userData.email}</p>
+            <p style={{ margin: 0, padding: 0, fontSize: '12px' }}>
+              {userData.username}
+            </p>
+            <p style={{ margin: 0, padding: 0, fontSize: '12px' }}>
+              {userData.email}
+            </p>
           </div>
-        </div>
-        <div className="buttons">
-          <div className="create-button">
-            <CreateGroupButton />
-          </div>
-          <div className="search">
-            <p>Search...</p>
-            <img src={searchPhoto} alt="Search" className="search-photo" />
-          </div>
-          <button onClick={handleLogout} className="button">
-            Button
+          <button
+            onClick={handleLogout}
+            id="logout-btn"
+            className="logout-button"
+          >
+            Logout
           </button>
         </div>
-        <button onClick={handleLogout} className="button" />
-        Logout
-        <SearchComponent />
-        <button onClick={handleLogout} className="button">
-          Logout
-        </button>{' '}
       </div>
     </div>
   );
@@ -139,12 +128,17 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="main-content">
-        <div className="chat-list">
-          <ChatList onSelect={handleChatSelect} />
-          <UserInfo />
-        </div>
-        <ChatView chatId={selectedChat} />
-        <ChatView chatId={selectedChat} />
+        <button className="toggle" onClick={toggleSidebar}>
+          {sidebarButtonText}
+        </button>
+        {isSidebarVisible && (
+          <div className="sidebar">
+            {/* <Search />
+            <Sidebar onSelect={handleChatSelect} />
+            <UserInfo /> */}
+          </div>
+        )}
+        <ChatView />
       </div>
     </div>
   );

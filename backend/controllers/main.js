@@ -1,5 +1,6 @@
 import * as db from '../db.js';
 
+
 export const rootEndpoint = async (req, res) => {
   const data = await db.getInfo();
   res.json(data);
@@ -38,3 +39,4 @@ export const login = async (req, res) => {
     return res.status(400).json({ Status: 'Please enter Email and Password' });
   }
 };
+
