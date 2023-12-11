@@ -17,15 +17,11 @@ import ChatView from '../ChatView/ChatView.jsx';
   return (
     <div className="chat-list-container">
       {Array.from({ length: numberOfChats }, (_, index) => (
-        <div
-          key={index}
-          onClick={() => onSelect(index + 1)}
-          className="conversation"
-        >
+        <div key={index} onClick={() => onSelect(index + 1)} className='conversation'>
           Chat {index + 1}
         </div>
       ))}
-      <button className="add-chat-button" onClick={addNewChat}>
+      <button className='add-chat-button' onClick={addNewChat}>
         +
       </button>
     </div>
@@ -59,6 +55,7 @@ import ChatView from '../ChatView/ChatView.jsx';
     </div>
   );
 }; */
+
 
 const App = () => {
   const [selectedChat, setSelectedChat] = useState(null);
@@ -107,9 +104,13 @@ const UserInfo = () => {
           </button>
         </div>
       </div>
+
     </div>
   );
 };
+
+
+
 
 const Dashboard = () => {
   const [selectedChat, setSelectedChat] = useState(null);
