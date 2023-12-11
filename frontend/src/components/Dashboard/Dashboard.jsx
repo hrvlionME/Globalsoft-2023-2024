@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './Dashboard.css';
 import profilePhoto from '../../assets/guitar.png';
-import Search from '../Search/Search.jsx';
+/* import Search from '../Search/Search.jsx';
+import Sidebar from '../Sidebar/Sidebar.jsx'; */
+import ChatView from '../ChatView/ChatView.jsx';
 
-
-
-const Sidebar = ({ onSelect }) => {
+/* const Sidebar = ({ onSelect }) => {
   const [numberOfChats, setNumberOfChats] = useState(3);
 
   const addNewChat = () => {
@@ -17,18 +17,22 @@ const Sidebar = ({ onSelect }) => {
   return (
     <div className="chat-list-container">
       {Array.from({ length: numberOfChats }, (_, index) => (
-        <div key={index} onClick={() => onSelect(index + 1)} className='conversation'>
+        <div
+          key={index}
+          onClick={() => onSelect(index + 1)}
+          className="conversation"
+        >
           Chat {index + 1}
         </div>
       ))}
-      <button className='add-chat-button' onClick={addNewChat}>
+      <button className="add-chat-button" onClick={addNewChat}>
         +
       </button>
     </div>
   );
-};
+}; */
 
-const ChatView = ({ chatId }) => {
+/* const ChatView = ({ chatId }) => {
   const selectedChat = chatId ? `Chat ${chatId}` : '';
 
   const handleSendMessage = () => {
@@ -54,8 +58,7 @@ const ChatView = ({ chatId }) => {
       </div>
     </div>
   );
-};
-
+}; */
 
 const App = () => {
   const [selectedChat, setSelectedChat] = useState(null);
@@ -88,21 +91,25 @@ const UserInfo = () => {
         <img src={profilePhoto} alt="Profile" className="profile-photo" />
         <div className="user-logout">
           <div className="user-details">
-          <p style={{margin:0, padding:0, fontSize: '12px'}}>{userData.username}</p>
-          <p style={{margin: 0, padding:0, fontSize: '12px'}}>{userData.email}</p>
+            <p style={{ margin: 0, padding: 0, fontSize: '12px' }}>
+              {userData.username}
+            </p>
+            <p style={{ margin: 0, padding: 0, fontSize: '12px' }}>
+              {userData.email}
+            </p>
           </div>
-          <button onClick={handleLogout} id='logout-btn' className="logout-button" >
-        Logout
-      </button>
+          <button
+            onClick={handleLogout}
+            id="logout-btn"
+            className="logout-button"
+          >
+            Logout
+          </button>
         </div>
       </div>
-
     </div>
   );
 };
-
-
-
 
 const Dashboard = () => {
   const [selectedChat, setSelectedChat] = useState(null);
@@ -121,15 +128,17 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="main-content">
-      <button className='toggle' onClick={toggleSidebar}>{sidebarButtonText}</button>
+        <button className="toggle" onClick={toggleSidebar}>
+          {sidebarButtonText}
+        </button>
         {isSidebarVisible && (
           <div className="sidebar">
-            <Search />
+            {/* <Search />
             <Sidebar onSelect={handleChatSelect} />
-            <UserInfo />
+            <UserInfo /> */}
           </div>
         )}
-        <ChatView chatId={selectedChat} />
+        <ChatView />
       </div>
     </div>
   );
