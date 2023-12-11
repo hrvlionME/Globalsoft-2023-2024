@@ -1,13 +1,14 @@
 import mysql from 'mysql2';
 import { config } from 'dotenv';
+import bcryptjs from 'bcryptjs'import bcrypt from 'bcrypt';
 
 config();
 
 const dbConn = mysql.createPool({
   host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+  user: process.env.USER || 'root',
+  password: process.env.PASSWORD || 'abc12',
+  database: process.env.DATABASE|| 'BAZA1',
 }).promise();
 
 export async function getInfo(){
@@ -33,3 +34,28 @@ export async function insertNewGroupChatData(participantsInfo, chatName){
     console.log(err);
   }
 }
+
+export async function registerUser(userData){
+  const{email, password, name, lastname, avatar, user_role } = userData;
+  const hashedPassword = await bcryptjs.hash(password, 10); 
+  const insertUserQuery = `INSERT INTO users (email, password, name, lastname, avatar, user_role) VALUES (?, ?, ?, ?, ?, ?);`;
+  const [result] = await dbConn.query(insertUserQuery, [email, hashedPassword, name, lastname, avatar, user_role])
+  return result.insertId;
+ 
+}
+
+export async function checkUserExistsById(userData) {
+  const ID = userData
+  const existQuery = 'SELECT * FROM users WHERE ID = ?';
+  const [result] = await dbConn.query(existQuery, [ID]);
+  return result.length > 0;
+}
+
+export async function deleteUser(userData) {
+  const ID = userData
+  const deleteQuery = 'UPDATE users set deleted_at = NOW() WHERE ID=? and deleted_at IS NULL;';
+  const [result] = await dbConn.query(deleteQuery, [ID]);
+  return result.affectedRows > 0;
+}
+
+
