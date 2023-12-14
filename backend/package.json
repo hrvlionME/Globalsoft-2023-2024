@@ -10,5 +10,8 @@
   "type": "module",
   "scripts": {
     "backend": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }

@@ -81,7 +81,7 @@ export async function checkData(email, password) {
 
   return UserId;
 }*/
-
+/*
 export async function checkData(email, password) {
   const query = `SELECT * FROM users WHERE email = ? AND password = ?`;
 
@@ -98,3 +98,4 @@ export async function checkData(email, password) {
     return null;
   }
 }
+*/
