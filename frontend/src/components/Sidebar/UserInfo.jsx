@@ -10,7 +10,9 @@ const UserInfo = ({ userId }) => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/user-info/${userId}`);
+        const response = await fetch(
+          `http://localhost:4000/user-info/${userId}`
+        );
         if (!response.ok) {
           throw new Error('Error fetching user info');
         }
@@ -37,11 +39,10 @@ const UserInfo = ({ userId }) => {
 
   return (
     <div className="user-info-container">
-      <img className="user-avatar" src={avatarImage} alt="User Avatar" />
+      <img className="user-avatar" src={userInfo.avatar} alt="User Avatar" />
       <p className="user-email">{userInfo.email}</p>
     </div>
   );
 };
 
 export default UserInfo;
-

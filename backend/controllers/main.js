@@ -31,10 +31,9 @@ export const addNewMessage = async (req, res) => {
 
 export const getUserChats = async (req, res) => {
   const userId = req.params.userId;
-  const searchQuery = req.query.searchQuery || '';
 
   try {
-    const userChats = await db.getUserChats(userId, searchQuery);
+    const userChats = await db.getUserChats(userId);
     return res.status(200).json(userChats);
   } catch (error) {
     console.error(error);
@@ -47,7 +46,7 @@ export const getUserInfo = async (req, res) => {
 
   try {
     const userInfo = await db.getUserInfo(userId);
-    
+
     if (userInfo) {
       res.status(200).json(userInfo);
     } else {

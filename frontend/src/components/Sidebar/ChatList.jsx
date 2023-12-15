@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ChatList.css';
 
-const ChatList = ({ userId, searchQuery }) => {
+const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -9,7 +9,9 @@ const ChatList = ({ userId, searchQuery }) => {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/user-chats/${userId}?searchQuery=${searchQuery}`);
+        const response = await fetch(
+          `http://localhost:4000/user-chats/${userId}`
+        );
         if (!response.ok) {
           throw new Error('Error fetching data');
         }
@@ -26,10 +28,9 @@ const ChatList = ({ userId, searchQuery }) => {
     fetchChats();
   }, [userId]);
 
-  const addNewChat = () => {
-  };
+  const addNewChat = () => {};
 
-  const filteredChats = chats.filter(chat =>
+  const filteredChats = chats.filter((chat) =>
     chat.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -45,8 +46,15 @@ const ChatList = ({ userId, searchQuery }) => {
     <div className="chat-list-container">
       <h2>Chats</h2>
       <ul className="chat-list">
-        {filteredChats.map(chat => (
-          <li key={chat.ID} className="chat-item">
+        {filteredChats.map((chat) => (
+          <li
+            key={chat.ID}
+            className="chat-item"
+            onClick={() => {
+              setSelectedChat(chat.ID);
+            }}
+          >
+            <img src={chat.avatar}></img>
             {chat.name}
           </li>
         ))}

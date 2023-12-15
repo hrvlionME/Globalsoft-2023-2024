@@ -100,15 +100,15 @@ export async function checkData(email, password) {
 }
 */
 
-export async function getUserChats(userId, searchQuery = '') {
+export async function getUserChats(userId) {
   const query = `
     SELECT chat.ID, chat.name, chat.avatar
     FROM participants
     JOIN chat ON participants.chat_id = chat.ID
-    WHERE participants.user_id = ? AND chat.name LIKE ?
+    WHERE participants.user_id = ? 
   `;
 
-  const [rows] = await dbConn.query(query, [userId, `%${searchQuery}%`]); 
+  const [rows] = await dbConn.query(query, [userId]);
   return rows;
 }
 

@@ -6,6 +6,7 @@ import Sidebar from '../Sidebar/Sidebar.jsx';
 const Dashboard = () => {
   const [isSidebarVisible, setSidebarVisibility] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1100);
+  const [selectedChat, setSelectedChat] = useState(1);
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,18 +37,16 @@ const Dashboard = () => {
           <>
             {isSidebarVisible && (
               <div className="sidebar">
-                <Sidebar />
+                <Sidebar setSelectedChat={setSelectedChat} />
               </div>
             )}
-            {!isSidebarVisible && (
-              <ChatView />
-            )}
+            {!isSidebarVisible && <ChatView />}
           </>
         )}
         {!isSmallScreen && (
           <>
             <div className="sidebar">
-              <Sidebar />
+              <Sidebar setSelectedChat={setSelectedChat} />
             </div>
             <ChatView />
           </>
@@ -58,6 +57,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-
-
