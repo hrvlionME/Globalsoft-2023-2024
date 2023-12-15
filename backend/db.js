@@ -99,3 +99,33 @@ export async function checkData(email, password) {
   }
 }
 */
+
+export async function getUserChats(userId, searchQuery = '') {
+  const query = `
+    SELECT chat.ID, chat.name, chat.avatar
+    FROM participants
+    JOIN chat ON participants.chat_id = chat.ID
+    WHERE participants.user_id = ? AND chat.name LIKE ?
+  `;
+
+  const [rows] = await dbConn.query(query, [userId, `%${searchQuery}%`]); 
+  return rows;
+}
+
+export async function getUserInfo(userId) {
+  try {
+    const [userInfo] = await dbConn.query(
+      'SELECT ID, email, avatar FROM users WHERE ID = ?',
+      [userId]
+    );
+
+    if (userInfo.length > 0) {
+      return userInfo[0];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching user info from the database:', error);
+    throw error;
+  }
+}

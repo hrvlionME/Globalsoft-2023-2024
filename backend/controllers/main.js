@@ -28,3 +28,33 @@ export const addNewMessage = async (req, res) => {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+export const getUserChats = async (req, res) => {
+  const userId = req.params.userId;
+  const searchQuery = req.query.searchQuery || '';
+
+  try {
+    const userChats = await db.getUserChats(userId, searchQuery);
+    return res.status(200).json(userChats);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+export const getUserInfo = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const userInfo = await db.getUserInfo(userId);
+    
+    if (userInfo) {
+      res.status(200).json(userInfo);
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching user info:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
