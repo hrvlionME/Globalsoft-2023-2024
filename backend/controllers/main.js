@@ -57,3 +57,13 @@ export const getUserInfo = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+export const getAllMessages = async (req, res) => {
+  const chatId = req.body.chatId;
+  try {
+    const messages = await db.getAllMessages(chatId);
+    return res.status(200).json(messages);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
