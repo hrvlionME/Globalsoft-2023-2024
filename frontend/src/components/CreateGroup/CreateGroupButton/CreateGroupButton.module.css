@@ -5,7 +5,9 @@
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	padding:10px 15px;
+	padding:15px 15px;
+	width: 100%;
+	height: 100%;
 	text-decoration:none;
 }
 .CreateButton:hover {

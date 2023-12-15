@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ChatList.css';
+import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton'
 
 const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [chats, setChats] = useState([]);
@@ -59,7 +60,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
           </li>
         ))}
         <li className="add-chat-button" onClick={addNewChat}>
-          Add New Chat
+            <CreateGroupButton/>
         </li>
       </ul>
     </div>

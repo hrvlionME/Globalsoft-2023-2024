@@ -11,7 +11,7 @@ export default function CreateGroupButton(){
 
     return (
     <div>
-        <button className={styles.CreateButton} onClick={() => {setIsClicked(true)}}>+ New Group</button>
+        <button className={styles.CreateButton} onClick={() => {setIsClicked(true)}}>Add New Chat</button>
         {isClicked  ?  <div><CreateGroupScreen closeWindow={closeWindow}/></div> : <div></div>}
     </div>
     )
