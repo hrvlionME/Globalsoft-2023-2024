@@ -21,7 +21,7 @@ export async function getInfo() {
 }
 
 export async function insertNewGroupChatData(participantsInfo, chatName) {
-  const query1 = `INSERT INTO chat (name) VALUES (?);`;
+  const query1 = `INSERT INTO chat (name,avatar) VALUES (?,'neki avatar');`;
   const query2 = `INSERT INTO participants (user_id, chat_id) VALUES (?, ?);`;
   const results = [];
   try {
@@ -140,7 +140,7 @@ export async function getAllMessages(chatID) {
     if (userInfo.length > 0) {
       return userInfo;
     } else {
-      return null;
+      return [];
     }
   } catch (error) {
     console.error('Error fetching user info from the database:', error);

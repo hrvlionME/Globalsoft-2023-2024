@@ -8,6 +8,7 @@ export const rootEndpoint = async (req, res) => {
 export const createNewGroupChat = async (req, res) => {
   const usersIds = [...req.body.participants];
   const name = req.body.name;
+  /*   res.json(usersIds); */
   const isSuccess = await db.insertNewGroupChatData(usersIds, name);
   if (isSuccess)
     return res.status(200).json({ message: 'Groupchat created successfully' });
