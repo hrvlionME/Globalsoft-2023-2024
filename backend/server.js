@@ -6,7 +6,6 @@ import { mainRouter } from './routes/main.js';
 //init & parsers
 const app = express();
 config();
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
