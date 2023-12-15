@@ -129,3 +129,21 @@ export async function getUserInfo(userId) {
     throw error;
   }
 }
+
+export async function getAllMessages(chatID) {
+  try {
+    const [userInfo] = await dbConn.query(
+      'SELECT * FROM chat_details WHERE chat_id = ?',
+      [chatID]
+    );
+
+    if (userInfo.length > 0) {
+      return userInfo;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching user info from the database:', error);
+    throw error;
+  }
+}

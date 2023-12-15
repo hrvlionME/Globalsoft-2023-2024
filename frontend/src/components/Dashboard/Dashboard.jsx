@@ -40,7 +40,7 @@ const Dashboard = () => {
                 <Sidebar setSelectedChat={setSelectedChat} />
               </div>
             )}
-            {!isSidebarVisible && <ChatView />}
+            {!isSidebarVisible && <ChatView chatID={selectedChat} />}
           </>
         )}
         {!isSmallScreen && (
@@ -48,7 +48,7 @@ const Dashboard = () => {
             <div className="sidebar">
               <Sidebar setSelectedChat={setSelectedChat} />
             </div>
-            <ChatView />
+            <ChatView chatID={selectedChat} />
           </>
         )}
       </div>
