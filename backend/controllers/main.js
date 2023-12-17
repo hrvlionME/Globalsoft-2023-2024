@@ -83,7 +83,9 @@ export const login = async (req, res) => {
       if (UserId != null) {
         return res.status(200).json({ success: true, ID: UserId });
       } else {
-        return res.status(401).json({ success: false, Status: 'Incorrect credentials' });
+        return res
+          .status(401)
+          .json({ success: false, Status: 'Incorrect credentials' });
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -105,7 +107,9 @@ export const registerUser = async (req, res) => {
   try {
     const userExists = await db.getUserByEmail(userData.email);
     if (userExists) {
-      return res.status(400).json({ message: 'User with this email already exists' });
+      return res
+        .status(400)
+        .json({ message: 'User with this email already exists' });
     }
 
     const userId = await db.registerUser({
@@ -113,8 +117,8 @@ export const registerUser = async (req, res) => {
       password: userData.password,
       name: userData.name,
       lastname: userData.lastname,
-      avatar: "default_avatar_url", 
-      user_role: "default_role", 
+      avatar: 'default_avatar_url',
+      user_role: 'default_role',
     });
 
     if (userId) {
