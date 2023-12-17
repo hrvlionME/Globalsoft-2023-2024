@@ -164,9 +164,9 @@ const Login = ({ setisLoggedIn }) => {
             {confirmationMessage && (
               <div className={styles['confirmation-message']}>{confirmationMessage}</div>
             )}
-            <h5>Enter your email to <br />  reset your password:</h5>
+            <h5>Reset Password:</h5>
             <form>
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="email">Your Email:</label>
               <input
                 type="email"
                 id="email"
@@ -196,7 +196,7 @@ const Login = ({ setisLoggedIn }) => {
             <div className={styles['logo-image']}>
               <img src={logo} alt="logo" />
             </div>
-            <h4>Login to Your Account:</h4>
+            <h3>Login</h3>
             <form>
               <label htmlFor="email">Email:</label>
               <input

@@ -47,6 +47,28 @@
 .login-image {
   width: 60%;
   text-align: right;
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .login-image {
+    display: none;
+  }
+
+  .login-container {
+    justify-content:space-around;
+  }
+
+  .forgot-password-container{
+    padding: 50px;
+  }
+  form {
+    width: 300px;
+  }
+
+  h5 {
+    width: 300px;
+  }
 }
 
 .logo-image {
@@ -54,7 +76,7 @@
   margin-top: 20px;
 }
 
-h4 {
+h3 {
   color: #ffff;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -63,7 +85,6 @@ h4 {
 
 h5 {
   margin-bottom: 30px;
-  text-align: left;
   font-size: 18px;
 }
 
@@ -164,4 +185,6 @@ button {
     height: 15.33px;
   }
 }
+
+
 
