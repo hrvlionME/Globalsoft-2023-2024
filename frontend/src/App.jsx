@@ -8,6 +8,8 @@ import './App.module.css';
 const App = () => {
   const [isLoggedIn, setisLoggedIn] = useState(true);
   const [socket, setSocket] = useState(null);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [userId, setUserId] = useState(null);
   useEffect(() => {
     const socket = io('http://localhost:4000');
     setSocket(socket);
@@ -16,10 +18,6 @@ const App = () => {
       socket.disconnect();
     };
   }, []);
-  return <div>{isLoggedIn ? <Dashboard /> : <Login />}</div>;
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const [userId, setUserId] = useState(null);
 
   return (
     <div>
@@ -27,7 +25,8 @@ const App = () => {
         <Dashboard
           setisLoggedIn={setisLoggedIn}
           setUserId={setUserId}
-          userId={userId} />
+          userId={userId}
+        />
       ) : (
         <Login
           setisLoggedIn={setisLoggedIn}

@@ -8,7 +8,12 @@ import loginImage from '../../assets/radionica.png';
 import logo from '../../assets/globalsoft.png';
 import Register from '../Register/Register.jsx';
 
-const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) => {
+const Login = ({
+  setisLoggedIn,
+  setIsRegisterOpen,
+  isRegisterOpen,
+  setUserId,
+}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -19,14 +24,14 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
 
   const handleRegister = () => {
     setIsRegisterOpen(true);
-  }
+  };
 
   const isEmailValid = (email) => {
     return validator.isEmail(email);
   };
 
   const isPasswordValid = (password) => {
-    return password.length >= 6; 
+    return password.length >= 6;
   };
 
   const togglePasswordVisibility = () => {
@@ -57,14 +62,15 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
           email,
           password,
         }),
-      });     
+      });
 
       const data = await response.json();
 
       if (data.success) {
         setUserId(data.ID);
         setisLoggedIn(true);
-      } if (response.status === 401) {
+      }
+      if (response.status === 401) {
         setError('Login failed. Please check your credentials.');
       }
     } catch (error) {
@@ -81,18 +87,19 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
   };
 
   const handleReturnToLogin = () => {
-    setIsRegisterOpen(false)
+    setIsRegisterOpen(false);
     setForgotPasswordMode(false);
     setError(null);
     setIsLoading(false);
   };
 
   const returnToLoginButton = (
-    <button type="button"
-    onClick={handleReturnToLogin}   
-    className={styles['forgot-password-link']}
-    onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')}
-    onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}
+    <button
+      type="button"
+      onClick={handleReturnToLogin}
+      className={styles['forgot-password-link']}
+      onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')}
+      onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}
     >
       Login Here!
     </button>
@@ -116,13 +123,13 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
     try {
       setError(null);
       setIsLoading(true);
-  
+
       if (!isEmailValid(email)) {
         setError('Please enter a valid email address.');
         return;
       }
-  
-        // TREBA NAPRAVITI NA BACKENDU
+
+      // TREBA NAPRAVITI NA BACKENDU
       const response = await fetch('http://localhost:4000/forgot-password', {
         method: 'POST',
         headers: {
@@ -132,13 +139,17 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
           email,
         }),
       });
-  
+
       const data = await response.json();
-  
+
       if (data.success) {
-        setConfirmationMessage('Password reset initiated.\nCheck your email for further instructions.');
+        setConfirmationMessage(
+          'Password reset initiated.\nCheck your email for further instructions.'
+        );
       } else {
-        setError(data.message || 'Failed to initiate password reset. Please try again.');
+        setError(
+          data.message || 'Failed to initiate password reset. Please try again.'
+        );
       }
     } catch (error) {
       console.error('Error during password reset initiation:', error.message);
@@ -147,7 +158,6 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
       setIsLoading(false);
     }
   };
-  
 
   // const resetInputFields = () => {
   //   setEmail('');
@@ -169,7 +179,9 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
         {forgotPasswordMode ? (
           <div className={styles['forgot-password-container']}>
             {confirmationMessage && (
-              <div className={styles['confirmation-message']}>{confirmationMessage}</div>
+              <div className={styles['confirmation-message']}>
+                {confirmationMessage}
+              </div>
             )}
             <h5>Reset Password:</h5>
             <form>
@@ -194,7 +206,11 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
                   )}
                 </div>
               </button>
-              <p><i>We will send you an email with the  <br /> reset instructions.</i></p>
+              <p>
+                <i>
+                  We will send you an email with the <br /> reset instructions.
+                </i>
+              </p>
               {returnToLoginButton}
             </form>
           </div>
@@ -235,17 +251,27 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
                     setError(null);
                   }}
                   onKeyDown={handleKeyPress}
-                  className={!isPasswordValid(password) ? styles['invalid-field'] : ''}
+                  className={
+                    !isPasswordValid(password) ? styles['invalid-field'] : ''
+                  }
                 />
-                <div className={styles['input-icon']} onClick={togglePasswordVisibility}>
-                  <img src={getPasswordIcon()} alt="Toggle Password Visibility" />
+                <div
+                  className={styles['input-icon']}
+                  onClick={togglePasswordVisibility}
+                >
+                  <img
+                    src={getPasswordIcon()}
+                    alt="Toggle Password Visibility"
+                  />
                 </div>
               </div>
               <button
                 type="button"
                 onClick={handleForgotPassword}
                 className={styles['forgot-password-link']}
-                onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')}
+                onMouseEnter={(e) =>
+                  (e.target.style.textDecoration = 'underline')
+                }
                 onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}
               >
                 Forgot your password?
@@ -261,17 +287,20 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
                   )}
                 </div>
               </button>
-              
+
               <p>
-                Not registered yet?  <button
-                type="button"
-                onClick={handleRegister}
-                className={styles['forgot-password-link']}
-                onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')}
-                onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}
-              >
-                Create an Account!
-              </button>
+                Not registered yet?{' '}
+                <button
+                  type="button"
+                  onClick={handleRegister}
+                  className={styles['forgot-password-link']}
+                  onMouseEnter={(e) =>
+                    (e.target.style.textDecoration = 'underline')
+                  }
+                  onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}
+                >
+                  Create an Account!
+                </button>
               </p>
             </form>
           </div>
@@ -282,10 +311,3 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) 
 };
 
 export default Login;
-
-
-
-
-
-
-
