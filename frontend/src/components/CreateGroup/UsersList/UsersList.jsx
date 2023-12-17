@@ -4,11 +4,8 @@ import { useState, useEffect } from 'react';
 
 export default function UsersList(props){
     const [users, setUsers] = useState([]) 
-    const [displayUsers, setDisplayUsers] = useState([])
     const [users2, setUsers2] = useState([])
     const [inputText, setInputText] = useState('')
-    const [hiddenUsers, setHiddenUsers] = useState([])
-    const [counter, setCounter] = useState(0);
     const [groupName, setGroupName] = useState('')
     const [file, setFile] = useState(null);
     
@@ -47,25 +44,7 @@ export default function UsersList(props){
               }, []);
 
               function removeUser(userToDelete){
-                setCounter((prevCounter) => {
-                    const newCounter = prevCounter - 1;
-                    console.log(newCounter)
-                    if(newCounter < 4){
-                        setDisplayUsers((current) => (current.filter((user) => {return user !== userToDelete})));
-                    } else {
-                        setDisplayUsers((current) => (current.filter((user) => {return user !== userToDelete})));
-                        let MoreUsers = {name: "+ " + (newCounter - 2) + " more"};
-                        
-                        displayUsers.pop();
-                        displayUsers.push(hiddenUsers.pop())
-                        if(newCounter == 4) 
-                        {
-                            displayUsers.pop();
-                            setDisplayUsers((current) => users);
-                        }
-                        else setDisplayUsers((current) => [...current, MoreUsers]);                        
-                    }
-                    
+                
                     setUsers((current) => (current.filter((user) => {return user !== userToDelete})));
                     users2.sort((a, b) => {
                         const nameA = a.name.toLowerCase();
@@ -81,15 +60,13 @@ export default function UsersList(props){
                         return 0;
                     })
                     setUsers2((current) => [...current, userToDelete]);
-                    return newCounter
-                });
+                   
+             
                 
             }
         
             function addUser(userToAdd){
-                setCounter((prevCounter) =>  {
-                    const newCounter = prevCounter + 1;
-                    console.log(newCounter)
+                
                     users2.sort((a, b) => {
                         const nameA = a.name.toLowerCase();
                         const nameB = b.name.toLowerCase();
@@ -105,16 +82,8 @@ export default function UsersList(props){
                     })
                     setUsers2((current) => (current.filter((user) => {return user !== userToAdd})));
                     setUsers((current) => [...current, userToAdd]);
-                    if(newCounter < 4){
-                        setDisplayUsers((current) => [...current, userToAdd]);
-                    } else {
-                        let MoreUsers = {name: "+ " + (newCounter - 2) + " more"};
-                        displayUsers.pop();
-                        setDisplayUsers((current) => [...current, MoreUsers]);
-                        setHiddenUsers((current) => [...current, userToAdd]);
-                    }
-                        return newCounter
-                });
+                    
+                       
                
             }
     function handleChange(e){
@@ -148,7 +117,7 @@ export default function UsersList(props){
           .then((res) => res.json())
           .then((data) => console.log(data))
         
-          
+          /*
         if (file) {
             const formData = new FormData();
             formData.append("image", file, file.name);
@@ -161,7 +130,7 @@ export default function UsersList(props){
         .then((data) => {
           console.log(data);
         })
-    }
+    }*/
 
         props.reload();
         props.closeWindow();
@@ -173,7 +142,7 @@ export default function UsersList(props){
                     <li className={styles.user}>
                         <span className={styles.userSpan}>Me</span>
                     </li>
-                {Object.values(displayUsers).map((user, index) => (
+                {Object.values(users).map((user, index) => (
                     <li className={styles.user} key={index}>
                         {!user.name.startsWith('+') ? 
                         <div>

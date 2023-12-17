@@ -26,8 +26,10 @@
     align-items: center;
 	position: fixed;
 	top: 5%; /*7%*/
-	left: 35%;
+	display:block;
     height: 80vh; /*90*/ 
-    width: 35vw;
+    width: 50vw;
     background-color: #171b24;
+	left: 50%;
+  	transform: translateX(-50%);
 }
