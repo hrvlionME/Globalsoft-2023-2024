@@ -142,16 +142,16 @@ const Login = ({ setisLoggedIn }) => {
   };
   
 
-  const resetInputFields = () => {
-    setEmail('');
-    setPassword('');
-  };
+  // const resetInputFields = () => {
+  //   setEmail('');
+  //   setPassword('');
+  // };
 
-  React.useEffect(() => {
-    if (error) {
-      resetInputFields();
-    }
-  }, [error]);
+  // React.useEffect(() => {
+  //   if (error) {
+  //     resetInputFields();
+  //   }
+  // }, [error]);
 
   return (
     <div className={styles['outside']}>
