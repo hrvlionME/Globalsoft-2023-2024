@@ -14,28 +14,29 @@ export default function UsersList(props){
     const [groupName, setGroupName] = useState('')
     
 
-     useEffect(() => {
-        fetch("http://localhost:4000/")
-          .then((res) => res.json())
-          .then((data) => {
-            const user2Array = Object.values(data).map(user => user)
-            user2Array.sort((a, b) => {
-                const nameA = a.name.toLowerCase();
-                const nameB = b.name.toLowerCase();
-    
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
-               
-                return 0;
-            })
-            setUsers2(user2Array)
+    useEffect(() => {
+                  fetch("http://localhost:4000/")
+                  .then((res) => res.json())
+                  .then((data) => {
+                   const user2Array = Object.values(data).map(user => user)
+                   //const user2Array = [{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},] 
+                   user2Array.sort((a, b) => {
+                        const nameA = a.name.toLowerCase();
+                        const nameB = b.name.toLowerCase();
             
-        })
-      }, []);
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+                       
+                        return 0;
+                    })
+                    setUsers2(user2Array)
+                    
+                })
+              }, []);
 
     function removeUser(userToDelete){
         setCounter(counter - 1);
@@ -139,7 +140,7 @@ export default function UsersList(props){
         <div>
             <ul className={styles.selected}> 
                     <li className={styles.user}>
-                        <span>Me</span>
+                        <span className={styles.userSpan}>Me</span>
                     </li>
                 {Object.values(displayUsers).map((user, index) => (
                     <li className={styles.user} key={index}>
@@ -162,21 +163,21 @@ export default function UsersList(props){
                     {user.name.toLowerCase().startsWith(inputText.toLowerCase()) ?
                 <li className={styles.userInfo} key={index}>
                     <img src={user.avatar} alt="" />  {/*profilna za usera*/}
-                    <span>{user.name}</span>
+                    <span className={styles.userInfoSpan}>{user.name}</span>
                     <button className={styles.Add} onClick={() => addUser(user)}>+</button>
                 </li>
                 : <div></div>}
                 </div>
                 : <li className={styles.userInfo} key={index}>
-                    <img src={user.avatar} alt="" /> 
-                    <span>{user.name}</span>
+                    <img className={styles.avatar} src={user.avatar} alt="" /> 
+                    <span className={styles.userInfoSpan}>{user.name}</span>
                     <button className={styles.Add} onClick={() => addUser(user)}>+</button>
                 </li>
                 ))}
 
             </ul>
             <div className={styles.submit}>
-                <input type="text" value={groupName} onChange={handleGroupName} placeholder="Enter group name"/>
+                <input className={styles.inputSearch} type="text" value={groupName} onChange={handleGroupName} placeholder="Enter group name"/>
                 <button className={styles.close} onClick={CreateGroup}>Create</button>
             </div>
         </div>

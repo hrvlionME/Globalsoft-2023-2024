@@ -1,5 +1,5 @@
-import PropType from "prop-types";
-import "./Message.css";
+import PropType from 'prop-types';
+import './Message.css';
 
 export default function Message({ message }) {
   Message.propTypes = {
@@ -9,18 +9,18 @@ export default function Message({ message }) {
   return (
     <div
       className={
-        message.sender === "user"
-          ? "message-container-user"
-          : "message-container-other"
+        message.sender === 'user'
+          ? 'message-container-user'
+          : 'message-container-other'
       }
     >
       <img className="avatar" src={message.avatar} alt="avatar" />
       <div
         className={
-          message.sender === "user" ? "message-text-user" : "message-text-other"
+          message.sender === 'user' ? 'message-text-user' : 'message-text-other'
         }
       >
-        {message.text}
+        {message.message}
       </div>
     </div>
   );

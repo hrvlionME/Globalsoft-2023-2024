@@ -2,50 +2,17 @@
   display: flex;
   flex-direction: column;
   color: white;
-  margin: 50px auto; /* Reduced top margin for better alignment */
-  height: 80vh;
+  margin: auto;
   justify-content: center;
   align-items: center;
-
+  height: 75vh;
+  margin: 100px 200px;
 }
 
 .main-content {
-  width: 90%; /* Adjusted width for better responsiveness */
-  max-width: 800px; /* Added max-width for better responsiveness */
-  text-align: center;
-  margin: 0 auto !important;
-  padding: 20px; /* Reduced padding for better spacing */
-  border-radius: 15px; /* Slightly reduced border-radius */
-
-}
-@media screen and (max-width: 768px) {
-  .main-content {
-    width: 90%; /* Adjusted width for smaller screens */
-    max-width: none; /* Removed max-width on smaller screens */
-  }
-
-  .sidebar {
-    width: 100%; /* Make the sidebar full width on smaller screens */
-    margin-right: 0; /* Remove right margin on smaller screens */
-    border-right: none; /* Remove right border on smaller screens */
-  }
-
-  .footer1 {
-    margin-left: 5px;
-    margin: 0;
-    display:flex;
-    flex-direction: row; /* Stack footer items vertically on smaller screens */
-  }
-
-  .send-btn {
-    width: 100%; /* Make send button full width on smaller screens */
-    /* margin-top: 10px; Add top margin for spacing */
-  }
-
-  .chat-view-send {
-    width: 70%; /* Make chat input full width on smaller screens */
-    margin-top: 10px; /* Add top margin for spacing */
-  }
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .toggle {
@@ -62,229 +29,56 @@
 }
 
 .toggle:hover {
-  background-color: var(--accent-color); /* Change the background color on hover */
+  background-color: var(--accent-color);
   color: white;
-}
-
-.user-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px; /* Reduced height */
-  padding: 0 10px; /* Reduced padding */
-}
-
-.profile-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.profile-photo {
-  width: 30px; /* Reduced width */
-  height: 30px; /* Reduced height */
-  border-radius: 50%;
-  margin-right: 5px; /* Reduced margin */
-  padding: 2px;
-  background-color: rgb(222, 222, 228);
-  flex-shrink: 0; /* Prevent shrinking in flex container */
-}
-
-.add-chat-button {
-  width: 30px; /* Reduced width */
-  height: 30px; /* Reduced height */
-  border-radius: 50%;
-  margin-right: 5px; /* Reduced margin */
-  margin-top: 5px; /* Reduced top margin */
-  padding: 4px;
-  font-size: small; /* Reduced font size */
-  transition: all 0.3s ease; /* Add a smooth transition effect */
-}
-
-.add-chat-button:hover {
-  width: 50px; /* Increase the width on hover */
-  height: 50px; /* Increase the height on hover */
-  margin-right: 10px;
-  margin-top: 10px;
-  border-radius: 50%;
-  padding: 8px; /* Increase the padding on hover */
-  background-color: var(--accent-color); /* Change the background color on hover */
-}
-
-.search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid white;
-  padding: 10px;
-  width: 300px;
-  margin: 5px;
-  border-radius: 10px;
-}
-
-.search-photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  padding: 2px;
-  margin-left: 5px;
-  cursor: pointer;
-  text-align: right;
-
-}
-
-.user-logout {
-  display: flex;
-  justify-content: space-between;
-  width: 100%; 
-}
-
-.user-details {
-  text-align: left;
-
-}
-
-.main-content {
-  display: flex;
-  flex: 1;
 }
 
 .sidebar {
   border: 1px solid white;
   border-radius: 20px;
   padding: 20px;
-  margin-right: 10px;
-  width: 37.5%; 
+  width: 35%; 
   box-sizing: border-box;
-  overflow:hidden;
-  border-right: 1px solid white;
   height: 100%;
-}
+  overflow-y: auto; 
+  overflow-x: hidden; 
 
-.conversation {
-  padding: 15px 0px;
-  border-bottom: 1px solid white;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.chat-view-title {
-  border: 1px solid white;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  text-align: right;
-  height: 10%;
-  padding: 10px;
-  margin: 20px;
-}
-
-
-
-.footer1 {
-  margin-left: 5px;
-  display: flex;
-  border: none;
-  margin: 0px;
-}
-
-
-.send-btn {
-  /* margin-left: 10px; */
-  width: 20%;
-  height: 50px;
-  cursor: pointer;
-  color: white;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.send-btn:hover {
-  background-color: var(--accent-color); /* Change the background color on hover */
-  color: white;
-}
-
-.chat-view-send {
-  width: 85%;
-  height: 50px;
-}
-
-.chat-view-send,
-.footer1 > div {
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.chat-view-send input {
-  width: 100%;
-  padding: 8px;
-  background-color: transparent;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-.chat-view-send p,
-.footer1 > div p {
-  margin: 0;
-}
-
-
-
-.chat-view-messages {
-  height: 70%;
-  margin: 20px; 
-  margin:0;
-
-}
-
-.chat-list-container {
-  height: calc(80vh - 140px); /* Adjusted height calculation to leave space for other elements */
-  margin: 20px;
-  overflow-y: auto;
-
-}
-
-.chat-list-container li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
 }
 
 .chat-view {
-  height: 100%;
   flex: 1;
   box-sizing: border-box;
   border: 1px solid white;
   border-radius: 20px;
+  margin-left: 20px; 
+  padding: 20px; 
+  overflow-y: auto; 
+  overflow-x: hidden; 
 
 }
 
 
+@media screen and (max-width: 1100px) {
 
+  .sidebar {
+    width: 100%;
+    margin: 0; 
+  }
 
+  .chat-view {
+    margin: 0; 
+  }
 
-
-.chat-view {
-  height: 100%;
-  flex: 1;
-  box-sizing: border-box;
-  border: 1px solid white;
-  border-radius: 20px;
-
+  .sidebar-visible .chat-view {
+    display: none; 
+  }
 }
 
-.logout-button{
-  display: inline-block;
-  padding: 5px;
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  width: auto;
-  margin: 0;
+@media screen and (max-width: 750px) {
+  .dashboard {
+    margin: 100px 75px;
+  }
 }
+
+
+

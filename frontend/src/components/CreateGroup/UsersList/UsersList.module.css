@@ -13,22 +13,30 @@
     align-items: center;
 }
 
-.user span {
+.userSpan {
     position: relative;
     top: 5px;
+    text-align: left;
 }
 
 .userBox {
+    text-align: left;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     overflow-y: auto;
     overflow-x: hidden;
     height: 54vh;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 
 .selected {
-    width: 95%;
+    text-align: left;
+    width: 84%;
 }
 .userInfo {
     font-family: 'Arial';
@@ -46,7 +54,7 @@
     justify-content: center;
     align-items: center;
 }
-.userInfo span {
+.userInfoSpan {
     position: relative;
     top: -3px;
 }
@@ -84,7 +92,7 @@
 	text-decoration:none;
 }
 
-img {
+.avatar {
     margin-right: 10px;
     width: 20px;
     height: 20px;
@@ -103,4 +111,26 @@ img {
     bottom: -20px;
     width: 28vw;
     
+}
+
+.inputSearch {
+    border: none;
+    border-radius: 25px;
+    position: relative;
+    left: -3%;
+    box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #fff;
+    padding: 5px 10px;
+    margin: 30px;
+    width: 95%;
+    height: 2.5rem;
+    font-family: 'Arial';
+    display:inline-block;
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputSearch:focus{
+    border: none;
 }

@@ -1,4 +1,4 @@
-.inputSearch {
+.input input {
     border: none;
     border-radius: 25px;
     position: relative;
@@ -16,6 +16,7 @@
     align-items: center;
 }
 
-.inputSearch:focus{
+input:focus{
     border: none;
 }
+  

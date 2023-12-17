@@ -28,7 +28,7 @@ CREATE TABLE
 
 CREATE TABLE
     participants(
-        ID BIGINT PRIMARY KEY,
+        ID BIGINT PRIMARY KEY AUTO_INCREMENT,
         user_id BIGINT,
         chat_id BIGINT,
         FOREIGN KEY (user_id) REFERENCES users(ID),
@@ -37,7 +37,7 @@ CREATE TABLE
 
 CREATE TABLE
     chat_details (
-        ID BIGINT PRIMARY KEY,
+        ID BIGINT PRIMARY KEY AUTO_INCREMENT,
         sender_id BIGINT,
         chat_id BIGINT,
         message VARCHAR(255) NOT NULL,
