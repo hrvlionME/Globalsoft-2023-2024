@@ -10,6 +10,7 @@ export default function UsersList(props){
     const [hiddenUsers, setHiddenUsers] = useState([])
     const [counter, setCounter] = useState(0);
     const [groupName, setGroupName] = useState('')
+    const [file, setFile] = useState(null);
     
 
     useEffect(() => {
@@ -17,7 +18,16 @@ export default function UsersList(props){
                   .then((res) => res.json())
                   .then((data) => {
                    //const user2Array = Object.values(data).map(user => user)
-                   const user2Array = [{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"}]
+                   
+                   const user2Array = []
+                   for(let i = 1; i <= 10;  i++){
+                    const obj = {
+                        name: "Person" + i,
+                        id: i
+                    }
+                    user2Array.push(obj)
+                   }
+                   
                    user2Array.sort((a, b) => {
                         const nameA = a.name.toLowerCase();
                         const nameB = b.name.toLowerCase();
@@ -36,79 +46,87 @@ export default function UsersList(props){
                 })
               }, []);
 
-    function removeUser(userToDelete){
-        setCounter(counter - 1);
-        if(counter < 7){
-            setDisplayUsers((current) => (current.filter((user) => {return user !== userToDelete})));
-        } else {
-            setDisplayUsers((current) => (current.filter((user) => {return user !== userToDelete})));
-            let MoreUsers = {name: "+ " + (counter - 5) + " more"};
+              function removeUser(userToDelete){
+                setCounter((prevCounter) => {
+                    const newCounter = prevCounter - 1;
+                    console.log(newCounter)
+                    if(newCounter < 4){
+                        setDisplayUsers((current) => (current.filter((user) => {return user !== userToDelete})));
+                    } else {
+                        setDisplayUsers((current) => (current.filter((user) => {return user !== userToDelete})));
+                        let MoreUsers = {name: "+ " + (newCounter - 2) + " more"};
+                        
+                        displayUsers.pop();
+                        displayUsers.push(hiddenUsers.pop())
+                        if(newCounter == 4) 
+                        {
+                            displayUsers.pop();
+                            setDisplayUsers((current) => users);
+                        }
+                        else setDisplayUsers((current) => [...current, MoreUsers]);                        
+                    }
+                    
+                    setUsers((current) => (current.filter((user) => {return user !== userToDelete})));
+                    users2.sort((a, b) => {
+                        const nameA = a.name.toLowerCase();
+                        const nameB = b.name.toLowerCase();
             
-            displayUsers.pop();
-            displayUsers.push(hiddenUsers.pop())
-            if(counter == 7) 
-            {
-                displayUsers.pop();
-                setDisplayUsers((current) => users);
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+                       
+                        return 0;
+                    })
+                    setUsers2((current) => [...current, userToDelete]);
+                    return newCounter
+                });
+                
             }
-            else setDisplayUsers((current) => [...current, MoreUsers]);
-            console.log(counter)
+        
+            function addUser(userToAdd){
+                setCounter((prevCounter) =>  {
+                    const newCounter = prevCounter + 1;
+                    console.log(newCounter)
+                    users2.sort((a, b) => {
+                        const nameA = a.name.toLowerCase();
+                        const nameB = b.name.toLowerCase();
             
-        }
-        
-        setUsers((current) => (current.filter((user) => {return user !== userToDelete})));
-        users2.sort((a, b) => {
-            const nameA = a.name.toLowerCase();
-            const nameB = b.name.toLowerCase();
-
-            if (nameA < nameB) {
-                return -1;
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+                       
+                        return 0;
+                    })
+                    setUsers2((current) => (current.filter((user) => {return user !== userToAdd})));
+                    setUsers((current) => [...current, userToAdd]);
+                    if(newCounter < 4){
+                        setDisplayUsers((current) => [...current, userToAdd]);
+                    } else {
+                        let MoreUsers = {name: "+ " + (newCounter - 2) + " more"};
+                        displayUsers.pop();
+                        setDisplayUsers((current) => [...current, MoreUsers]);
+                        setHiddenUsers((current) => [...current, userToAdd]);
+                    }
+                        return newCounter
+                });
+               
             }
-            if (nameA > nameB) {
-                return 1;
-            }
-           
-            return 0;
-        })
-        setUsers2((current) => [...current, userToDelete]);
-    }
-
-    function addUser(userToAdd){
-        setCounter(counter + 1);
-        users2.sort((a, b) => {
-            const nameA = a.name.toLowerCase();
-            const nameB = b.name.toLowerCase();
-
-            if (nameA < nameB) {
-                return -1;
-            }
-            if (nameA > nameB) {
-                return 1;
-            }
-           
-            return 0;
-        })
-        setUsers2((current) => (current.filter((user) => {return user !== userToAdd})));
-        setUsers((current) => [...current, userToAdd]);
-        if(counter < 7){
-            setDisplayUsers((current) => [...current, userToAdd]);
-        } else {
-            let MoreUsers = {name: "+ " + (counter - 5) + " more"};
-            displayUsers.pop();
-            setDisplayUsers((current) => [...current, MoreUsers]);
-            setHiddenUsers((current) => [...current, userToAdd]);
-        }
-        
-        
-        
-    }
-
     function handleChange(e){
         setInputText(e.target.value);
     }
 
     function handleGroupName(e){
         setGroupName(e.target.value);
+    }
+
+    function handleFileChange(e){
+        setFile(e.target.files[0])
     }
 
     function CreateGroup(){
@@ -119,7 +137,7 @@ export default function UsersList(props){
             participants: usersID
         }
   
-    
+        
         fetch("http://localhost:4000/createNewGroupChat", {
             method: "POST",
             headers : {
@@ -129,7 +147,22 @@ export default function UsersList(props){
         })
           .then((res) => res.json())
           .then((data) => console.log(data))
-     
+        
+          
+        if (file) {
+            const formData = new FormData();
+            formData.append("image", file, file.name);
+          
+        fetch("http://localhost:4000/createNewGroupChat", {
+        method: "POST",
+        body: imageData,
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        })
+    }
+
         props.reload();
         props.closeWindow();
     }
@@ -176,7 +209,7 @@ export default function UsersList(props){
             </ul>
             <div className={styles.submit}>
                 <label className={styles.uploadLabel}>Upload group avatar image</label>
-                <input className={styles.upload} type="file" name="myImage" accept="image/*"/>
+                <input className={styles.upload} type="file" name="myImage" accept="image/*" onChange={handleFileChange}/>
                 <input className={styles.inputSearch} type="text" value={groupName} onChange={handleGroupName} placeholder="Enter group name"/>
                 <button className={styles.close} onClick={CreateGroup}>Create</button>
             </div>
