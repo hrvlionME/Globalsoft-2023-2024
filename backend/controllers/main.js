@@ -81,9 +81,9 @@ export const login = async (req, res) => {
       const UserId = await db.checkData(email, password);
 
       if (UserId != null) {
-        return res.status(200).json({ Status: 'Success', ID: UserId });
+        return res.status(200).json({ success: true, ID: UserId });
       } else {
-        return res.status(401).json({ Status: 'Incorrect credentials' });
+        return res.status(401).json({ success: false, Status: 'Incorrect credentials' });
       }
     } catch (error) {
       console.error('Error during login:', error);

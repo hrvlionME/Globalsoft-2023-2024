@@ -6,7 +6,7 @@
   justify-content: space-between;
   background-color: #1d2937;
   box-shadow: 0 0 20px black; 
-  height: 483.11px;
+  height: 480px;
 }
 
 .forgot-password-container {
@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content:center;
   align-items: center;
-  width: 40%;
+  width: 50%;
 }
 
 .error-message {
@@ -93,7 +93,7 @@ h5 {
   flex-direction: column;
   justify-content:flex-start;
   align-items: center;
-  width: 40%;
+  width: 50%;
 }
 
 form {

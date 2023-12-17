@@ -52,13 +52,13 @@ const Login = ({ setisLoggedIn }) => {
           email,
           password,
         }),
-      });
+      });     
 
       const data = await response.json();
 
       if (data.success) {
         setisLoggedIn(true);
-      } else {
+      } if (response.status === 401) {
         setError('Login failed. Please check your credentials.');
       }
     } catch (error) {
