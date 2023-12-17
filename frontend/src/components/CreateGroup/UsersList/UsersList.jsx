@@ -16,7 +16,8 @@ export default function UsersList(props){
                   fetch("http://localhost:4000/")
                   .then((res) => res.json())
                   .then((data) => {
-                   const user2Array = Object.values(data).map(user => user)
+                   //const user2Array = Object.values(data).map(user => user)
+                   const user2Array = [{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"},{id1:1, name: "ante"}]
                    user2Array.sort((a, b) => {
                         const nameA = a.name.toLowerCase();
                         const nameB = b.name.toLowerCase();
@@ -174,6 +175,8 @@ export default function UsersList(props){
 
             </ul>
             <div className={styles.submit}>
+                <label className={styles.uploadLabel}>Upload group avatar image</label>
+                <input className={styles.upload} type="file" name="myImage" accept="image/*"/>
                 <input className={styles.inputSearch} type="text" value={groupName} onChange={handleGroupName} placeholder="Enter group name"/>
                 <button className={styles.close} onClick={CreateGroup}>Create</button>
             </div>

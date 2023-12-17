@@ -12,10 +12,29 @@
     justify-content: center;
     align-items: center;
 }
-
+.upload{
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    border: none;
+}
 .userSpan {
     position: relative;
     text-align: left;
+}
+
+.uploadLabel{
+    position: absolute;
+    bottom: 110px;
+    left: 10px;
+}
+
+input[type=file]::file-selector-button {
+    border: none;
+    border-radius: 10px;
+    background-color: #5c8aff;
+    padding: 10px;
+    color: #fff;
 }
 
 .userBox {
@@ -27,7 +46,7 @@
     scrollbar-width: none;
     overflow-y: auto;
     overflow-x: hidden;
-    height: 54vh;
+    height: 45vh;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -102,7 +121,8 @@
     width: 35vw;
     background-color: #171b24;
     height: 8vh;
-    position: relative;
+    position: absolute;
+    bottom: 0;
 }
 
 
