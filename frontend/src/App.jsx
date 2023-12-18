@@ -9,6 +9,7 @@ const App = () => {
   useEffect(() => {
     const socket = io('http://localhost:4000');
     setSocket(socket);
+    socket.emit('ping');
     return () => {
       socket.disconnect();
     };
