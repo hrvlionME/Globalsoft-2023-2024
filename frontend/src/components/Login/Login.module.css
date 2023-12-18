@@ -1,20 +1,20 @@
 .login-container {
   display: flex;
   margin: auto;
-  max-width: 800px;
+  width: 800px;
   text-align: center;
   justify-content: space-between;
   background-color: #1d2937;
   box-shadow: 0 0 20px black; 
-  height: 480px;
+  height: 605px;
 }
 
 .forgot-password-container {
   display: flex;
   flex-direction: column;
+  margin: auto;
   justify-content:center;
-  align-items: center;
-  width: 50%;
+  text-align: center;
 }
 
 .error-message {
@@ -35,7 +35,7 @@
 
 .outside {
   display: flex;
-  margin: 10% auto;
+  margin: 5% auto;
   max-width: 800px;
   padding: 30px;
   background-color: #1d2937;
@@ -45,8 +45,7 @@
 
 
 .login-image {
-  width: 60%;
-  text-align: right;
+  text-align: left;
   display: block;
 }
 
@@ -62,25 +61,25 @@
   .forgot-password-container{
     padding: 50px;
   }
-  form {
-    width: 200px;
-  }
 
-  h5 {
-    width: 200px;
-  }
+
+}
+
+.slika {
+ width: 410px; 
+ height: 605px; 
 }
 
 .logo-image {
   width: 65%;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 h3 {
   color: #ffff;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 h5 {
@@ -93,7 +92,7 @@ h5 {
   flex-direction: column;
   justify-content:flex-start;
   align-items: center;
-  width: 50%;
+  max-width: 330px;
 }
 
 form {

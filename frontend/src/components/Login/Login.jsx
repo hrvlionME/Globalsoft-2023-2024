@@ -6,8 +6,9 @@ import loadingSpinner from '../../assets/spinner.gif';
 import styles from './Login.module.css';
 import loginImage from '../../assets/radionica.png';
 import logo from '../../assets/globalsoft.png';
+import Register from '../Register/Register.jsx';
 
-const Login = ({ setisLoggedIn }) => {
+const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +16,10 @@ const Login = ({ setisLoggedIn }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [forgotPasswordMode, setForgotPasswordMode] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState('');
+
+  const handleRegister = () => {
+    setIsRegisterOpen(true);
+  }
 
   const isEmailValid = (email) => {
     return validator.isEmail(email);
@@ -75,6 +80,7 @@ const Login = ({ setisLoggedIn }) => {
   };
 
   const handleReturnToLogin = () => {
+    setIsRegisterOpen(false)
     setForgotPasswordMode(false);
     setError(null);
     setIsLoading(false);
@@ -87,7 +93,7 @@ const Login = ({ setisLoggedIn }) => {
     onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')}
     onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}
     >
-      Return to Login
+      Login Here!
     </button>
   );
 
@@ -157,7 +163,7 @@ const Login = ({ setisLoggedIn }) => {
     <div className={styles['outside']}>
       <div className={styles['login-container']}>
         <div className={styles['login-image']}>
-          <img src={loginImage} alt="Login" />
+          <img src={loginImage} className={styles['slika']} alt="Login" />
         </div>
         {forgotPasswordMode ? (
           <div className={styles['forgot-password-container']}>
@@ -190,6 +196,11 @@ const Login = ({ setisLoggedIn }) => {
               <p><i>We will send you an email with the  <br /> reset instructions.</i></p>
               {returnToLoginButton}
             </form>
+          </div>
+        ) : isRegisterOpen ? (
+          <div className={styles['forgot-password-container']}>
+            <Register setIsRegisterOpen={setIsRegisterOpen} />
+            <p>Already have an Account? {returnToLoginButton}</p>
           </div>
         ) : (
           <div className={styles['form-container']}>
@@ -253,7 +264,7 @@ const Login = ({ setisLoggedIn }) => {
               <p>
                 Not registered yet?  <button
                 type="button"
-                // onClick={handleRegister} TREBA DODATI REGISTER KOMPONENTU
+                onClick={handleRegister}
                 className={styles['forgot-password-link']}
                 onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')}
                 onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}

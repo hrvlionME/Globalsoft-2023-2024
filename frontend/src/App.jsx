@@ -18,17 +18,17 @@ const App = () => {
   }, []);
   return <div>{isLoggedIn ? <Dashboard /> : <Login />}</div>;
   const [isLoggedIn, setisLoggedIn] = useState(false);
-
+  const [isRegisterOpen, setIsRegisterOpen] = useState(true);
 
   return (
     <div>
       {isLoggedIn ? (
-        <Dashboard
-          setisLoggedIn={setisLoggedIn}
-        />
+        <Dashboard setisLoggedIn={setisLoggedIn} />
       ) : (
         <Login
           setisLoggedIn={setisLoggedIn}
+          setIsRegisterOpen={setIsRegisterOpen}
+          isRegisterOpen={isRegisterOpen}
         />
       )}
     </div>
@@ -36,4 +36,3 @@ const App = () => {
 };
 
 export default App;
-

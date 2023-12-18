@@ -96,22 +96,26 @@ export const login = async (req, res) => {
 
 export const registerUser = async (req, res) => {
   const userData = {
-    ID: req.body.ID,
     email: req.body.email,
     password: req.body.password,
     name: req.body.name,
     lastname: req.body.lastname,
-    avatar: req.body.avatar,
-    user_role: req.body.user_role,
   };
 
   try {
-    const userExists = await db.checkUserExistsById(userData.ID);
+    const userExists = await db.getUserByEmail(userData.email);
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: 'User with this email already exists' });
     }
 
-    const userId = await db.registerUser(userData);
+    const userId = await db.registerUser({
+      email: userData.email,
+      password: userData.password,
+      name: userData.name,
+      lastname: userData.lastname,
+      avatar: "default_avatar_url", 
+      user_role: "default_role", 
+    });
 
     if (userId) {
       return res
