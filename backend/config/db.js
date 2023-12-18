@@ -70,6 +70,63 @@ export async function registerUser(userData) {
   return result.insertId;
 }
 
+export async function getUserChats(userId) {
+  const query = `
+    SELECT chat.ID, chat.name, chat.avatar
+    FROM participants
+    JOIN chat ON participants.chat_id = chat.ID
+    WHERE participants.user_id = ? 
+  `;
+
+  const [rows] = await dbConn.query(query, [userId]);
+  return rows;
+}
+
+export async function getUserInfo(userId) {
+  try {
+    const [userInfo] = await dbConn.query(
+      'SELECT ID, email, avatar FROM users WHERE ID = ?',
+      [userId]
+    );
+
+    if (userInfo.length > 0) {
+      return userInfo[0];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching user info from the database:', error);
+    throw error;
+  }
+}
+
+export async function getAllMessages(chatID) {
+  try {
+    const [userInfo] = await dbConn.query(
+      'SELECT * FROM chat_details WHERE chat_id = ?',
+      [chatID]
+    );
+
+    if (userInfo.length > 0) {
+      return userInfo;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error('Error fetching user info from the database:', error);
+    throw error;
+  }
+}
+
+export async function getUserByEmail(email) {
+  try {
+    const [rows] = await dbConn.query('SELECT * FROM users WHERE email = ?', [email]);
+    return rows[0];
+  } catch (error) {
+    console.error('Error fetching user by email:', error);
+    throw error;
+  }
+}
 export async function insertNewMessageData(senderId, chatId, messageText) {
   console.log('hi');
   // const connection = await pool.getConnection();

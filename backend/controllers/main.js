@@ -1,4 +1,3 @@
-//import * as db from '../db.js';
 import * as db from '../config/db.js';
 
 export const rootEndpoint = async (req, res) => {
