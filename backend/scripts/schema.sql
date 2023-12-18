@@ -1,4 +1,4 @@
-USE BAZA
+USE BAZA;
 
 CREATE TABLE
     users (

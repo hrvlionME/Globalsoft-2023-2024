@@ -1,5 +1,4 @@
 import * as db from '../db.js';
-import bcrypt from 'bcrypt';
 
 export const rootEndpoint = async (req, res) => {
   const data = await db.getInfo();
