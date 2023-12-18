@@ -3,7 +3,7 @@ import './Dashboard.css';
 import ChatView from '../ChatView/ChatView.jsx';
 import Sidebar from '../Sidebar/Sidebar.jsx';
 
-const Dashboard = () => {
+const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
   const [isSidebarVisible, setSidebarVisibility] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1100);
   const [selectedChat, setSelectedChat] = useState(1);
@@ -37,7 +37,7 @@ const Dashboard = () => {
           <>
             {isSidebarVisible && (
               <div className="sidebar">
-                <Sidebar setSelectedChat={setSelectedChat} />
+                <Sidebar userId={userId} setSelectedChat={setSelectedChat} />
               </div>
             )}
             {!isSidebarVisible && <ChatView chatID={selectedChat} />}
@@ -46,7 +46,7 @@ const Dashboard = () => {
         {!isSmallScreen && (
           <>
             <div className="sidebar">
-              <Sidebar setSelectedChat={setSelectedChat} />
+              <Sidebar setSelectedChat={setSelectedChat} userId={userId}/>
             </div>
             <ChatView chatID={selectedChat} />
           </>

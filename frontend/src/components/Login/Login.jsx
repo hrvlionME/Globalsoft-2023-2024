@@ -8,7 +8,7 @@ import loginImage from '../../assets/radionica.png';
 import logo from '../../assets/globalsoft.png';
 import Register from '../Register/Register.jsx';
 
-const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen }) => {
+const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen, setUserId }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -62,6 +62,7 @@ const Login = ({ setisLoggedIn, setIsRegisterOpen, isRegisterOpen }) => {
       const data = await response.json();
 
       if (data.success) {
+        setUserId(data.ID);
         setisLoggedIn(true);
       } if (response.status === 401) {
         setError('Login failed. Please check your credentials.');

@@ -18,17 +18,23 @@ const App = () => {
   }, []);
   return <div>{isLoggedIn ? <Dashboard /> : <Login />}</div>;
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [isRegisterOpen, setIsRegisterOpen] = useState(true);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   return (
     <div>
       {isLoggedIn ? (
-        <Dashboard setisLoggedIn={setisLoggedIn} />
+        <Dashboard
+          setisLoggedIn={setisLoggedIn}
+          setUserId={setUserId}
+          userId={userId} />
       ) : (
         <Login
           setisLoggedIn={setisLoggedIn}
           setIsRegisterOpen={setIsRegisterOpen}
           isRegisterOpen={isRegisterOpen}
+          setUserId={setUserId}
+          userId={userId}
         />
       )}
     </div>
