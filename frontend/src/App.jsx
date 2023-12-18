@@ -1,26 +1,19 @@
-// App.jsx
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard/Dashboard';
-
-import './App.module.css'; // Import your CSS file if using external styles
 import Login from './components/Login/Login';
+import { io } from 'socket.io-client';
 
 const App = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-  const styles = {
-    backgroundColor: 'rgb(23, 26, 36)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    // Other background properties
-  };
-
-  return (
-    <div style={styles}>
-      {isLoggedIn ? <Dashboard /> : <Login />}
-
-      {/* Other components and content go here */}
-    </div>
-  );
+  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [socket, setSocket] = useState(null);
+  useEffect(() => {
+    const socket = io('http://localhost:4000');
+    setSocket(socket);
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+  return <div>{isLoggedIn ? <Dashboard /> : <Login />}</div>;
 };
 
 export default App;
