@@ -1,4 +1,5 @@
-import * as db from '../db.js';
+//import * as db from '../db.js';
+import * as db from '../config/db.js';
 
 export const rootEndpoint = async (req, res) => {
   const data = await db.getInfo();
@@ -8,6 +9,7 @@ export const rootEndpoint = async (req, res) => {
 export const createNewGroupChat = async (req, res) => {
   const usersIds = [...req.body.participants];
   const name = req.body.name;
+
   /*   res.json(usersIds); */
   const isSuccess = await db.insertNewGroupChatData(usersIds, name);
   if (isSuccess)
@@ -29,7 +31,6 @@ export const addNewMessage = async (req, res) => {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
-
 export const getUserChats = async (req, res) => {
   const userId = req.params.userId;
 
