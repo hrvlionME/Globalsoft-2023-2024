@@ -150,7 +150,9 @@ export async function getAllMessages(chatID) {
 
 export async function getUserByEmail(email) {
   try {
-    const [rows] = await dbConn.query('SELECT * FROM users WHERE email = ?', [email]);
+    const [rows] = await dbConn.query('SELECT * FROM users WHERE email = ?', [
+      email,
+    ]);
     return rows[0];
   } catch (error) {
     console.error('Error fetching user by email:', error);
@@ -167,7 +169,136 @@ export async function registerUser(userData) {
       VALUES (?, ?, ?, ?, ?, ?)
     `;
 
-    const [result] = await dbConn.query(query, [email, password, name, lastname, avatar, user_role]);
+    const [result] = await dbConn.query(query, [
+      email,
+      password,
+      name,
+      lastname,
+      avatar,
+      user_role,
+    ]);
+
+    if (result.affectedRows > 0) {
+      return result.insertId;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error registering user:', error);
+    throw error;
+  }
+}
+
+export async function getUserByEmail(email) {
+  try {
+    const [rows] = await dbConn.query('SELECT * FROM users WHERE email = ?', [
+      email,
+    ]);
+    return rows[0];
+  } catch (error) {
+    console.error('Error fetching user by email:', error);
+    throw error;
+  }
+}
+
+export async function registerUser(userData) {
+  const { email, password, name, lastname, avatar, user_role } = userData;
+
+  try {
+    const query = `
+      INSERT INTO users (email, password, name, lastname, avatar, user_role)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    const [result] = await dbConn.query(query, [
+      email,
+      password,
+      name,
+      lastname,
+      avatar,
+      user_role,
+    ]);
+
+    if (result.affectedRows > 0) {
+      return result.insertId;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error registering user:', error);
+    throw error;
+  }
+}
+
+export async function getUserByEmail(email) {
+  try {
+    const [rows] = await dbConn.query('SELECT * FROM users WHERE email = ?', [
+      email,
+    ]);
+    return rows[0];
+  } catch (error) {
+    console.error('Error fetching user by email:', error);
+    throw error;
+  }
+}
+
+export async function registerUser(userData) {
+  const { email, password, name, lastname, avatar, user_role } = userData;
+
+  try {
+    const query = `
+      INSERT INTO users (email, password, name, lastname, avatar, user_role)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    const [result] = await dbConn.query(query, [
+      email,
+      password,
+      name,
+      lastname,
+      avatar,
+      user_role,
+    ]);
+
+    if (result.affectedRows > 0) {
+      return result.insertId;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error registering user:', error);
+    throw error;
+  }
+}
+export async function getUserByEmail(email) {
+  try {
+    const [rows] = await dbConn.query('SELECT * FROM users WHERE email = ?', [
+      email,
+    ]);
+    return rows[0];
+  } catch (error) {
+    console.error('Error fetching user by email:', error);
+    throw error;
+  }
+}
+
+export async function registerUser(userData) {
+  const { email, password, name, lastname, avatar, user_role } = userData;
+
+  try {
+    const query = `
+      INSERT INTO users (email, password, name, lastname, avatar, user_role)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    const [result] = await dbConn.query(query, [
+      email,
+      password,
+      name,
+      lastname,
+      avatar,
+      user_role,
+    ]);
 
     if (result.affectedRows > 0) {
       return result.insertId;
