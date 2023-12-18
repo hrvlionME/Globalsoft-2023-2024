@@ -40,21 +40,6 @@ export async function insertNewGroupChatData(participantsInfo, chatName) {
   }
 }
 
-export async function registerUser(userData) {
-  const { email, password, name, lastname, avatar, user_role } = userData;
-  const hashedPassword = await bcryptjs.hash(password, 10);
-  const insertUserQuery = `INSERT INTO users (email, password, name, lastname, avatar, user_role) VALUES (?, ?, ?, ?, ?, ?);`;
-  const [result] = await dbConn.query(insertUserQuery, [
-    email,
-    hashedPassword,
-    name,
-    lastname,
-    avatar,
-    user_role,
-  ]);
-  return result.insertId;
-}
-
 export async function checkUserExistsById(userData) {
   const ID = userData;
   const existQuery = 'SELECT * FROM users WHERE ID = ?';
@@ -85,20 +70,6 @@ export async function registerUser(userData) {
   return result.insertId;
 }
 
-export async function checkUserExistsById(userData) {
-  const ID = userData;
-  const existQuery = 'SELECT * FROM users WHERE ID = ?';
-  const [result] = await dbConn.query(existQuery, [ID]);
-  return result.length > 0;
-}
-
-export async function deleteUser(userData) {
-  const ID = userData;
-  const deleteQuery =
-    'UPDATE users set deleted_at = NOW() WHERE ID=? and deleted_at IS NULL;';
-  const [result] = await dbConn.query(deleteQuery, [ID]);
-  return result.affectedRows > 0;
-}
 export async function insertNewMessageData(senderId, chatId, messageText) {
   console.log('hi');
   // const connection = await pool.getConnection();
