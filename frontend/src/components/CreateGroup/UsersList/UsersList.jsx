@@ -1,8 +1,6 @@
 import styles from './UsersList.module.css';
 import Search from '../Search/Search';
 import { useState, useEffect } from 'react';
-import MyImage from './avatar.jpg';
-
 
 export default function UsersList(props){
     const [users, setUsers] = useState([]) 
@@ -19,7 +17,6 @@ export default function UsersList(props){
                   .then((res) => res.json())
                   .then((data) => {
                    const user2Array = Object.values(data).map(user => user)
-                   //const user2Array = [{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},{id:1, name: "ante"},] 
                    user2Array.sort((a, b) => {
                         const nameA = a.name.toLowerCase();
                         const nameB = b.name.toLowerCase();
@@ -132,7 +129,7 @@ export default function UsersList(props){
           .then((res) => res.json())
           .then((data) => console.log(data))
      
-
+        props.reload();
         props.closeWindow();
     }
 

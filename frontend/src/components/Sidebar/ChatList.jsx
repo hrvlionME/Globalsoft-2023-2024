@@ -7,6 +7,10 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const addNewChat = () => {
+    //prazna funkcija ali bitna za re-renderanje na pravljenje novih grupa
+  };
+
   useEffect(() => {
     const fetchChats = async () => {
       try {
@@ -27,9 +31,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
     };
 
     fetchChats();
-  }, [userId]);
-
-  const addNewChat = () => {};
+  }, [userId, addNewChat]);
 
   const filteredChats = chats.filter((chat) =>
     chat.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -59,8 +61,8 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
             {chat.name}
           </li>
         ))}
-        <li className="add-chat-button" onClick={addNewChat}>
-            <CreateGroupButton/>
+        <li className="add-chat-button">
+            <CreateGroupButton reload={addNewChat}/>
         </li>
       </ul>
     </div>
