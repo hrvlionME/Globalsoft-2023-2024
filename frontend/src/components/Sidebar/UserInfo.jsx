@@ -8,10 +8,10 @@ const UserInfo = ({ userId }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
+    const fetchUserInfo = async (id) => {
       try {
         const response = await fetch(
-          `http://localhost:4000/user-info/${userId}`
+          `http://localhost:4000/user-info/${id}`
         );
         if (!response.ok) {
           throw new Error('Error fetching user info');
@@ -26,7 +26,7 @@ const UserInfo = ({ userId }) => {
       }
     };
 
-    fetchUserInfo();
+    fetchUserInfo(userId);
   }, [userId]);
 
   if (loading) {

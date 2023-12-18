@@ -3,8 +3,7 @@ import ChatList from './ChatList.jsx';
 import Search from './Search.jsx';
 import UserInfo from './UserInfo.jsx';
 
-const Sidebar = ({ setSelectedChat }) => {
-  const [userId, setUserId] = useState(1);
+const Sidebar = ({ setSelectedChat, userId }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {}, []);

@@ -81,9 +81,11 @@ export const login = async (req, res) => {
       const UserId = await db.checkData(email, password);
 
       if (UserId != null) {
-        return res.status(200).json({ Status: 'Success', ID: UserId });
+        return res.status(200).json({ success: true, ID: UserId });
       } else {
-        return res.status(401).json({ Status: 'Incorrect credentials' });
+        return res
+          .status(401)
+          .json({ success: false, Status: 'Incorrect credentials' });
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -96,22 +98,28 @@ export const login = async (req, res) => {
 
 export const registerUser = async (req, res) => {
   const userData = {
-    ID: req.body.ID,
     email: req.body.email,
     password: req.body.password,
     name: req.body.name,
     lastname: req.body.lastname,
-    avatar: req.body.avatar,
-    user_role: req.body.user_role,
   };
 
   try {
-    const userExists = await db.checkUserExistsById(userData.ID);
+    const userExists = await db.getUserByEmail(userData.email);
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res
+        .status(400)
+        .json({ message: 'User with this email already exists' });
     }
 
-    const userId = await db.registerUser(userData);
+    const userId = await db.registerUser({
+      email: userData.email,
+      password: userData.password,
+      name: userData.name,
+      lastname: userData.lastname,
+      avatar: 'default_avatar_url',
+      user_role: 'default_role',
+    });
 
     if (userId) {
       return res

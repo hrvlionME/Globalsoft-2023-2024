@@ -1,0 +1,20 @@
+.Register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .confirmation-message {
+    color: rgb(25, 194, 25);
+    font-size: 12px;
+    margin-bottom: 8px;
+    margin-top: 10px;
+  
+  }
