@@ -2,7 +2,7 @@ import CreateGroupScreen from '../CreateGroupScreen/CreateGroupScreen';
 import styles from './CreateGroupButton.module.css';
 import { useState } from 'react';
 
-export default function CreateGroupButton(){
+export default function CreateGroupButton(props){
     const [isClicked, setIsClicked] = useState(false);
 
     function closeWindow(){
@@ -12,7 +12,7 @@ export default function CreateGroupButton(){
     return (
     <div>
         <button className={styles.CreateButton} onClick={() => {setIsClicked(true)}}>Add New Chat</button>
-        {isClicked  ?  <div><CreateGroupScreen closeWindow={closeWindow}/></div> : <div></div>}
+        {isClicked  ?  <div><CreateGroupScreen reload={props.reload} closeWindow={closeWindow}/></div> : <div></div>}
     </div>
     )
 }

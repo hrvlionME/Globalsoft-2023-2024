@@ -2,11 +2,11 @@
     border: none;
     border-radius: 25px;
     position: relative;
-    left: -3%;
+    left: 0%;
     box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #fff;
     padding: 5px 10px;
-    margin: 30px;
+    margin: 20px 0;
     width: 95%;
     height: 2.5rem;
     font-family: 'Arial';

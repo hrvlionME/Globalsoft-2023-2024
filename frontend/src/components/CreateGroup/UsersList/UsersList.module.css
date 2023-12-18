@@ -12,11 +12,29 @@
     justify-content: center;
     align-items: center;
 }
-
+.upload{
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    border: none;
+}
 .userSpan {
     position: relative;
-    top: 5px;
     text-align: left;
+}
+
+.uploadLabel{
+    position: absolute;
+    bottom: 110px;
+    left: 10px;
+}
+
+input[type=file]::file-selector-button {
+    border: none;
+    border-radius: 10px;
+    background-color: #5c8aff;
+    padding: 10px;
+    color: #fff;
 }
 
 .userBox {
@@ -28,15 +46,21 @@
     scrollbar-width: none;
     overflow-y: auto;
     overflow-x: hidden;
-    height: 54vh;
+    height: 45vh;
 }
 ::-webkit-scrollbar {
     display: none;
 }
 
 .selected {
+    display: flex;
+    flex: 1 1 auto;
     text-align: left;
-    width: 84%;
+    width: 80%;
+    height: 30%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-x: auto;
 }
 .userInfo {
     font-family: 'Arial';
@@ -45,7 +69,7 @@
     border-radius: 25px;
     position: relative;
     list-style-type: none;
-    margin: 10px;
+    margin: 10px 20px;
     font-size: medium;
     width: 95%;
     height: 7vh;
@@ -69,9 +93,11 @@
 }
 
 .Remove{
-    float: right;
-    width: 30px;
-    height: 30px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
     border: none;
     border-radius: 50%;
     background-color: white;
@@ -100,29 +126,25 @@
 }
 
 .submit {
-    width: 35vw;
+    width: 50vw;
     background-color: #171b24;
     height: 8vh;
-    position: relative;
+    position: absolute;
+    bottom: 0;
 }
 
-.submit input{
-    position: absolute;
-    bottom: -20px;
-    width: 28vw;
-    
-}
 
 .inputSearch {
     border: none;
     border-radius: 25px;
-    position: relative;
-    left: -3%;
+    position: absolute;
+    left: 5px;
+    bottom: -1px;
+    max-width: 80%;
     box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #fff;
     padding: 5px 10px;
-    margin: 30px;
-    width: 95%;
+    margin: 10px;
     height: 2.5rem;
     font-family: 'Arial';
     display:inline-block;
@@ -133,4 +155,18 @@
 
 .inputSearch:focus{
     border: none;
+}
+
+@media (max-width: 1100px){
+    .inputSearch{
+        max-width: 70%;
+    }
+
+    .selected{
+        max-width:75%;
+    }
+
+    .userInfo{
+        max-width: 90%;
+    }
 }

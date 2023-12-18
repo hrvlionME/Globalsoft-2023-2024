@@ -6,7 +6,7 @@ export default function CreateGroupScreen(props){
     return (
     <div className={styles.container}>
         <button className={styles.close} onClick={props.closeWindow}>Close</button>
-        <UsersList closeWindow={props.closeWindow}/>
+        <UsersList closeWindow={props.closeWindow} reload={props.reload}/>
         
     </div>)
     ;
