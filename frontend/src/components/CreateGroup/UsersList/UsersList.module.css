@@ -165,4 +165,8 @@ input[type=file]::file-selector-button {
     .selected{
         max-width:75%;
     }
+
+    .userInfo{
+        max-width: 90%;
+    }
 }

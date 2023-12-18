@@ -14,17 +14,17 @@ export default function UsersList(props){
                   fetch("http://localhost:4000/")
                   .then((res) => res.json())
                   .then((data) => {
-                   //const user2Array = Object.values(data).map(user => user)
-                   
+                   const user2Array = Object.values(data).map(user => user)
+                  /* 
                    const user2Array = []
                    for(let i = 1; i <= 10;  i++){
                     const obj = {
                         name: "Person" + i,
-                        id: i
+                        ID: i
                     }
                     user2Array.push(obj)
                    }
-                   
+                   */
                    user2Array.sort((a, b) => {
                         const nameA = a.name.toLowerCase();
                         const nameB = b.name.toLowerCase();
