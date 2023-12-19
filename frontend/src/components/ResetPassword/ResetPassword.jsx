@@ -4,7 +4,6 @@ import styles from './ResetPassword.module.css';
 import { useNavigate } from "react-router-dom";
 
 const replaceTildesWithDots = (token) => {
-  // Replace tildes with dots before decoding
   return token.replace(/~/g, '.');
 };
 
@@ -14,17 +13,9 @@ const ResetPassword = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log('ResetPassword component mounted!');
-    console.log('Modified Token:', resetToken);
-    const originalToken = replaceTildesWithDots(resetToken);
-    console.log('Original Token:', originalToken);
-  }, [resetToken]);
-
   const resetPassword = async () => {
     const originalToken = replaceTildesWithDots(resetToken);
 
-    // Make an API call to reset the password
     const response = await fetch('http://localhost:4000/reset-password', {
       method: 'POST',
       headers: {
@@ -39,11 +30,11 @@ const ResetPassword = () => {
     const data = await response.json();
 
     if (data.success) {
-      console.log(data.message); // Log a success message or handle as needed
+      console.log(data.message); 
       navigate("/");
     } else {
       console.error('Error resetting password:', data.message);
-      setError('Error resetting password. Please try again.'); // Display error message to the user
+      setError('Error resetting password. Please try again.'); 
     }
   };
 

@@ -24,10 +24,8 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Route for the password reset page */}
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
 
-        {/* Default route for login or dashboard */}
         <Route
           path="/"
           element={
