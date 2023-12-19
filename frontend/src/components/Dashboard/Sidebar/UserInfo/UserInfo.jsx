@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './UserInfo.css';
-import avatarImage from '../../assets/guitar.png';
 
 const UserInfo = ({ userId }) => {
   const [userInfo, setUserInfo] = useState(null);
