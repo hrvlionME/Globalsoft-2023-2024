@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
+<<<<<<< HEAD:frontend/src/components/ChatView/ChatView.jsx
 import styles from './ChatView.module.css';
+=======
+import './ChatView.css';
+>>>>>>> b01ceb7 (changed components structure):frontend/src/components/Dashboard/ChatView/ChatView.jsx
 import ChatInfo from './ChatInfo/ChatInfo';
 import Chat from './Chat/Chat';
 
