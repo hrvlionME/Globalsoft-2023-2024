@@ -90,10 +90,12 @@ const Login = ({
     setIsRegisterOpen(false);
     setForgotPasswordMode(false);
     setError(null);
+    setConfirmationMessage(false);
     setIsLoading(false);
   };
 
   const returnToLoginButton = (
+    
     <button
       type="button"
       onClick={handleReturnToLogin}
@@ -129,7 +131,6 @@ const Login = ({
         return;
       }
 
-      // TREBA NAPRAVITI NA BACKENDU
       const response = await fetch('http://localhost:4000/forgot-password', {
         method: 'POST',
         headers: {
@@ -144,7 +145,7 @@ const Login = ({
 
       if (data.success) {
         setConfirmationMessage(
-          'Password reset initiated.\nCheck your email for further instructions.'
+          'We have sent you an email \n with the reset instructions!'
         );
       } else {
         setError(
@@ -178,41 +179,46 @@ const Login = ({
         </div>
         {forgotPasswordMode ? (
           <div className={styles['forgot-password-container']}>
-            {confirmationMessage && (
+            {confirmationMessage ? (
               <div className={styles['confirmation-message']}>
                 {confirmationMessage}
+                <br />
+                {returnToLoginButton}
               </div>
+            ) : (
+              <>
+                <h5>Reset Password:</h5>
+                <form>
+                  <label htmlFor="email">Your Email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setError(null);
+                    }}
+                    className={!isEmailValid(email) ? styles['invalid-field'] : ''}
+                  />
+                  {error && <div className={styles['error-message']}>{error}</div>}
+                  <button type="button" onClick={handleResetPassword}>
+                    <div className={styles['button-content']}>
+                      {isLoading ? (
+                        <img src={loadingSpinner} alt="Loading" />
+                      ) : (
+                        'Reset Password'
+                      )}
+                    </div>
+                  </button>
+                  <p>
+                    <i>
+                      We will send you an email with the <br /> reset instructions.
+                    </i>
+                  </p>
+                  {returnToLoginButton}
+                </form>
+              </>
             )}
-            <h5>Reset Password:</h5>
-            <form>
-              <label htmlFor="email">Your Email:</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setError(null);
-                }}
-                className={!isEmailValid(email) ? styles['invalid-field'] : ''}
-              />
-              {error && <div className={styles['error-message']}>{error}</div>}
-              <button type="button" onClick={handleResetPassword}>
-                <div className={styles['button-content']}>
-                  {isLoading ? (
-                    <img src={loadingSpinner} alt="Loading" />
-                  ) : (
-                    'Reset Password'
-                  )}
-                </div>
-              </button>
-              <p>
-                <i>
-                  We will send you an email with the <br /> reset instructions.
-                </i>
-              </p>
-              {returnToLoginButton}
-            </form>
           </div>
         ) : isRegisterOpen ? (
           <div className={styles['forgot-password-container']}>

@@ -1,6 +1,8 @@
 import mysql from 'mysql2';
 import { config } from 'dotenv';
 import bcryptjs from 'bcryptjs';
+import nodemailer from 'nodemailer';
+import jwt from 'jsonwebtoken';
 
 config();
 
@@ -185,3 +187,55 @@ export async function checkData(email, password) {
     console.log(err);
   } 
 }*/
+
+
+export async function sendPasswordResetEmail(userEmail) {
+  try {
+    // Create a Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER, // Use environment variables
+        pass: process.env.APP_PASSWORD, // Use environment variables
+      },
+    });
+
+    // Generate a unique token for the password reset link with an expiration time
+    const token = generateResetToken(userEmail);
+
+    // Construct the password reset link
+    const resetLink = `http://localhost:3000/reset-password/${token}`;
+
+    // Compose email options
+    const mailOptions = {
+      from: process.env.EMAIL_USER, // Use environment variables
+      to: userEmail,
+      subject: 'Password Reset - Globalsoft Account',
+      html: `Click <a href="${resetLink}">here</a> to reset your password.<br/> If you did not request a password reset please ignore this email.`,
+    };
+
+    // Send the email
+    const info = await transporter.sendMail(mailOptions);
+
+    console.log('Email sent: ', info);
+
+    // You can handle success or further actions if needed
+  } catch (error) {
+    console.error('Error sending password reset email:', error);
+    throw error;
+  }
+}
+
+// Function to generate a secure and unique reset token
+function generateResetToken(userEmail) {
+  const token = jwt.sign(
+    {
+      email: userEmail,
+      // You can include additional information in the payload if needed
+    },
+    process.env.JWT_SECRET, // Use environment variables for secret key
+    { expiresIn: '1h' } // Set expiration time for the token
+  );
+
+  return token;
+}
