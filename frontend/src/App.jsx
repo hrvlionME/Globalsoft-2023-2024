@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 import './App.module.css';
 
 const App = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [socket, setSocket] = useState(null);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [userId, setUserId] = useState(null);
