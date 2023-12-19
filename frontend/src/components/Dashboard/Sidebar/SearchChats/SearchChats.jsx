@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Search.css';
+import './SearchChats.css';
 
 const SearchComponent = ({ onSearch }) => {
   const [searchText, setSearchText] = useState('');

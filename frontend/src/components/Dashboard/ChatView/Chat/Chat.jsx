@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Message from './Message';
+import Message from '../Message/Message';
 import { useState, useEffect } from 'react';
 
 export default function Chat({ chatId }) {

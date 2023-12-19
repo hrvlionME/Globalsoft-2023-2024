@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './ChatView.css';
-import ChatInfo from './ChatInfo';
-import Chat from './Chat';
+import ChatInfo from './ChatInfo/ChatInfo';
+import Chat from './Chat/Chat';
 
 ChatView.propTypes = {
   chatID: PropTypes.number,

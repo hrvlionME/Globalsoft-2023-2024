@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
-import ChatView from '../ChatView/ChatView.jsx';
-import Sidebar from '../Sidebar/Sidebar.jsx';
+import ChatView from './ChatView/ChatView.jsx';
+import Sidebar from './Sidebar/Sidebar.jsx';
 
 const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
   const [isSidebarVisible, setSidebarVisibility] = useState(true);
@@ -36,18 +36,14 @@ const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
         {isSmallScreen && (
           <>
             {isSidebarVisible && (
-              <div className="sidebar">
-                <Sidebar userId={userId} setSelectedChat={setSelectedChat} />
-              </div>
+              <Sidebar userId={userId} setSelectedChat={setSelectedChat} />
             )}
             {!isSidebarVisible && <ChatView chatID={selectedChat} />}
           </>
         )}
         {!isSmallScreen && (
           <>
-            <div className="sidebar">
-              <Sidebar setSelectedChat={setSelectedChat} userId={userId}/>
-            </div>
+            <Sidebar setSelectedChat={setSelectedChat} userId={userId}/>
             <ChatView chatID={selectedChat} />
           </>
         )}
