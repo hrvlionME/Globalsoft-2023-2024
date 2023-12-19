@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './ResetPassword.module.css';
+import { useNavigate } from "react-router-dom";
 
 const replaceTildesWithDots = (token) => {
   // Replace tildes with dots before decoding
@@ -11,6 +12,7 @@ const ResetPassword = () => {
   const { resetToken } = useParams();
   const [newPassword, setNewPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log('ResetPassword component mounted!');
@@ -38,6 +40,7 @@ const ResetPassword = () => {
 
     if (data.success) {
       console.log(data.message); // Log a success message or handle as needed
+      navigate("/");
     } else {
       console.error('Error resetting password:', data.message);
       setError('Error resetting password. Please try again.'); // Display error message to the user
