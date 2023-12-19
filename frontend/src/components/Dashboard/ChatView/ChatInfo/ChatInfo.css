@@ -1,0 +1,25 @@
+.chatInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* Add this line */
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  max-width: 90%;
+  max-height: 13%;
+  margin: 9px 9px 9px 19px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+}
