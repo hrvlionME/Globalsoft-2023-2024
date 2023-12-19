@@ -157,3 +157,26 @@ export const deleteUser = async (req, res) => {
     return res.status(500).json({ message: 'User deletion failed' });
   }
 };
+
+export const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+
+    // Check if the email exists in your database
+    const user = await db.getUserByEmail(email);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User with this email is not found' });
+    }
+
+    // Assuming you have a function to send the password reset email
+    await db.sendPasswordResetEmail(user.email);
+
+    // Send a success response
+    return res.status(200).json({ success: true, message: 'Password reset email sent!' });
+  } catch (error) {
+    console.error('Error during password reset initiation:', error);
+    return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
