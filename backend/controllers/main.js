@@ -1,4 +1,5 @@
 import * as db from '../config/db.js';
+import jwt from 'jsonwebtoken';
 
 export const rootEndpoint = async (req, res) => {
   const data = await db.getInfo();
@@ -178,5 +179,29 @@ export const forgotPassword = async (req, res) => {
   } catch (error) {
     console.error('Error during password reset initiation:', error);
     return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
+
+export const resetPassword = async (req, res) => {
+  const { resetToken, newPassword } = req.body;
+
+  try {
+    // Decode the reset token
+    const decodedToken = jwt.verify(resetToken, process.env.JWT_SECRET);
+
+    // Find the user in the database (replace this with your actual database query)
+    const user = await db.getUserByEmail(decodedToken.email);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    await db.updatePassword(user.ID, newPassword);
+
+    // Respond with a success message
+    res.json({ success: true, message: 'Password reset successfully' });
+  } catch (error) {
+    console.error('Error resetting password:', error.message);
+    res.status(400).json({ success: false, message: 'Invalid reset token' });
   }
 };

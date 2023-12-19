@@ -1,24 +1,45 @@
-// ResetPassword.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './ResetPassword.module.css';
+
+const replaceTildesWithDots = (token) => {
+  // Replace tildes with dots before decoding
+  return token.replace(/~/g, '.');
+};
 
 const ResetPassword = () => {
   const { resetToken } = useParams();
   const [newPassword, setNewPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleResetPassword = async () => {
-    try {
-      // Implement your API call to reset the password with resetToken and newPassword
-      // For simplicity, let's assume there's an API function resetPassword
-      // const response = await resetPassword(resetToken, newPassword);
+  useEffect(() => {
+    console.log('ResetPassword component mounted!');
+    console.log('Modified Token:', resetToken);
+    const originalToken = replaceTildesWithDots(resetToken);
+    console.log('Original Token:', originalToken);
+  }, [resetToken]);
 
-      // Display success message or redirect to login page
-      // For simplicity, we'll just log a success message here
-      console.log('Password reset successfully!');
-    } catch (error) {
-      console.error('Error resetting password:', error);
+  const resetPassword = async () => {
+    const originalToken = replaceTildesWithDots(resetToken);
+
+    // Make an API call to reset the password
+    const response = await fetch('http://localhost:4000/reset-password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        resetToken: originalToken,
+        newPassword,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      console.log(data.message); // Log a success message or handle as needed
+    } else {
+      console.error('Error resetting password:', data.message);
       setError('Error resetting password. Please try again.'); // Display error message to the user
     }
   };
@@ -39,7 +60,7 @@ const ResetPassword = () => {
 
       {error && <div className={styles['error-message']}>{error}</div>}
 
-      <button className={styles.button} onClick={handleResetPassword}>
+      <button className={styles.button} onClick={resetPassword}>
         Reset Password
       </button>
     </div>
@@ -47,3 +68,11 @@ const ResetPassword = () => {
 };
 
 export default ResetPassword;
+
+
+
+
+
+
+
+

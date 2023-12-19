@@ -201,17 +201,17 @@ export async function sendPasswordResetEmail(userEmail) {
     });
 
     // Generate a unique token for the password reset link with an expiration time
-    const token = generateResetToken(userEmail);
+    const modifiedToken = generateResetToken(userEmail);
 
     // Construct the password reset link
-    const resetLink = `http://localhost:3000/reset-password/${token}`;
+    const resetLink = `http://localhost:3000/reset-password/${modifiedToken}`;
 
     // Compose email options
     const mailOptions = {
       from: process.env.EMAIL_USER, // Use environment variables
       to: userEmail,
       subject: 'Password Reset - Globalsoft Account',
-      html: `Click <a href="${resetLink}">here</a> to reset your password.<br/> If you did not request a password reset please ignore this email.`,
+      html: `Click <a href="${resetLink}">here</a> to reset your password.<br/> If you did not request a password reset, please ignore this email.`,
     };
 
     // Send the email
@@ -233,9 +233,28 @@ function generateResetToken(userEmail) {
       email: userEmail,
       // You can include additional information in the payload if needed
     },
-    process.env.JWT_SECRET, // Use environment variables for secret key
+    process.env.JWT_SECRET, // Use environment variables for the secret key
     { expiresIn: '1h' } // Set expiration time for the token
   );
 
-  return token;
+  // Replace dots with underscores in the token
+  const modifiedToken = token.replace(/\./g, '~');
+
+  return modifiedToken;
 }
+
+export async function updatePassword(userId, newPassword) {
+  try {
+    const [result] = await dbConn.query('UPDATE users SET password = ? WHERE id = ?', [newPassword, userId]);
+
+    if (result.affectedRows === 0) {
+      throw new Error('User not found');
+    }
+
+    console.log('Password updated successfully');
+  } catch (error) {
+    console.error('Error updating password:', error);
+    throw error;
+  }
+}
+
