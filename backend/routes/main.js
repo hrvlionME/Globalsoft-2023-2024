@@ -3,7 +3,6 @@ import * as mainController from '../controllers/main.js';
 
 export const mainRouter = express.Router();
 
-//routes
 mainRouter.get('/', mainController.rootEndpoint);
 mainRouter.post('/createNewGroupChat', mainController.createNewGroupChat);
 mainRouter.post('/addNewMessage', mainController.addNewMessage);
@@ -16,6 +15,6 @@ mainRouter.post('/reset-password', mainController.resetPassword);
 
 mainRouter
   .route('/register')
-  .post(mainController.registerUser) // Register a new user
-  .delete(mainController.deleteUser); // Delete a user
+  .post(mainController.registerUser) 
+  .delete(mainController.deleteUser); 
 
