@@ -310,7 +310,7 @@ export async function sendMessage(chatId, senderId, message) {
   }
 }
 export async function uploadImage(newAvatar) {
-  const chatID = db.findLastChat()
+  const chatID = await findLastChat()
   const updateQuery = 'UPDATE chat SET avatar = ? WHERE ID = ?'
   const [result] = await dbConn.query(updateQuery, [newAvatar, chatID]);
   return result.affectedRows > 0;
