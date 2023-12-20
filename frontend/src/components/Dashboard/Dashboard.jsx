@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Dashboard.module.css';
-import ChatView from './ChatView/ChatView.jsx';
-import Sidebar from './Sidebar/Sidebar.jsx';
->>>>>>> b01ceb7 (changed components structure)
+import ChatView from '../ChatView/ChatView.jsx';
+import Sidebar from '../Sidebar/Sidebar.jsx';
 
 const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
   const [isSidebarVisible, setSidebarVisibility] = useState(true);
