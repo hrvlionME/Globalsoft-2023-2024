@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ChatList.module.css';
-import CreateGroupButton from '../../CreateGroup/CreateGroupButton/CreateGroupButton'
+import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton'
 
 const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [chats, setChats] = useState([]);

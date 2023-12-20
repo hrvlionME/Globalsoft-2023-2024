@@ -1,23 +1,5 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import styles from './Dashboard.module.css';
-import ChatView from '../ChatView/ChatView.jsx';
-import Sidebar from '../Sidebar/Sidebar.jsx';
-<<<<<<< HEAD
-=======
-import './Dashboard.css';
-=======
-import styles from './Dashboard.module.css';
->>>>>>> 02e92c1 (bolja struktura komponenti, css napravljen preko modula, izbrisane slike koje se ne koriste)
-import ChatView from './ChatView/ChatView.jsx';
-import Sidebar from './Sidebar/Sidebar.jsx';
->>>>>>> b01ceb7 (changed components structure)
-=======
->>>>>>> 245cf93 (restructure of components)
-=======
-import './Dashboard.css';
 import ChatView from './ChatView/ChatView.jsx';
 import Sidebar from './Sidebar/Sidebar.jsx';
 >>>>>>> b01ceb7 (changed components structure)
