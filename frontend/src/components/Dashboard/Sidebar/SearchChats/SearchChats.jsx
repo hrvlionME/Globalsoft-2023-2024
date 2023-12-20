@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SearchChats.css';
+import styles from './SearchChats.module.css';
 
 const SearchComponent = ({ onSearch }) => {
   const [searchText, setSearchText] = useState('');
@@ -19,14 +19,15 @@ const SearchComponent = ({ onSearch }) => {
   };
 
   return (
-      <div className="input">
+      <div>
         <input
+          className={styles.input}
           type="text"
           placeholder="Search"
           value={searchText}
           onChange={handleInputChange}
         />
-        <span className="clear" onClick={handleClearSearch}></span>
+        <span onClick={handleClearSearch}></span>
       </div>
   );
 };

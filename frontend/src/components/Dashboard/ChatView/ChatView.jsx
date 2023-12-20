@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './ChatView.css';
+import styles from './ChatView.module.css';
 import ChatInfo from './ChatInfo/ChatInfo';
 import Chat from './Chat/Chat';
 
@@ -9,7 +9,7 @@ ChatView.propTypes = {
 
 export default function ChatView({ chatID }) {
   return (
-    <div className="chat-view">
+    <div className={styles.chatView}>
       <ChatInfo chatID={chatID} />
       <Chat chatId={chatID} />
       {/* {chatID ? <ChatInfo chatID={chatID} /> : ""}

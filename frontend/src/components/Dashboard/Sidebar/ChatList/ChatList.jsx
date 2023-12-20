@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ChatList.css';
+import styles from './ChatList.module.css';
 import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton'
 
 const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
@@ -46,13 +46,13 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   }
 
   return (
-    <div className="chat-list-container">
+    <div className={styles.chatListContainer}>
       <h2>Chats</h2>
-      <ul className="chat-list">
+      <ul className={styles.chatList}>
         {filteredChats.map((chat) => (
           <li
             key={chat.ID}
-            className="chat-item"
+            className={styles.chatItem}
             onClick={() => {
               setSelectedChat(chat.ID);
             }}
@@ -61,7 +61,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
             {chat.name}
           </li>
         ))}
-        <li className="add-chat-button">
+        <li>
             <CreateGroupButton reload={addNewChat}/>
         </li>
       </ul>

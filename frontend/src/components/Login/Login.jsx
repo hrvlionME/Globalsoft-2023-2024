@@ -99,7 +99,7 @@ const Login = ({
     <button
       type="button"
       onClick={handleReturnToLogin}
-      className={styles['forgot-password-link']}
+      className={styles.forgotPasswordLink}
       onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')}
       onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}
     >
@@ -172,25 +172,26 @@ const Login = ({
   // }, [error]);
 
   return (
-    <div className={styles['outside']}>
-      <div className={styles['login-container']}>
-        <div className={styles['login-image']}>
-          <img src={loginImage} className={styles['slika']} alt="Login" />
+    <div className={styles.outside}>
+      <div className={styles.loginContainer}>
+        <div className={styles.loginImage}>
+          <img src={loginImage} className={styles.slika} alt="Login" />
         </div>
         {forgotPasswordMode ? (
-          <div className={styles['forgot-password-container']}>
+          <div className={styles.forgotPasswordContainer}>
             {confirmationMessage ? (
-              <div className={styles['confirmation-message']}>
+              <div className={styles.confirmationMessage}>
                 {confirmationMessage}
                 <br />
                 {returnToLoginButton}
               </div>
             ) : (
               <>
-                <h5>Reset Password:</h5>
-                <form>
-                  <label htmlFor="email">Your Email:</label>
+                <h5 className={styles.resetPassTitle}>Reset Password:</h5>
+                <form className={styles.form}>
+                  <label className={styles.label} htmlFor="email">Your Email:</label>
                   <input
+                    className={`${styles.input} ${!isEmailValid(email) ? styles['invalid-field'] : ''}`}
                     type="email"
                     id="email"
                     value={email}
@@ -198,19 +199,18 @@ const Login = ({
                       setEmail(e.target.value);
                       setError(null);
                     }}
-                    className={!isEmailValid(email) ? styles['invalid-field'] : ''}
                   />
-                  {error && <div className={styles['error-message']}>{error}</div>}
-                  <button type="button" onClick={handleResetPassword}>
-                    <div className={styles['button-content']}>
+                  {error && <div className={styles.errorMessage}>{error}</div>}
+                  <button type="button" className={styles.button} onClick={handleResetPassword}>
+                    <div className={styles.buttonContent}>
                       {isLoading ? (
-                        <img src={loadingSpinner} alt="Loading" />
+                        <img className={styles.image} src={loadingSpinner} alt="Loading" />
                       ) : (
                         'Reset Password'
                       )}
                     </div>
                   </button>
-                  <p>
+                  <p className={styles.text}>
                     <i>
                       We will send you an email with the <br /> reset instructions.
                     </i>
@@ -221,18 +221,18 @@ const Login = ({
             )}
           </div>
         ) : isRegisterOpen ? (
-          <div className={styles['forgot-password-container']}>
+          <div className={styles.forgotPasswordContainer}>
             <Register setIsRegisterOpen={setIsRegisterOpen} />
-            <p>Already have an Account? {returnToLoginButton}</p>
+            <p className={styles.text}>Already have an Account? {returnToLoginButton}</p>
           </div>
         ) : (
-          <div className={styles['form-container']}>
-            <div className={styles['logo-image']}>
-              <img src={logo} alt="logo" />
+          <div className={styles.formContainer}>
+            <div className={styles.logoImage}>
+              <img className={styles.image} src={logo} alt="logo" />
             </div>
-            <h3>Login</h3>
-            <form>
-              <label htmlFor="email">Email:</label>
+            <h3 className={styles.loginTitle}>Login</h3>
+            <form className={styles.form}>
+              <label className={styles.label} htmlFor="email">Email:</label>
               <input
                 type="email"
                 id="email"
@@ -242,11 +242,11 @@ const Login = ({
                   setError(null);
                 }}
                 onKeyDown={handleEmailKeyPress}
-                className={!isEmailValid(email) ? styles['invalid-field'] : ''}
+                className={`${styles.input} ${!isEmailValid(email) ? styles['invalid-field'] : ''}`}
               />
 
-              <label htmlFor="password">Password:</label>
-              <div className={styles['input-container']}>
+              <label className={styles.label} htmlFor="password">Password:</label>
+              <div className={styles.inputContainer}>
                 <input
                   ref={passwordInputRef}
                   type={showPassword ? 'text' : 'password'}
@@ -257,15 +257,13 @@ const Login = ({
                     setError(null);
                   }}
                   onKeyDown={handleKeyPress}
-                  className={
-                    !isPasswordValid(password) ? styles['invalid-field'] : ''
-                  }
+                  className={`${styles.input} ${!isPasswordValid(password) ? styles['invalid-field'] : ''}`}
                 />
                 <div
-                  className={styles['input-icon']}
+                  className={styles.inputIcon}
                   onClick={togglePasswordVisibility}
                 >
-                  <img
+                  <img className={styles.image}
                     src={getPasswordIcon()}
                     alt="Toggle Password Visibility"
                   />
@@ -274,7 +272,7 @@ const Login = ({
               <button
                 type="button"
                 onClick={handleForgotPassword}
-                className={styles['forgot-password-link']}
+                className={styles.forgotPasswordLink}
                 onMouseEnter={(e) =>
                   (e.target.style.textDecoration = 'underline')
                 }
@@ -283,23 +281,23 @@ const Login = ({
                 Forgot your password?
               </button>
 
-              {error && <div className={styles['error-message']}>{error}</div>}
-              <button type="button" onClick={handleLogin}>
-                <div className={styles['button-content']}>
+              {error && <div className={styles.errorMessage}>{error}</div>}
+              <button type="button" className={styles.button} onClick={handleLogin}>
+                <div className={styles.buttonContent}>
                   {isLoading ? (
-                    <img src={loadingSpinner} alt="Loading" />
+                    <img className={styles.image} src={loadingSpinner} alt="Loading" />
                   ) : (
                     'Login'
                   )}
                 </div>
               </button>
 
-              <p>
+              <p className={styles.text}>
                 Not registered yet?{' '}
                 <button
                   type="button"
                   onClick={handleRegister}
-                  className={styles['forgot-password-link']}
+                  className={styles.forgotPasswordLink}
                   onMouseEnter={(e) =>
                     (e.target.style.textDecoration = 'underline')
                   }

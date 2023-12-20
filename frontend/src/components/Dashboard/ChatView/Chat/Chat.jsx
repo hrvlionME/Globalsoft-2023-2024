@@ -85,7 +85,7 @@ export default function Chat({ chatId }) {
   ]; */
 
   return (
-    <div className="chat">
+    <div>
       {messages.map((message) => (
         <Message key={message.id} message={message} />
       ))}
