@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Dashboard.module.css';
 import ChatView from '../ChatView/ChatView.jsx';
 import Sidebar from '../Sidebar/Sidebar.jsx';
+<<<<<<< HEAD
 =======
 import './Dashboard.css';
 =======
@@ -12,6 +13,8 @@ import styles from './Dashboard.module.css';
 import ChatView from './ChatView/ChatView.jsx';
 import Sidebar from './Sidebar/Sidebar.jsx';
 >>>>>>> b01ceb7 (changed components structure)
+=======
+>>>>>>> 245cf93 (restructure of components)
 
 const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
   const [isSidebarVisible, setSidebarVisibility] = useState(true);
