@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ChatList.module.css';
+<<<<<<< HEAD
 import CreateGroupButton from '../../CreateGroup/CreateGroupButton/CreateGroupButton'
+=======
+import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton'
+>>>>>>> 02e92c1 (bolja struktura komponenti, css napravljen preko modula, izbrisane slike koje se ne koriste)
 
 const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [chats, setChats] = useState([]);

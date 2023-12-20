@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 <<<<<<<< HEAD:frontend/src/components/Sidebar/UserInfo/UserInfo.jsx
 import styles from './UserInfo.module.css';
 ========
 import './UserInfo.css';
 >>>>>>>> b01ceb7 (changed components structure):frontend/src/components/Dashboard/Sidebar/UserInfo/UserInfo.jsx
+=======
+import styles from './UserInfo.module.css';
+>>>>>>> 02e92c1 (bolja struktura komponenti, css napravljen preko modula, izbrisane slike koje se ne koriste)
 
 const UserInfo = ({ userId }) => {
   const [userInfo, setUserInfo] = useState(null);

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 <<<<<<<< HEAD:frontend/src/components/Sidebar/SearchChats/SearchChats.jsx
 import styles from './SearchChats.module.css';
 ========
 import './SearchChats.css';
 >>>>>>>> b01ceb7 (changed components structure):frontend/src/components/Dashboard/Sidebar/SearchChats/SearchChats.jsx
+=======
+import styles from './SearchChats.module.css';
+>>>>>>> 02e92c1 (bolja struktura komponenti, css napravljen preko modula, izbrisane slike koje se ne koriste)
 
 const SearchComponent = ({ onSearch }) => {
   const [searchText, setSearchText] = useState('');
