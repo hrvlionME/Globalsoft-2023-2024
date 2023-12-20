@@ -11,17 +11,17 @@ const FormInput = (props) => {
 
 
     return (
-        <div className={styles['formInput']}>
-            <label>{label}</label>
+        <div className={styles.formInput}>
+            <label className={styles.label}>{label}</label>
             <input { ...inputProps } 
             onChange={onChange} 
             onBlur={handleFocus} 
             focused={focused.toString()}
             onFocus={() => inputProps.name==="confirmPass" 
             && setFocused(true)}
-            className={styles['register-input']}
+            className={styles.registerInput}
             />
-            <span className={styles['register-span']}>{errorMessage}</span>
+            <span className={styles.registerSpan}>{errorMessage}</span>
         </div>
     )
 } 

@@ -1,0 +1,19 @@
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: transparent;
+    color: #ffff;
+    height: 32px;
+    margin-bottom: 5px !important;
+  
+    &:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 7px var(--accent-color);
+    }
+  }
+
+
+  

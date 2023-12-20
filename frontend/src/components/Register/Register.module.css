@@ -1,20 +1,41 @@
-.Register {
+.register {
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .error-message {
+  .errorMessage {
     color: red;
     margin-bottom: 8px;
     margin-top: 10px;
     font-size: 12px;
   }
 
-  .confirmation-message {
+  .title {
+    margin-bottom: 15px;
+  }
+
+  .confirmationMessage {
     color: rgb(25, 194, 25);
     font-size: 12px;
     margin-bottom: 8px;
     margin-top: 10px;
   
+  }
+
+  .registerButton {
+    background-color: var(--accent-color);
+    color: #ffff;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #0056b3;
+    }
   }

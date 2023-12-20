@@ -39,7 +39,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className={styles['reset-password-container']}>
+    <div className={styles.resetPasswordContainer}>
       <h2>Reset Password</h2>
       <label className={styles.label} htmlFor="newPassword">
         New Password:
@@ -52,7 +52,7 @@ const ResetPassword = () => {
         onChange={(e) => setNewPassword(e.target.value)}
       />
 
-      {error && <div className={styles['error-message']}>{error}</div>}
+      {error && <div className={styles.errorMessage}>{error}</div>}
 
       <button className={styles.button} onClick={resetPassword}>
         Reset Password

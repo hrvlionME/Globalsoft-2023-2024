@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Dashboard.css';
+import styles from './Dashboard.module.css';
 import ChatView from './ChatView/ChatView.jsx';
 import Sidebar from './Sidebar/Sidebar.jsx';
 
@@ -26,13 +26,13 @@ const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
   };
 
   return (
-    <div className={`dashboard ${isSidebarVisible ? 'sidebar-visible' : ''}`}>
+    <div className={`${styles.dashboard} ${isSidebarVisible ? styles.sidebarVisible : ''}`}>
       {isSmallScreen && (
-        <button className="toggle" onClick={toggleSidebar}>
+        <button className={styles.toggle} onClick={toggleSidebar}>
           Toggle
         </button>
       )}
-      <div className="main-content">
+      <div className={styles.mainContent}>
         {isSmallScreen && (
           <>
             {isSidebarVisible && (

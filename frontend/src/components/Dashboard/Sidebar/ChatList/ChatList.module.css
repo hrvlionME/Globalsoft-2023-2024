@@ -1,0 +1,24 @@
+.chatListContainer {
+  margin: 10px 0px;
+  text-align: center;
+}
+  
+.chatList {
+  list-style: none;
+  padding: 0;
+}
+
+.chatItem {
+  padding: 10px;
+  margin-top: 5px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chatItem:hover {
+  background-color: var(--accent-color);
+}
+
+  
