@@ -40,7 +40,7 @@ const ResetPassword = () => {
 
   return (
     <div className={styles.resetPasswordContainer}>
-      <h2>Reset Password</h2>
+      <h2 className={styles.title}>Reset Password</h2>
       <label className={styles.label} htmlFor="newPassword">
         New Password:
       </label>
@@ -55,7 +55,7 @@ const ResetPassword = () => {
       {error && <div className={styles.errorMessage}>{error}</div>}
 
       <button className={styles.button} onClick={resetPassword}>
-        Reset Password
+        Save New Password
       </button>
     </div>
   );
