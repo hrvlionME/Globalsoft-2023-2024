@@ -40,10 +40,10 @@ export default function Chat({ chatId }) {
   }, [chatId]);
 
   return (
-    <div>
+    <>
       {messages.map((message) => (
         <Message key={message.id} message={message} />
       ))}
-    </div>
+    </>
   );
 }

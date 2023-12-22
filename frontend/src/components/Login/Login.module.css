@@ -17,6 +17,13 @@
   text-align: center;
 }
 
+.registerContainer {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  text-align: center;
+}
+
 .errorMessage {
   color: red;
   margin-bottom: 8px;
@@ -58,7 +65,24 @@
   .forgotPasswordContainer {
     padding: 50px;
   }
+
+  .loginContainer {
+    display: flex;
+    margin: auto;
+    width: 400px;
+    text-align: center;
+    background-color: #1d2937;
+    box-shadow: 0 0 20px black;
+    height: 500px;
+  }
+
+  .outside {
+    max-width: 400px;
+  }
+
 }
+
+
 
 .slika {
   width: 410px;

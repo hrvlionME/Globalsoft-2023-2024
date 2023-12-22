@@ -12,6 +12,9 @@ mainRouter.get('/user-info/:userId', mainController.getUserInfo);
 mainRouter.post('/api/messages/getAllMessages', mainController.getAllMessages);
 mainRouter.post('/forgot-password', mainController.forgotPassword);
 mainRouter.post('/reset-password', mainController.resetPassword);
+mainRouter.get('/chat/:chatID', mainController.getChatInfo);
+mainRouter.get('/participants/:chatID', mainController.getParticipants);
+mainRouter.post('/send-message', mainController.sendMessage);
 mainRouter
   .route('/register')
   .post(mainController.registerUser) 

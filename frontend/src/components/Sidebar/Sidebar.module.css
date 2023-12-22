@@ -1,22 +1,22 @@
 .sidebar {
-    border: 1px solid white;
-    border-radius: 20px;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     width: 35%; 
     box-sizing: border-box;
     height: 100%;
-    overflow-y: auto; 
-    overflow-x: hidden; 
+    justify-content: space-between;
+    margin-right: 20px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 550px) {
 
     .sidebar {
       width: 100%;
-      margin: 0; 
+      margin-right: 0px;
     }
 
   }
+  
 
 
 

@@ -38,8 +38,11 @@ const UserInfo = ({ userId }) => {
 
   return (
     <div className={styles.userInfoContainer}>
-      <img className={styles.userAvatar} src={userInfo.avatar} alt="User Avatar" />
-      <p>{userInfo.email}</p>
+      <div className={styles.userInfo}>
+        <img className={styles.userAvatar} src={userInfo.avatar} alt="User Avatar" />
+        <p className={styles.name}>{userInfo.name} {userInfo.lastname}</p>
+      </div>
+      <button className={styles.logout}>Logout</button>
     </div>
   );
 };

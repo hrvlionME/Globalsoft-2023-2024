@@ -221,7 +221,7 @@ const Login = ({
             )}
           </div>
         ) : isRegisterOpen ? (
-          <div className={styles.forgotPasswordContainer}>
+          <div className={styles.registerContainer}>
             <Register setIsRegisterOpen={setIsRegisterOpen} />
             <p className={styles.text}>Already have an Account? {returnToLoginButton}</p>
           </div>

@@ -87,7 +87,7 @@ export async function getUserChats(userId) {
 export async function getUserInfo(userId) {
   try {
     const [userInfo] = await dbConn.query(
-      'SELECT ID, email, avatar FROM users WHERE ID = ?',
+      'SELECT ID, email, name, lastname, avatar FROM users WHERE ID = ?',
       [userId]
     );
 
@@ -236,7 +236,10 @@ function generateResetToken(userEmail) {
 
 export async function updatePassword(userId, newPassword) {
   try {
-    const [result] = await dbConn.query('UPDATE users SET password = ? WHERE id = ?', [newPassword, userId]);
+
+    const hashedPassword = await bcryptjs.hash(newPassword, 10); // 10 is the number of salt rounds
+
+    const [result] = await dbConn.query('UPDATE users SET password = ? WHERE id = ?', [hashedPassword, userId]);
 
     if (result.affectedRows === 0) {
       throw new Error('User not found');
@@ -246,6 +249,55 @@ export async function updatePassword(userId, newPassword) {
   } catch (error) {
     console.error('Error updating password:', error);
     throw error;
+  }
+}
+
+// In getParticipants function
+export async function getParticipants(chatID) {
+  try {
+    const results = await dbConn.query('SELECT user_id FROM participants WHERE chat_id = ?', [chatID]);
+    const participants = [];
+
+    for (const participant of results[0]) {
+      const user_id = participant.user_id; // Extract user_id from participant object
+
+      const user = await getUserInfo(user_id);
+      if (user) {
+        participants.push({
+          user_id: user.ID,
+          name: user.name,
+          lastname: user.lastname,
+        });
+      }
+    }
+    return participants;
+  } catch (error) {
+    console.error('Error fetching participants:', error);
+    throw error;
+  }
+}
+
+export async function getChatInfo(chatID) {
+  try {
+    const results = await dbConn.query('SELECT * FROM chat WHERE ID = ?', [chatID]);
+    return results.length > 0 ? results[0] : null;
+  } catch (error) {
+    console.error('Error fetching chat information:', error);
+    throw error;
+  }
+}
+
+export async function sendMessage(chatId, senderId, message) {
+  try {
+    const result = await dbConn.query(
+      'INSERT INTO chat_details (sender_id, chat_id, message) VALUES (?, ?, ?)',
+      [senderId, chatId, message]
+    );
+
+    return result;
+  } catch (error) {
+    console.error('Error sending message:', error);
+    throw error; // Re-throw the error to be caught by the controller
   }
 }
 

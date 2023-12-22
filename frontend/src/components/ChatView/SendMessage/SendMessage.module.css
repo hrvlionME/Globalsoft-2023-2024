@@ -1,0 +1,46 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid;
+    border-color: var(--accent-color);
+}
+.PoljeZaUnos{
+    width: 80%;
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: var(--accent-color);
+    background-color: transparent;
+    color: #ffff;
+
+    &:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 7px var(--accent-color);
+      }
+}
+
+.Dugme {
+    background-color: transparent;
+    border: none;
+    padding: 2px 10px;
+    color: #ffff;
+    cursor: pointer;
+    transition: transform 0.2s; /* Add a smooth transition effect on transform */
+  
+    /* Set the initial scale */
+    transform-origin: center;
+    transform: scale(1);
+  }
+  
+  /* Apply styles on hover */
+  .Dugme:hover {
+    transform: scale(1.2); /* Enlarge the button on hover */
+  }
+
+.send{
+    width: 30px;
+}

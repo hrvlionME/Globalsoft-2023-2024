@@ -1,19 +1,29 @@
+// Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import styles from './Dashboard.module.css';
 import ChatView from '../ChatView/ChatView.jsx';
 import Sidebar from '../Sidebar/Sidebar.jsx';
+import Arrow from '../../assets/arrow.png'
 
 const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
-  const [isSidebarVisible, setSidebarVisibility] = useState(true);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1100);
   const [selectedChat, setSelectedChat] = useState(1);
+  const [isSidebarVisible, setSidebarVisibility] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const toggleSidebar = () => {
+    setSidebarVisibility(!isSidebarVisible);
+  };
+
+  const handleChatSelect = (chatId) => {
+    setSelectedChat(chatId);
+    setSidebarVisibility(false); // Hide sidebar when a chat is selected
+  };
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 1100);
+      setWindowWidth(window.innerWidth);
     };
 
-    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -21,30 +31,24 @@ const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
     };
   }, []);
 
-  const toggleSidebar = () => {
-    setSidebarVisibility(!isSidebarVisible);
-  };
-
   return (
-    <div className={`${styles.dashboard} ${isSidebarVisible ? styles.sidebarVisible : ''}`}>
-      {isSmallScreen && (
-        <button className={styles.toggle} onClick={toggleSidebar}>
-          Toggle
+    <div className={styles.outside}>
+      {windowWidth <= 550 && !isSidebarVisible && (
+        <button className={styles.toggleButton} onClick={toggleSidebar}>
+          {isSidebarVisible ? '➔' : <img src={Arrow} className={styles.arrow} />} {/* Unicode arrow characters */}
         </button>
       )}
       <div className={styles.mainContent}>
-        {isSmallScreen && (
+        {windowWidth <= 550 ? (
+          isSidebarVisible ? (
+            <Sidebar userId={userId} setSelectedChat={handleChatSelect} />
+          ) : (
+            <ChatView chatID={selectedChat} userId={userId} />
+          )
+        ) : (
           <>
-            {isSidebarVisible && (
-              <Sidebar userId={userId} setSelectedChat={setSelectedChat} />
-            )}
-            {!isSidebarVisible && <ChatView chatID={selectedChat} />}
-          </>
-        )}
-        {!isSmallScreen && (
-          <>
-            <Sidebar setSelectedChat={setSelectedChat} userId={userId}/>
-            <ChatView chatID={selectedChat} />
+            <Sidebar userId={userId} setSelectedChat={handleChatSelect} />
+            <ChatView chatID={selectedChat} userId={userId} />
           </>
         )}
       </div>
@@ -53,3 +57,9 @@ const Dashboard = ({ setisLoggedIn, setUserId, userId }) => {
 };
 
 export default Dashboard;
+
+
+
+
+
+

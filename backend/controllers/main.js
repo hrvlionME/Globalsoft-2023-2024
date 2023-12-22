@@ -199,3 +199,48 @@ export const resetPassword = async (req, res) => {
     res.status(400).json({ success: false, message: 'Invalid reset token' });
   }
 };
+
+export const getChatInfo = async (req, res) => {
+  const chatID = req.params.chatID;
+
+  try {
+    const result = await db.getChatInfo(chatID);
+    console.log('Chat Info:', result); // Log chat info
+
+    if (!result) {
+      res.status(404).json({ error: 'Chat not found' });
+      return;
+    }
+
+    res.json(result);
+  } catch (error) {
+    console.error('Error fetching chat data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const getParticipants = async (req, res) => {
+  const chatID = req.params.chatID;
+
+  try {
+    const results = await db.getParticipants(chatID);
+
+    const participants = results;
+    res.json(participants);
+  } catch (error) {
+    console.error('Error fetching participants:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const sendMessage = async (req, res) => {
+  const { chatId, senderId, message } = req.body;
+
+  try {
+    await db.sendMessage(chatId, senderId, message);
+    res.status(200).json({ success: true, message: 'Message sent successfully.' });
+  } catch (error) {
+    console.error('Error sending message:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+};

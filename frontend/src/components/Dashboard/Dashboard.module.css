@@ -1,52 +1,110 @@
-.dashboard {
+/* Dashboard.module.css */
+.outside {
   display: flex;
-  flex-direction: column;
-  color: white;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-  height: 75vh;
-  margin: 100px 200px;
+  margin: 5% auto;
+  max-width: 875px;
+  padding: 30px;
+  background-color: transparent;
+  text-align: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.arrow {
+  width: 30px;
 }
 
 .mainContent {
+  padding: 20px;
   display: flex;
-  width: 100%;
-  height: 100%;
+  margin: auto;
+  width: 800px;
+  text-align: center;
+  border: 1px transparent;
+  border-radius: 5px;
+  justify-content: space-between;
+  background-color: #1d2937;
+  box-shadow: 0 0 20px black;
+  height: 600px;
 }
 
-.toggle {
-  height: 30px;
-  width: 60px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: var(--accent-color);
+.toggleButton {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 45px;
+  z-index: 1;
+  background-color: transparent;
   color: white;
   border: none;
+  padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.toggle:hover {
-  background-color:rgb(31, 31, 158);
-  color: white;
-}
-
-@media screen and (max-width: 1100px) {
-
-  .sidebar {
-    width: 100%;
-    margin: 0; 
-  }
+  transition: transform 0.2s; /* Add a smooth transition effect on transform */
   
+  /* Set the initial scale */
+  transform-origin: center;
+  transform: scale(1);
 }
 
-@media screen and (max-width: 750px) {
-  .dashboard {
-    margin: 100px 75px;
+/* Apply styles on hover */
+.toggleButton:hover {
+  transform: scale(1.2); /* Enlarge the button on hover */
+}
+
+@media screen and (max-width: 875px) {
+  .mainContent {
+    max-width: 100%; /* Allow content to occupy full width */
+  }
+
+  .outside {
+    background-color: transparent;
   }
 }
+
+@media screen and (max-width: 550px) {
+  .toggleButton {
+    display: block;
+  }
+
+  .mainContent {
+    width: 100%;
+  }
+
+  .outside {
+    background-color: transparent;
+
+  }
+
+}
+
+@media screen and (max-width: 420px) {
+  .toggleButton {
+    display: block;
+  }
+
+  .mainContent {
+    width: 100%;
+    margin: auto 0px;
+  }
+
+  .outside {
+      background-color: transparent;
+      margin-left: 0px;
+      margin-right: 0px;
+      padding: 30px 0px;
+  }
+  .toggleButton {
+    left: 15px;
+  }
+
+}
+
+
+
+
+
+
+
 
 
 

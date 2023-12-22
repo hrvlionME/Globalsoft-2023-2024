@@ -1,18 +1,18 @@
 .chatInfo {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center; /* Add this line */
-  gap: 1rem;
+  justify-content: space-between; /* Add this line */
   height: 100%;
   width: 100%;
-  padding: 0;
+  padding: 10px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  max-width: 90%;
+  border-bottom: 1px solid;
+  border-color: var(--accent-color);
   max-height: 13%;
-  margin: 9px 9px 9px 19px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 5px;
 }
 
 .avatar {
@@ -22,4 +22,18 @@
   object-fit: cover;
   margin: 0;
   padding: 0;
+  border: 1px solid white;
+}
+
+.info{
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .info {
+  margin-left: 40px;
+  }
 }
