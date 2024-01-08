@@ -6,6 +6,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [reload, setReload] = useState(false);
   const [colorOrder] = useState([
     'rgba(0, 128, 0, 0.8)',
     'rgba(255, 105, 180, 0.8)',
@@ -15,7 +16,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [colorMap, setColorMap] = useState({});
 
   const addNewChat = () => {
-    // Empty function but important for re-rendering when creating new groups
+    setReload(!reload);
   };
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
     };
 
     fetchChats();
-  }, [userId, colorOrder]);
+  }, [userId, colorOrder, reload]);
 
   const filteredChats = chats.filter((chat) =>
     chat.name.toLowerCase().includes(searchQuery.toLowerCase())
