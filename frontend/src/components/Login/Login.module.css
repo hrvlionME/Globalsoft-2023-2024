@@ -1,4 +1,4 @@
-.login-container {
+.loginContainer {
   display: flex;
   margin: auto;
   width: 800px;
@@ -9,7 +9,7 @@
   height: 605px;
 }
 
-.forgot-password-container {
+.forgotPasswordContainer {
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -17,16 +17,23 @@
   text-align: center;
 }
 
-.error-message {
+.registerContainer {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  text-align: center;
+}
+
+.errorMessage {
   color: red;
   margin-bottom: 8px;
   margin-top: 10px;
   font-size: 12px;
 }
 
-.confirmation-message {
-  color: green;
-  font-size: 12px;
+.confirmationMessage {
+  color: rgb(23, 201, 23);
+  font-size: 14px;
   margin-bottom: 8px;
   margin-top: 10px;
 }
@@ -41,48 +48,65 @@
   justify-content: space-between;
 }
 
-.login-image {
+.loginImage {
   text-align: left;
   display: block;
 }
 
 @media (max-width: 800px) {
-  .login-image {
+  .loginImage {
     display: none;
   }
 
-  .login-container {
+  .loginContainer {
     justify-content: space-around;
   }
 
-  .forgot-password-container {
+  .forgotPasswordContainer {
     padding: 50px;
   }
+
+  .loginContainer {
+    display: flex;
+    margin: auto;
+    width: 400px;
+    text-align: center;
+    background-color: #1d2937;
+    box-shadow: 0 0 20px black;
+    height: 500px;
+  }
+
+  .outside {
+    max-width: 400px;
+  }
+
 }
+
+
 
 .slika {
   width: 410px;
   height: 605px;
 }
 
-.logo-image {
+.logoImage {
   width: 65%;
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
-h3 {
+.loginTitle {
   color: #ffff;
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
-h5 {
+.resetPassTitle {
   margin-bottom: 30px;
   font-size: 18px;
 }
 
-.form-container {
+.formContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -90,21 +114,21 @@ h5 {
   max-width: 330px;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
 }
 
-label {
+.label {
   color: #ffff;
   text-align: left;
 }
 
-.input-container {
+.inputContainer {
   position: relative;
 }
 
-.input-icon {
+.inputIcon {
   position: absolute;
   top: 50%;
   width: 25px;
@@ -113,7 +137,9 @@ label {
   cursor: pointer;
 }
 
-input {
+.input {
+  width: 100%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: transparent;
@@ -128,7 +154,7 @@ input {
   }
 }
 
-.forgot-password-link {
+.forgotPasswordLink {
   color: #007bff;
   font-size: 14px;
   text-decoration: none;
@@ -141,17 +167,22 @@ input {
   transition: text-decoration 0.3s ease;
 }
 
-.forgot-password-link:hover {
+.forgotPasswordLink:hover {
   text-decoration: underline;
   background: none;
 }
 
-p {
+.text {
   font-size: 14px;
   text-align: left;
 }
 
-button {
+.image {
+  max-width: 100%;
+  height: auto;
+}
+
+.button {
   background-color: var(--accent-color);
   color: #ffff;
   padding: 10px;
@@ -166,13 +197,13 @@ button {
     background-color: #0056b3;
   }
 
-  .button-content {
+  .buttonContent {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .button-content img {
+  .buttonContent img {
     margin-right: 8px;
     height: 15.33px;
   }

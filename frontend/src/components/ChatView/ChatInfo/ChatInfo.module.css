@@ -1,0 +1,39 @@
+.chatInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Add this line */
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid;
+  border-color: var(--accent-color);
+  max-height: 13%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 5px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  border: 1px solid white;
+}
+
+.info{
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .info {
+  margin-left: 40px;
+  }
+}

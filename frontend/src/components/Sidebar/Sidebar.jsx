@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ChatList from './ChatList.jsx';
-import Search from './Search.jsx';
-import UserInfo from './UserInfo.jsx';
+import ChatList from './ChatList/ChatList.jsx';
+import Search from './SearchChats/SearchChats.jsx';
+import UserInfo from './UserInfo/UserInfo.jsx';
+import styles from './Sidebar.module.css';
 
 const Sidebar = ({ setSelectedChat, userId }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -13,7 +14,7 @@ const Sidebar = ({ setSelectedChat, userId }) => {
   };
 
   return (
-    <>
+    <div className={styles.sidebar}>
       <Search onSearch={handleSearch} />
       <ChatList
         userId={userId}
@@ -21,7 +22,7 @@ const Sidebar = ({ setSelectedChat, userId }) => {
         setSelectedChat={setSelectedChat}
       />
       <UserInfo userId={userId} />
-    </>
+    </div>
   );
 };
 

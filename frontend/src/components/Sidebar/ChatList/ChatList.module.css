@@ -1,0 +1,34 @@
+.chatListContainer {
+  margin: 10px 0px;
+  text-align: center;
+  overflow-y: auto; 
+  overflow-x: hidden; 
+}
+  
+.chatList {
+  list-style: none;
+  padding: 0;
+}
+
+.chatItem {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  filter: brightness(90%);
+  transition: filter 0.3s ease; /* Use filter for hover transition */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chatItem:hover {
+  filter: brightness(120%); /* Adjust the brightness value for darkness */
+}
+
+.chatItem:hover {
+  background-color: var(--accent-color);
+}
+
+  

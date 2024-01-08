@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import './ChatList.css';
-import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton';
+import styles from './ChatList.module.css';
+import CreateGroupButton from '../../CreateGroup/CreateGroupButton/CreateGroupButton';
 
 const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [colorOrder] = useState([
+    'rgba(0, 128, 0, 0.8)',
+    'rgba(255, 105, 180, 0.8)',
+    'rgba(255, 165, 0, 0.8)',
+    'rgba(238, 130, 238, 0.8)',
+  ]);
+  const [colorMap, setColorMap] = useState({});
 
   const addNewChat = () => {
-    //prazna funkcija ali bitna za re-renderanje na pravljenje novih grupa
+    // Empty function but important for re-rendering when creating new groups
   };
 
   useEffect(() => {
@@ -22,6 +29,15 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
         }
         const userChats = await response.json();
         setChats(userChats);
+
+        // Generate colors based on the specified order and repeat when necessary
+        const updatedColorMap = {};
+        userChats.forEach((chat, index) => {
+          const colorIndex = index % colorOrder.length;
+          updatedColorMap[chat.ID] = colorOrder[colorIndex];
+        });
+
+        setColorMap(updatedColorMap);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user chats:', error);
@@ -31,7 +47,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
     };
 
     fetchChats();
-  }, [userId]);
+  }, [userId, colorOrder]);
 
   const filteredChats = chats.filter((chat) =>
     chat.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -46,22 +62,22 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   }
 
   return (
-    <div className="chat-list-container">
-      <h2>Chats</h2>
-      <ul className="chat-list">
+    <div className={styles.chatListContainer}>
+      <ul className={styles.chatList}>
         {filteredChats.map((chat) => (
           <li
             key={chat.ID}
-            className="chat-item"
+            className={styles.chatItem}
+            style={{ backgroundColor: colorMap[chat.ID] }}
             onClick={() => {
               setSelectedChat(chat.ID);
             }}
           >
-            <img src={chat.avatar}></img>
+            <img src={chat.avatar} alt={chat.name} />
             {chat.name}
           </li>
         ))}
-        <li className="add-chat-button">
+        <li>
           <CreateGroupButton reload={addNewChat} />
         </li>
       </ul>

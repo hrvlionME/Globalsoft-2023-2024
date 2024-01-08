@@ -25,7 +25,7 @@ const Register = ({ setIsRegisterOpen }) => {
         name: "firstName",
         type: "text",
         placeholder: "John",
-        errorMessage: "First Name should be 2-30 characters!",
+        errorMessage: "First Name should be 2-30 letters only!",
         label: "First Name:",
         pattern: "^[A-Za-z]{2,30}$",
         required: true,
@@ -35,7 +35,7 @@ const Register = ({ setIsRegisterOpen }) => {
         name: "lastName",
         type: "text",
         placeholder: "Doe",
-        errorMessage: "Last Name should be 2-30 characters!",
+        errorMessage: "Last Name should be 2-30 letters only!",
         label: "Last Name:",
         pattern: "^[A-Za-z]{2,30}$",
         required: true,
@@ -108,19 +108,19 @@ const Register = ({ setIsRegisterOpen }) => {
   };
 
   return (
-    <div className={styles["Register"]}>
-      <form className={styles["register-form"]} onSubmit={handleSubmit}>
-        <h3 className={styles["title"]}>Registration</h3>
+    <div className={styles.register}>
+      <form onSubmit={handleSubmit}>
+        <h3 className={styles.title}>Registration</h3>
         {inputs.map((input) => (
           <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
         ))}
         {confirmationMessage && (
-            <div className={styles['confirmation-message']}>{confirmationMessage}
+            <div className={styles.confirmationMessage}>{confirmationMessage}
             {closeRegister()}
             </div>
         )}
-        {error && <div className={styles['error-message']}>{error}</div>}
-        <button className={styles["register-button"]}>Register</button>
+        {error && <div className={styles.errorMessage}>{error}</div>}
+        <button className={styles.registerButton}>Register</button>
       </form>
     </div>
   );

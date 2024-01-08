@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard/Dashboard';
 import Login from './components/Login/Login';
 import { io } from 'socket.io-client';
+import ResetPassword from './components/ResetPassword/ResetPassword';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.module.css';
 
@@ -20,23 +22,28 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      {isLoggedIn ? (
-        <Dashboard
-          setisLoggedIn={setisLoggedIn}
-          setUserId={setUserId}
-          userId={userId}
+    <Router>
+      <Routes>
+        <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
+
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? (
+              <Dashboard setisLoggedIn={setisLoggedIn} setUserId={setUserId} userId={userId} />
+            ) : (
+              <Login
+                setisLoggedIn={setisLoggedIn}
+                setIsRegisterOpen={setIsRegisterOpen}
+                isRegisterOpen={isRegisterOpen}
+                setUserId={setUserId}
+                userId={userId}
+              />
+            )
+          }
         />
-      ) : (
-        <Login
-          setisLoggedIn={setisLoggedIn}
-          setIsRegisterOpen={setIsRegisterOpen}
-          isRegisterOpen={isRegisterOpen}
-          setUserId={setUserId}
-          userId={userId}
-        />
-      )}
-    </div>
+      </Routes>
+    </Router>
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './UserInfo.css';
-import avatarImage from '../../assets/guitar.png';
+import styles from './UserInfo.module.css';
 
 const UserInfo = ({ userId }) => {
   const [userInfo, setUserInfo] = useState(null);
@@ -38,9 +37,12 @@ const UserInfo = ({ userId }) => {
   }
 
   return (
-    <div className="user-info-container">
-      <img className="user-avatar" src={userInfo.avatar} alt="User Avatar" />
-      <p className="user-email">{userInfo.email}</p>
+    <div className={styles.userInfoContainer}>
+      <div className={styles.userInfo}>
+        <img className={styles.userAvatar} src={userInfo.avatar} alt="User Avatar" />
+        <p className={styles.name}>{userInfo.name} {userInfo.lastname}</p>
+      </div>
+      <button className={styles.logout}>Logout</button>
     </div>
   );
 };

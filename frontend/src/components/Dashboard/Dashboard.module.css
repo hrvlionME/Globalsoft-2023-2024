@@ -1,0 +1,110 @@
+/* Dashboard.module.css */
+.outside {
+  display: flex;
+  margin: 5% auto;
+  max-width: 875px;
+  padding: 30px;
+  background-color: transparent;
+  text-align: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.arrow {
+  width: 30px;
+}
+
+.mainContent {
+  padding: 20px;
+  display: flex;
+  margin: auto;
+  width: 800px;
+  text-align: center;
+  border: 1px transparent;
+  border-radius: 5px;
+  justify-content: space-between;
+  background-color: #1d2937;
+  box-shadow: 0 0 20px black;
+  height: 600px;
+}
+
+.toggleButton {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 45px;
+  z-index: 1;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s; /* Add a smooth transition effect on transform */
+  
+  /* Set the initial scale */
+  transform-origin: center;
+  transform: scale(1);
+}
+
+/* Apply styles on hover */
+.toggleButton:hover {
+  transform: scale(1.2); /* Enlarge the button on hover */
+}
+
+@media screen and (max-width: 875px) {
+  .mainContent {
+    max-width: 100%; /* Allow content to occupy full width */
+  }
+
+  .outside {
+    background-color: transparent;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .toggleButton {
+    display: block;
+  }
+
+  .mainContent {
+    width: 100%;
+  }
+
+  .outside {
+    background-color: transparent;
+
+  }
+
+}
+
+@media screen and (max-width: 420px) {
+  .toggleButton {
+    display: block;
+  }
+
+  .mainContent {
+    width: 100%;
+    margin: auto 0px;
+  }
+
+  .outside {
+      background-color: transparent;
+      margin-left: 0px;
+      margin-right: 0px;
+      padding: 30px 0px;
+  }
+  .toggleButton {
+    left: 15px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
