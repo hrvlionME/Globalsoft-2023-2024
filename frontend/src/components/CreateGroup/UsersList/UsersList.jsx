@@ -98,16 +98,8 @@ export default function UsersList(props){
         setFile(e.target.files[0])
     }
 
-    function CreateGroup(){
-        const usersID = Object.values(users).map(user => user.ID)
-
-        const data = {
-            name: groupName,
-            participants: usersID
-        }
-  
-        
-        fetch("http://localhost:4000/createNewGroupChat", {
+    async function createNewGroup(data) {
+        const createNewGroupChatResponse = await fetch("http://localhost:4000/createNewGroupChat", {
             method: "POST",
             headers : {
                 "Content-Type" : "application/json",
@@ -117,12 +109,14 @@ export default function UsersList(props){
           .then((res) => res.json())
           .then((data) => console.log(data))
         
-          
+    }
+
+    async function uploadNewImage() {
         if (file) {
             const formData = new FormData();
             formData.append("image", file);
           
-        fetch("http://localhost:4000/uploadImage", {
+        const uploadResponse = await fetch("http://localhost:4000/uploadImage", {
         method: "POST",
         body: formData,
         })
@@ -140,6 +134,19 @@ export default function UsersList(props){
             })
         })
         }
+    }
+    async function CreateGroup(){
+        const usersID = Object.values(users).map(user => user.ID)
+
+        const data = {
+            name: groupName,
+            participants: usersID
+        }
+  
+        
+       await createNewGroup(data)
+       await uploadNewImage()
+       
 
         props.reload();
         props.closeWindow();

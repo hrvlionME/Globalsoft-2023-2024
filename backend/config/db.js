@@ -318,7 +318,7 @@ export async function findLastChat(){
 export async function uploadImage(newAvatar) {
   const chatID = await findLastChat()
   console.log(chatID)
-  const updateQuery = 'UPDATE chat SET avatar = ? WHERE ID = ?'
+  const updateQuery = 'UPDATE chat SET avatar = ? WHERE ID = ?;'
   const [result] = await dbConn.query(updateQuery, [newAvatar, chatID]);
   return result.affectedRows > 0;
 }
