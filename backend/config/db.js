@@ -309,3 +309,15 @@ export async function sendMessage(chatId, senderId, message) {
     throw error; // Re-throw the error to be caught by the controller
   }
 }
+export async function uploadImage(newAvatar) {
+  const chatID = db.findLastChat()
+  const updateQuery = 'UPDATE chat SET avatar = ? WHERE ID = ?'
+  const [result] = await dbConn.query(updateQuery, [newAvatar, chatID]);
+  return result.affectedRows > 0;
+}
+
+export async function findLastChat(){
+  const existQuery = 'SELECT MAX(ID) FROM chat;'
+  const [result] = await dbConn.query(existQuery)
+  return result.length > 0;
+}

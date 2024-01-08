@@ -117,20 +117,29 @@ export default function UsersList(props){
           .then((res) => res.json())
           .then((data) => console.log(data))
         
-          /*
+          
         if (file) {
             const formData = new FormData();
-            formData.append("image", file, file.name);
+            formData.append("image", file);
           
-        fetch("http://localhost:4000/createNewGroupChat", {
+        fetch("http://localhost:4000/uploadImage", {
         method: "POST",
-        body: imageData,
+        body: formData,
         })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return res.text();
         })
-    }*/
+        .then((data) =>  console.log(data))
+        .catch((error) => {
+            console.error('Error:', error);
+            error.response.text().then((text) => {
+                console.log('Response text:', text);
+            })
+        })
+        }
 
         props.reload();
         props.closeWindow();
@@ -178,7 +187,7 @@ export default function UsersList(props){
             </ul>
             <div className={styles.submit}>
                 <label className={styles.uploadLabel}>Upload group avatar image</label>
-                <input className={styles.upload} type="file" name="myImage" accept="image/*" onChange={handleFileChange}/>
+                <input className={styles.upload} type="file" filename={file}  accept="image/*" onChange={handleFileChange}/>
                 <input className={styles.inputSearch} type="text" value={groupName} onChange={handleGroupName} placeholder="Enter group name"/>
                 <button className={styles.close} onClick={CreateGroup}>Create</button>
             </div>

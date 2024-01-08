@@ -244,3 +244,21 @@ export const sendMessage = async (req, res) => {
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 };
+export const uploadImage = async (req, res) => {
+
+  const imageName = req.file.filename
+  try{
+    const uploadedImage = await db.uploadImage(imageName)
+    if(uploadedImage)
+      res.json({message: 'Successfully uploaded image'})
+  else {
+    return res
+      .status(500)
+      .json({message: 'Error uploading image'})
+  }
+  }
+  catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Image upload failed' });
+  }
+}
