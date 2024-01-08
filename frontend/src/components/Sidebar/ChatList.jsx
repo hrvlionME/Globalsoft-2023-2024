@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ChatList.css';
-import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton'
+import CreateGroupButton from '../CreateGroup/CreateGroupButton/CreateGroupButton';
 
 const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [chats, setChats] = useState([]);
@@ -31,7 +31,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
     };
 
     fetchChats();
-  }, [userId, addNewChat]);
+  }, [userId]);
 
   const filteredChats = chats.filter((chat) =>
     chat.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -62,7 +62,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
           </li>
         ))}
         <li className="add-chat-button">
-            <CreateGroupButton reload={addNewChat}/>
+          <CreateGroupButton reload={addNewChat} />
         </li>
       </ul>
     </div>
