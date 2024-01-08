@@ -247,6 +247,7 @@ export const sendMessage = async (req, res) => {
 export const uploadImage = async (req, res) => {
 
   const imageName = req.file.filename
+
   try{
     const uploadedImage = await db.uploadImage(imageName)
     if(uploadedImage)
