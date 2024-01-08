@@ -16,8 +16,8 @@
   background-color: rgb(92, 138, 255);
   border-radius: 20px;
   padding: 0.5rem;
-  word-wrap: break-word; 
-  overflow-wrap: break-word; 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   max-width: 80%;
 }
 
@@ -28,10 +28,9 @@
   white-space: normal;
   margin-left: 5px;
   max-width: 80%;
-  word-wrap: break-word; 
-  overflow-wrap: break-word; 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
-
 
 .avatar {
   width: 30px;
@@ -53,6 +52,9 @@
     background-color: rgb(92, 138, 255);
     border-radius: 20px;
     padding: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 50%;
   }
   img {
     display: none;
@@ -69,6 +71,11 @@
     background-color: rgb(66, 66, 66);
     border-radius: 20px;
     padding: 0.5rem;
+    white-space: normal;
+    margin-left: 5px;
+    max-width: 50%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 
@@ -83,4 +90,3 @@
   border-radius: 20px;
   padding: 0.5rem;
 } */
-

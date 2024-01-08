@@ -6,11 +6,17 @@ function Message({ message }) {
     message: PropTypes.object,
   };
 
-  const containerClass = message.sender === 'user' ? styles.messageContainerUser : styles.messageContainerOther;
-  const textClass = message.sender === 'user' ? styles.messageTextUser : styles.messageTextOther;
+  const containerClass =
+    message.sender === 'user'
+      ? styles.messageContainerUser
+      : styles.messageContainerOther;
+  const textClass =
+    message.sender === 'user'
+      ? styles.messageTextUser
+      : styles.messageTextOther;
 
   return (
-   /*  <div className={containerClass}>
+    /*  <div className={containerClass}>
       <img className={styles.avatar} src={message.avatar} alt="avatar" />
       <div className={textClass}>
         {message.message}
@@ -19,11 +25,11 @@ function Message({ message }) {
     <div
       className={
         message.sender_id === 2
-          ? 'messageContainerUser'
-          : 'messageContainerOther'
+          ? styles.messageContainerUser
+          : styles.messageContainerOther
       }
     >
-      <img className="avatar" src={message.avatar} alt="avatar" />
+      <img className={styles.avatar} src={message.avatar} alt="avatar" />
       <div
       /*  className={
           message.sender_id === 2 ? 'message-text-user' : 'message-text-other'
@@ -36,4 +42,3 @@ function Message({ message }) {
 }
 
 export default Message;
-
