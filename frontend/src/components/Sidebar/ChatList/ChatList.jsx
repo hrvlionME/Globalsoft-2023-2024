@@ -79,7 +79,7 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
           </li>
         ))}
         <li>
-          <CreateGroupButton reload={addNewChat} />
+          <CreateGroupButton userId={userId} reload={addNewChat} />
         </li>
       </ul>
     </div>

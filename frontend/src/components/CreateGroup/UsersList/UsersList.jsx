@@ -9,12 +9,12 @@ export default function UsersList(props){
     const [groupName, setGroupName] = useState('')
     const [file, setFile] = useState(null);
     
-
+  
     useEffect(() => {
                   fetch("http://localhost:4000/")
                   .then((res) => res.json())
                   .then((data) => {
-                   const user2Array = Object.values(data).map(user => user)
+                   let user2Array = Object.values(data).map(user => user)
                   /* 
                    const user2Array = []
                    for(let i = 1; i <= 10;  i++){
@@ -38,9 +38,11 @@ export default function UsersList(props){
                        
                         return 0;
                     })
+                    user2Array = user2Array.filter((user) => user.ID !== props.userId);
                     setUsers2(user2Array)
                     
                 })
+
               }, []);
 
               function removeUser(userToDelete){
@@ -137,7 +139,8 @@ export default function UsersList(props){
     }
     async function CreateGroup(){
         const usersID = Object.values(users).map(user => user.ID)
-
+        usersID.push(props.userId)
+        
         const data = {
             name: groupName,
             participants: usersID
