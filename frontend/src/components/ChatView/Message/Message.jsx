@@ -10,9 +10,25 @@ function Message({ message }) {
   const textClass = message.sender === 'user' ? styles.messageTextUser : styles.messageTextOther;
 
   return (
-    <div className={containerClass}>
+   /*  <div className={containerClass}>
       <img className={styles.avatar} src={message.avatar} alt="avatar" />
       <div className={textClass}>
+        {message.message}
+      </div>
+    </div> */
+    <div
+      className={
+        message.sender_id === 2
+          ? 'messageContainerUser'
+          : 'messageContainerOther'
+      }
+    >
+      <img className="avatar" src={message.avatar} alt="avatar" />
+      <div
+      /*  className={
+          message.sender_id === 2 ? 'message-text-user' : 'message-text-other'
+        } */
+      >
         {message.message}
       </div>
     </div>
