@@ -7,10 +7,10 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [colorOrder] = useState([
-    'rgba(0, 128, 0, 0.8)',    
-    'rgba(255, 105, 180, 0.8)', 
-    'rgba(255, 165, 0, 0.8)',   
-    'rgba(238, 130, 238, 0.8)', 
+    'rgba(0, 128, 0, 0.8)',
+    'rgba(255, 105, 180, 0.8)',
+    'rgba(255, 165, 0, 0.8)',
+    'rgba(238, 130, 238, 0.8)',
   ]);
   const [colorMap, setColorMap] = useState({});
 
@@ -21,7 +21,9 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/user-chats/${userId}`);
+        const response = await fetch(
+          `http://localhost:4000/user-chats/${userId}`
+        );
         if (!response.ok) {
           throw new Error('Error fetching data');
         }
@@ -84,4 +86,3 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
 };
 
 export default ChatList;
-
