@@ -9,5 +9,3 @@ router.post('/addNewMessage', mainController.addNewMessage);
 router.get('/user-chats/:userId', mainController.getUserChats);
 router.get('/user-info/:userId', mainController.getUserInfo);
 router.post('/api/messages/getAllMessages', mainController.getAllMessages);
-
-
