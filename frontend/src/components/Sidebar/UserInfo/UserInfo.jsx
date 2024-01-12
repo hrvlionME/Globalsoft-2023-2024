@@ -9,9 +9,13 @@ const UserInfo = ({ userId }) => {
   useEffect(() => {
     const fetchUserInfo = async (id) => {
       try {
-        const response = await fetch(
-          `http://localhost:4000/user-info/${id}`
-        );
+        const response = await fetch(`http://localhost:4000/user-info/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: 'Bearer ' + localStorage.getItem('jwtToken'),
+          },
+        });
         if (!response.ok) {
           throw new Error('Error fetching user info');
         }

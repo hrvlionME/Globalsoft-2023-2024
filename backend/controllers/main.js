@@ -81,7 +81,11 @@ export const login = async (req, res) => {
       const UserId = await db.checkData(email, password);
 
       if (UserId != null) {
-        return res.status(200).json({ success: true, ID: UserId });
+        let myJwt = jwt.sign(UserId, 'aaa');
+
+        return res
+          .status(200)
+          .json({ success: true, userId: UserId, acces_token: myJwt });
       } else {
         return res
           .status(401)

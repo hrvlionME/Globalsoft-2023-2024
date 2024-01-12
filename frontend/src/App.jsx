@@ -12,6 +12,7 @@ const App = () => {
   const [socket, setSocket] = useState(null);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [jwtToken, setJwtToken] = useState();
   useEffect(() => {
     const socket = io('http://localhost:4000');
     setSocket(socket);
@@ -19,6 +20,14 @@ const App = () => {
     return () => {
       socket.disconnect();
     };
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwtToken');
+
+    if (token) {
+      setisLoggedIn(true);
+    }
   }, []);
 
   return (

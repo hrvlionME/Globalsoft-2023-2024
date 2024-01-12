@@ -67,7 +67,9 @@ const Login = ({
       const data = await response.json();
 
       if (data.success) {
-        setUserId(data.ID);
+        console.log(data.userId);
+        setUserId(data.userId);
+        localStorage.setItem('jwtToken', data.acces_token);
         setisLoggedIn(true);
       }
       if (response.status === 401) {
@@ -135,6 +137,7 @@ const Login = ({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          authorization: 'Bearer ' + localStorage.getItem('jwtToken'),
         },
         body: JSON.stringify({
           email,
