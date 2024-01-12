@@ -9,7 +9,7 @@ export const rootEndpoint = async (req, res) => {
 export const createNewGroupChat = async (req, res) => {
   const usersIds = [...req.body.participants];
   const name = req.body.name;
-
+  console.log(usersIds)
   /*   res.json(usersIds); */
   const isSuccess = await db.insertNewGroupChatData(usersIds, name);
   if (isSuccess)
@@ -244,3 +244,22 @@ export const sendMessage = async (req, res) => {
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 };
+export const uploadImage = async (req, res) => {
+
+  const imageName = req.file.filename
+
+  try{
+    const uploadedImage = await db.uploadImage(imageName)
+    if(uploadedImage)
+      res.json({message: 'Successfully uploaded image'})
+  else {
+    return res
+      .status(500)
+      .json({message: 'Error uploading image'})
+  }
+  }
+  catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Image upload failed' });
+  }
+}

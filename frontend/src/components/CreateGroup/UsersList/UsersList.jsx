@@ -9,12 +9,12 @@ export default function UsersList(props){
     const [groupName, setGroupName] = useState('')
     const [file, setFile] = useState(null);
     
-
+  
     useEffect(() => {
                   fetch("http://localhost:4000/")
                   .then((res) => res.json())
                   .then((data) => {
-                   const user2Array = Object.values(data).map(user => user)
+                   let user2Array = Object.values(data).map(user => user)
                   /* 
                    const user2Array = []
                    for(let i = 1; i <= 10;  i++){
@@ -38,9 +38,11 @@ export default function UsersList(props){
                        
                         return 0;
                     })
+                    user2Array = user2Array.filter((user) => user.ID !== props.userId);
                     setUsers2(user2Array)
                     
                 })
+
               }, []);
 
               function removeUser(userToDelete){
@@ -98,16 +100,8 @@ export default function UsersList(props){
         setFile(e.target.files[0])
     }
 
-    function CreateGroup(){
-        const usersID = Object.values(users).map(user => user.ID)
-
-        const data = {
-            name: groupName,
-            participants: usersID
-        }
-  
-        
-        fetch("http://localhost:4000/createNewGroupChat", {
+    async function createNewGroup(data) {
+        const createNewGroupChatResponse = await fetch("http://localhost:4000/createNewGroupChat", {
             method: "POST",
             headers : {
                 "Content-Type" : "application/json",
@@ -117,20 +111,45 @@ export default function UsersList(props){
           .then((res) => res.json())
           .then((data) => console.log(data))
         
-          /*
+    }
+
+    async function uploadNewImage() {
         if (file) {
             const formData = new FormData();
-            formData.append("image", file, file.name);
+            formData.append("image", file);
           
-        fetch("http://localhost:4000/createNewGroupChat", {
+        const uploadResponse = await fetch("http://localhost:4000/uploadImage", {
         method: "POST",
-        body: imageData,
+        body: formData,
         })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return res.text();
         })
-    }*/
+        .then((data) =>  console.log(data))
+        .catch((error) => {
+            console.error('Error:', error);
+            error.response.text().then((text) => {
+                console.log('Response text:', text);
+            })
+        })
+        }
+    }
+    async function CreateGroup(){
+        const usersID = Object.values(users).map(user => user.ID)
+        usersID.push(props.userId)
+        
+        const data = {
+            name: groupName,
+            participants: usersID
+        }
+  
+        
+       await createNewGroup(data)
+       await uploadNewImage()
+       
 
         props.reload();
         props.closeWindow();
@@ -178,7 +197,7 @@ export default function UsersList(props){
             </ul>
             <div className={styles.submit}>
                 <label className={styles.uploadLabel}>Upload group avatar image</label>
-                <input className={styles.upload} type="file" name="myImage" accept="image/*" onChange={handleFileChange}/>
+                <input className={styles.upload} type="file" filename={file}  accept="image/*" onChange={handleFileChange}/>
                 <input className={styles.inputSearch} type="text" value={groupName} onChange={handleGroupName} placeholder="Enter group name"/>
                 <button className={styles.close} onClick={CreateGroup}>Create</button>
             </div>
