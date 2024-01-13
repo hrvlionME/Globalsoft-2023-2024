@@ -24,7 +24,7 @@ export async function getInfo() {
 }
 
 export async function insertNewGroupChatData(participantsInfo, chatName) {
-  const query1 = `INSERT INTO chat (name,avatar) VALUES (?,' ');`;
+  const query1 = `INSERT INTO chat (name, avatar) VALUES (?, 'default.jpg');`;
   const query2 = `INSERT INTO participants (user_id, chat_id) VALUES (?, ?);`;
   const results = [];
   try {
@@ -192,6 +192,19 @@ export async function checkData(email, password) {
   } 
 }*/
 
+export const checkIfTokenExists = async (userId) => {
+  try {
+    const query = `
+      SELECT * 
+      FROM jwt_tokens
+      WHERE user_id = ?`;
+    const [result] = await dbConn.query(query, [userId]);
+    return result;
+  } catch (err) {
+    return;
+  }
+};
+
 export async function sendPasswordResetEmail(userEmail) {
   try {
     const transporter = nodemailer.createTransport({
@@ -308,4 +321,17 @@ export async function sendMessage(chatId, senderId, message) {
     console.error('Error sending message:', error);
     throw error; // Re-throw the error to be caught by the controller
   }
+}
+export async function findLastChat() {
+  const existQuery = 'SELECT MAX(ID) FROM chat;';
+  const [result] = await dbConn.query(existQuery);
+  return result[0]['MAX(ID)'];
+}
+
+export async function uploadImage(newAvatar) {
+  const chatID = await findLastChat();
+  console.log(chatID);
+  const updateQuery = 'UPDATE chat SET avatar = ? WHERE ID = ?;';
+  const [result] = await dbConn.query(updateQuery, [newAvatar, chatID]);
+  return result.affectedRows > 0;
 }

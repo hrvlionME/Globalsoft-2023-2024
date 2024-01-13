@@ -12,7 +12,7 @@ export default function CreateGroupButton(props){
     return (
     <div>
         <button className={styles.CreateButton} onClick={() => {setIsClicked(true)}}>Add New Chat</button>
-        {isClicked  ?  <div><CreateGroupScreen reload={props.reload} closeWindow={closeWindow}/></div> : <div></div>}
+        {isClicked  ?  <div><CreateGroupScreen userId={props.userId} reload={props.reload} closeWindow={closeWindow}/></div> : <div></div>}
     </div>
     )
 }

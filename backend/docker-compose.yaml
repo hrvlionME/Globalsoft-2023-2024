@@ -13,6 +13,7 @@ services:
     volumes:
       - './scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql'
       - './scripts/data.sql:/docker-entrypoint-initdb.d/2.sql'
+      - './scripts/updateSchema.sql:/docker-entrypoint-initdb.d/3.sql'
   web:
     build:
       context: .

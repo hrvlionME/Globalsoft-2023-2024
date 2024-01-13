@@ -9,6 +9,7 @@
 	cursor:pointer;
 	color:#ffffff; 
 	padding:16px 15px;
+	margin: 0;
 	text-decoration:none;
 }
 
@@ -32,4 +33,5 @@
     background-color: #171b24;
 	left: 50%;
   	transform: translateX(-50%);
+	z-index: 1;
 }

@@ -14,9 +14,14 @@
 }
 .upload{
     position: absolute;
+    height: auto;
     bottom: 40px;
     left: 0;
     border: none;
+    margin-bottom: 15px !important;
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
 }
 .userSpan {
     position: relative;
@@ -89,8 +94,13 @@ input[type=file]::file-selector-button {
     border: none;
     border-radius: 50%;
     background-color: white;
+    color: #171b24;
     margin-left: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
 }
+
 
 .Remove{
     position: absolute;
@@ -101,7 +111,11 @@ input[type=file]::file-selector-button {
     border: none;
     border-radius: 50%;
     background-color: white;
+    color:#171b24;
     margin-left: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .close{
@@ -116,6 +130,7 @@ input[type=file]::file-selector-button {
 	color:#ffffff; 
 	padding:16px 15px;
 	text-decoration:none;
+    margin: 0;
 }
 
 .avatar {
@@ -131,10 +146,12 @@ input[type=file]::file-selector-button {
     height: 8vh;
     position: absolute;
     bottom: 0;
+    
+    
 }
 
-
 .inputSearch {
+    width: 100%;
     border: none;
     border-radius: 25px;
     position: absolute;
@@ -145,6 +162,7 @@ input[type=file]::file-selector-button {
     background-color: #fff;
     padding: 5px 10px;
     margin: 10px;
+    margin-bottom: 10px !important;
     height: 2.5rem;
     font-family: 'Arial';
     display:inline-block;

@@ -1,8 +1,10 @@
 import { config } from 'dotenv';
 import express from 'express';
-import { mainRouter } from './routes/main.js';
+import * as authenticatedRoutes from './routes/authenticated.js';
+import * as unauthenticatedRoutes from './routes/unauthenticated.js';
 import cors from 'cors';
 import { Server } from 'socket.io';
+import { auth } from './middleware/authentication.js';
 
 const app = express();
 config();
@@ -11,7 +13,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', mainRouter);
+app.use(unauthenticatedRoutes.router);
+app.use(auth);
+app.use(authenticatedRoutes.router);
 
 const server = app.listen(process.env.BACKEND_PORT || 4000, () => {
   console.log('Server running on port 4000');
