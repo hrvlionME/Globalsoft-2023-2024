@@ -1,4 +1,6 @@
 import * as db from '../config/db.js';
+import { generateTokens } from '../utils/generateTokens.js';
+import { deleteToken } from '../config/db.js';
 import jwt from 'jsonwebtoken';
 
 export const rootEndpoint = async (req, res) => {
@@ -73,19 +75,24 @@ export const getAllMessages = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
-  console.log(email);
-  console.log(password);
+  // console.log(email);
+  // console.log(password);
 
   if (email && password) {
     try {
       const UserId = await db.checkData(email, password);
 
       if (UserId != null) {
-        let myJwt = jwt.sign(UserId, 'aaa');
+        const tokens = await generateTokens(UserId);
+        if(!tokens) return res.status(500).json({message:'Internal server errror, login not possible'});
+
+        const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+        const expiryDate = new Date(Date.now() + thirtyDays);
+        res.cookie('refreshToken', tokens.refreshToken, { httpOnly: true, expires: expiryDate});
 
         return res
           .status(200)
-          .json({ success: true, userId: UserId, acces_token: myJwt });
+          .json({ success: true, userId: UserId, acces_token: `Bearer ${tokens.accessToken}` });
       } else {
         return res
           .status(401)
@@ -99,6 +106,19 @@ export const login = async (req, res) => {
     return res.status(400).json({ Status: 'Please enter Email and Password' });
   }
 };
+
+export const logout = async (req, res) => {
+  const id = req.user.id;
+  await deleteToken(id);
+  res.cookie('refreshToken', null, { httpOnly: true, expires: new Date(Date.now())});
+  res.status(200).json({message: 'Successfully logged out'});
+}
+
+export const refreshToken = (req, res) => {
+  const id = req.user.id;
+  const accessToken = jwt.sign({id}, process.env.ACCESS_TOKEN_SECERT, {expiresIn: '15m'});
+  return res.status(200).json({message:'Success', accessToken: `Bearer ${accessToken}`});
+}
 
 export const registerUser = async (req, res) => {
   const userData = {
