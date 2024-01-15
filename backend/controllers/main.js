@@ -1,4 +1,6 @@
 import * as db from '../config/db.js';
+import { generateTokens } from '../utils/generateTokens.js';
+import { deleteToken } from '../config/db.js';
 import jwt from 'jsonwebtoken';
 
 export const rootEndpoint = async (req, res) => {
@@ -9,7 +11,7 @@ export const rootEndpoint = async (req, res) => {
 export const createNewGroupChat = async (req, res) => {
   const usersIds = [...req.body.participants];
   const name = req.body.name;
-  console.log(usersIds)
+  console.log(usersIds);
   /*   res.json(usersIds); */
   const isSuccess = await db.insertNewGroupChatData(usersIds, name);
   if (isSuccess)
@@ -73,19 +75,34 @@ export const getAllMessages = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
-  console.log(email);
-  console.log(password);
+  // console.log(email);
+  // console.log(password);
 
   if (email && password) {
     try {
       const UserId = await db.checkData(email, password);
 
       if (UserId != null) {
-        let myJwt = jwt.sign(UserId, 'aaa');
+        const tokens = await generateTokens(UserId);
+        if (!tokens)
+          return res
+            .status(500)
+            .json({ message: 'Internal server errror, login not possible' });
 
-        return res
-          .status(200)
-          .json({ success: true, userId: UserId, acces_token: myJwt });
+        const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+        const expiryDate = new Date(Date.now() + thirtyDays);
+        res.cookie('refreshToken', tokens.refreshToken, {
+          httpOnly: true,
+          expires: expiryDate,
+          sameSite: 'None',
+          secure: true,
+        });
+
+        return res.status(200).json({
+          success: true,
+          userId: UserId,
+          acces_token: `Bearer ${tokens.accessToken}`,
+        });
       } else {
         return res
           .status(401)
@@ -98,6 +115,28 @@ export const login = async (req, res) => {
   } else {
     return res.status(400).json({ Status: 'Please enter Email and Password' });
   }
+};
+
+export const logout = async (req, res) => {
+  const id = req.user.id;
+  await deleteToken(id);
+  res.cookie('refreshToken', null, {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+    sameSite: 'None',
+    secure: true,
+  });
+  res.status(200).json({ message: 'Successfully logged out' });
+};
+
+export const refreshToken = (req, res) => {
+  const id = req.user.id;
+  const accessToken = jwt.sign({ id }, process.env.ACCESS_TOKEN_SECERT, {
+    expiresIn: '15m',
+  });
+  return res
+    .status(200)
+    .json({ message: 'Success', accessToken: `Bearer ${accessToken}` });
 };
 
 export const registerUser = async (req, res) => {
@@ -167,19 +206,24 @@ export const forgotPassword = async (req, res) => {
   const { email } = req.body;
 
   try {
-
     const user = await db.getUserByEmail(email);
 
     if (!user) {
-      return res.status(404).json({ success: false, message: 'User with this email is not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: 'User with this email is not found' });
     }
 
     await db.sendPasswordResetEmail(user.email);
 
-    return res.status(200).json({ success: true, message: 'Password reset email sent!' });
+    return res
+      .status(200)
+      .json({ success: true, message: 'Password reset email sent!' });
   } catch (error) {
     console.error('Error during password reset initiation:', error);
-    return res.status(500).json({ success: false, message: 'Internal server error' });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error' });
   }
 };
 
@@ -192,7 +236,9 @@ export const resetPassword = async (req, res) => {
     const user = await db.getUserByEmail(decodedToken.email);
 
     if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found' });
     }
 
     await db.updatePassword(user.ID, newPassword);
@@ -242,28 +288,25 @@ export const sendMessage = async (req, res) => {
 
   try {
     await db.sendMessage(chatId, senderId, message);
-    res.status(200).json({ success: true, message: 'Message sent successfully.' });
+    res
+      .status(200)
+      .json({ success: true, message: 'Message sent successfully.' });
   } catch (error) {
     console.error('Error sending message:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 };
 export const uploadImage = async (req, res) => {
+  const imageName = req.file.filename;
 
-  const imageName = req.file.filename
-
-  try{
-    const uploadedImage = await db.uploadImage(imageName)
-    if(uploadedImage)
-      res.json({message: 'Successfully uploaded image'})
-  else {
-    return res
-      .status(500)
-      .json({message: 'Error uploading image'})
-  }
-  }
-  catch (error) {
+  try {
+    const uploadedImage = await db.uploadImage(imageName);
+    if (uploadedImage) res.json({ message: 'Successfully uploaded image' });
+    else {
+      return res.status(500).json({ message: 'Error uploading image' });
+    }
+  } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Image upload failed' });
   }
-}
+};

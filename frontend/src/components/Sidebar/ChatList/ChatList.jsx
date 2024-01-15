@@ -23,7 +23,14 @@ const ChatList = ({ userId, searchQuery, setSelectedChat }) => {
     const fetchChats = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/user-chats/${userId}`
+          `http://localhost:4000/user-chats/${userId}`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: localStorage.getItem('jwtToken'),
+            },
+          }
         );
         if (!response.ok) {
           throw new Error('Error fetching data');

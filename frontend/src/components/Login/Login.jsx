@@ -58,6 +58,7 @@ const Login = ({
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           email,
           password,
@@ -97,7 +98,6 @@ const Login = ({
   };
 
   const returnToLoginButton = (
-    
     <button
       type="button"
       onClick={handleReturnToLogin}
@@ -192,9 +192,13 @@ const Login = ({
               <>
                 <h5 className={styles.resetPassTitle}>Reset Password:</h5>
                 <form className={styles.form}>
-                  <label className={styles.label} htmlFor="email">Your Email:</label>
+                  <label className={styles.label} htmlFor="email">
+                    Your Email:
+                  </label>
                   <input
-                    className={`${styles.input} ${!isEmailValid(email) ? styles['invalid-field'] : ''}`}
+                    className={`${styles.input} ${
+                      !isEmailValid(email) ? styles['invalid-field'] : ''
+                    }`}
                     type="email"
                     id="email"
                     value={email}
@@ -204,10 +208,18 @@ const Login = ({
                     }}
                   />
                   {error && <div className={styles.errorMessage}>{error}</div>}
-                  <button type="button" className={styles.button} onClick={handleResetPassword}>
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={handleResetPassword}
+                  >
                     <div className={styles.buttonContent}>
                       {isLoading ? (
-                        <img className={styles.image} src={loadingSpinner} alt="Loading" />
+                        <img
+                          className={styles.image}
+                          src={loadingSpinner}
+                          alt="Loading"
+                        />
                       ) : (
                         'Reset Password'
                       )}
@@ -215,7 +227,8 @@ const Login = ({
                   </button>
                   <p className={styles.text}>
                     <i>
-                      We will send you an email with the <br /> reset instructions.
+                      We will send you an email with the <br /> reset
+                      instructions.
                     </i>
                   </p>
                   {returnToLoginButton}
@@ -226,7 +239,9 @@ const Login = ({
         ) : isRegisterOpen ? (
           <div className={styles.registerContainer}>
             <Register setIsRegisterOpen={setIsRegisterOpen} />
-            <p className={styles.text}>Already have an Account? {returnToLoginButton}</p>
+            <p className={styles.text}>
+              Already have an Account? {returnToLoginButton}
+            </p>
           </div>
         ) : (
           <div className={styles.formContainer}>
@@ -235,7 +250,9 @@ const Login = ({
             </div>
             <h3 className={styles.loginTitle}>Login</h3>
             <form className={styles.form}>
-              <label className={styles.label} htmlFor="email">Email:</label>
+              <label className={styles.label} htmlFor="email">
+                Email:
+              </label>
               <input
                 type="email"
                 id="email"
@@ -245,10 +262,14 @@ const Login = ({
                   setError(null);
                 }}
                 onKeyDown={handleEmailKeyPress}
-                className={`${styles.input} ${!isEmailValid(email) ? styles['invalid-field'] : ''}`}
+                className={`${styles.input} ${
+                  !isEmailValid(email) ? styles['invalid-field'] : ''
+                }`}
               />
 
-              <label className={styles.label} htmlFor="password">Password:</label>
+              <label className={styles.label} htmlFor="password">
+                Password:
+              </label>
               <div className={styles.inputContainer}>
                 <input
                   ref={passwordInputRef}
@@ -260,13 +281,16 @@ const Login = ({
                     setError(null);
                   }}
                   onKeyDown={handleKeyPress}
-                  className={`${styles.input} ${!isPasswordValid(password) ? styles['invalid-field'] : ''}`}
+                  className={`${styles.input} ${
+                    !isPasswordValid(password) ? styles['invalid-field'] : ''
+                  }`}
                 />
                 <div
                   className={styles.inputIcon}
                   onClick={togglePasswordVisibility}
                 >
-                  <img className={styles.image}
+                  <img
+                    className={styles.image}
                     src={getPasswordIcon()}
                     alt="Toggle Password Visibility"
                   />
@@ -285,10 +309,18 @@ const Login = ({
               </button>
 
               {error && <div className={styles.errorMessage}>{error}</div>}
-              <button type="button" className={styles.button} onClick={handleLogin}>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={handleLogin}
+              >
                 <div className={styles.buttonContent}>
                   {isLoading ? (
-                    <img className={styles.image} src={loadingSpinner} alt="Loading" />
+                    <img
+                      className={styles.image}
+                      src={loadingSpinner}
+                      alt="Loading"
+                    />
                   ) : (
                     'Login'
                   )}

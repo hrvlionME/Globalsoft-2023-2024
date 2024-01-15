@@ -159,13 +159,13 @@ export async function checkData(email, password) {
   const query = `SELECT * FROM users WHERE email = ? `;
 
   var result = await dbConn.query(query, [email]);
-  console.log('ovo', result[0][0]);
+  // console.log('ovo', result[0][0]);
   let check = bcryptjs.compare(password, result[0][0].password);
 
   if (check) {
     const firstUser = result[0][0];
     const userID = firstUser.ID;
-    console.log('userID:', userID);
+    // console.log('userID:', userID);
 
     return userID;
   } else {
@@ -194,16 +194,45 @@ export async function checkData(email, password) {
 
 export const checkIfTokenExists = async (userId) => {
   try {
-    const query = `
-      SELECT * 
-      FROM jwt_tokens
-      WHERE user_id = ?`;
+      const query = `SELECT u.id, u.email, u.name, u.lastname, u.verified, u.avatar, u.user_role 
+      FROM users u, jwt_tokens jwt 
+      WHERE jwt.user_id = u.id
+      AND u.id = ?`;
     const [result] = await dbConn.query(query, [userId]);
-    return result;
+    return result[0];
   } catch (err) {
     return;
   }
 };
+
+export const deleteToken = async (userId) => {
+  try {
+    const query = `
+      DELETE FROM jwt_tokens
+      WHERE user_id = ?`;
+    const [result] = await dbConn.query(query, [userId]);
+    return result;
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+};
+
+export const insertToken = async (id, token) => {
+  try {
+    const query = `
+      INSERT INTO jwt_tokens (user_id, token)
+      VALUES (?, ?)`;
+    
+    const [result] = await dbConn.query(query, [id, token]);
+    
+    return result.affectedRows > 0 ? true : false;
+
+  } catch (err) {
+    console.error('Error executing INSERT query:', err);
+    return false;
+  }
+}
 
 export async function sendPasswordResetEmail(userEmail) {
   try {
