@@ -128,7 +128,7 @@ const Register = ({ setIsRegisterOpen }) => {
           </div>
         )}
         {error && <div className={styles['error-message']}>{error}</div>}
-        <button className={styles['register-button']}>Register</button>
+        <button className={styles['registerButton']}>Register</button>
       </form>
     </div>
   );
